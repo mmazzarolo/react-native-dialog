@@ -1,19 +1,17 @@
-/* @flow */
-import React from 'react';
-import { KeyboardAvoidingView, Platform, StyleSheet, View } from 'react-native';
-import AnimatedModal from 'react-native-modal';
-import { BlurView } from 'react-native-blur';
+import React from "react";
+import PropTypes from "prop-types";
+import { KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native";
+import AnimatedModal from "react-native-modal";
+import { BlurView } from "react-native-blur";
 
-type Props = {
-  visible?: boolean,
-  children: any,
-};
+export default class DialogContainer extends React.PureComponent {
+  static propTypes = {
+    visible: PropTypes.bool,
+    children: PropTypes.node.isRequired
+  };
 
-export default class DialogContainer extends React.PureComponent<Props> {
   static defaultProps = {
-    title: '',
-    description: '',
-    visible: false,
+    visible: false
   };
 
   render() {
@@ -23,12 +21,12 @@ export default class DialogContainer extends React.PureComponent<Props> {
     const buttonChildrens = [];
     const otherChildrens = [];
     React.Children.forEach(children, child => {
-      if (child.type.displayName === 'DialogTitle') {
+      if (child.type.displayName === "DialogTitle") {
         titleChildrens.push(child);
-      } else if (child.type.displayName === 'DialogDescription') {
+      } else if (child.type.displayName === "DialogDescription") {
         descriptionChildrens.push(child);
-      } else if (child.type.displayName === 'DialogButton') {
-        if (Platform.OS === 'ios' && buttonChildrens.length > 0) {
+      } else if (child.type.displayName === "DialogButton") {
+        if (Platform.OS === "ios" && buttonChildrens.length > 0) {
           buttonChildrens.push(<View style={styles.buttonSeparator} />);
         }
         buttonChildrens.push(child);
@@ -41,17 +39,21 @@ export default class DialogContainer extends React.PureComponent<Props> {
         backdropOpacity={0.4}
         style={styles.modal}
         isVisible={visible}
-        animationIn={'zoomIn'}
-        animationOut={'fadeOut'}
+        animationIn={"zoomIn"}
+        animationOut={"fadeOut"}
         {...otherProps}
       >
         <KeyboardAvoidingView
-          behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+          behavior={Platform.OS === "ios" ? "padding" : undefined}
           style={styles.container}
         >
           <View style={styles.content}>
-            {Platform.OS === 'ios' && (
-              <BlurView style={styles.blur} blurType={'xlight'} blurAmount={10} />
+            {Platform.OS === "ios" && (
+              <BlurView
+                style={styles.blur}
+                blurType={"xlight"}
+                blurAmount={10}
+              />
             )}
             <View style={styles.header}>
               {titleChildrens}
@@ -68,61 +70,61 @@ export default class DialogContainer extends React.PureComponent<Props> {
 
 const styles = StyleSheet.create({
   modal: {
-    flex: 1,
+    flex: 1
   },
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: "center"
   },
   blur: {
-    position: 'absolute',
+    position: "absolute",
     top: 0,
     left: 0,
     bottom: 0,
-    right: 0,
+    right: 0
   },
   content: Platform.select({
     ios: {
-      flexDirection: 'column',
+      flexDirection: "column",
       borderRadius: 13,
-      overflow: 'hidden',
+      overflow: "hidden"
     },
     android: {
-      flexDirection: 'column',
+      flexDirection: "column",
       borderRadius: 3,
       padding: 16,
-      backgroundColor: 'white',
-      overflow: 'hidden',
+      backgroundColor: "white",
+      overflow: "hidden",
       elevation: 4,
-      minWidth: 300,
-    },
+      minWidth: 300
+    }
   }),
   header: Platform.select({
     ios: {
-      margin: 20,
+      margin: 20
     },
     android: {
-      margin: 12,
-    },
+      margin: 12
+    }
   }),
   footer: Platform.select({
     ios: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      borderTopColor: '#A9ADAE',
+      flexDirection: "row",
+      justifyContent: "space-between",
+      borderTopColor: "#A9ADAE",
       borderTopWidth: StyleSheet.hairlineWidth,
-      height: 52,
+      height: 52
     },
     android: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'flex-end',
-      marginTop: 4,
-    },
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "flex-end",
+      marginTop: 4
+    }
   }),
   buttonSeparator: {
-    height: '100%',
-    backgroundColor: '#A9ADAE',
-    width: StyleSheet.hairlineWidth,
-  },
+    height: "100%",
+    backgroundColor: "#A9ADAE",
+    width: StyleSheet.hairlineWidth
+  }
 });

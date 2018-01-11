@@ -1,13 +1,14 @@
-/* @flow */
-import React from 'react';
-import { Platform, StyleSheet, Text } from 'react-native';
+import React from "react";
+import PropTypes from "prop-types";
+import { Platform, StyleSheet, Text } from "react-native";
 
-type Props = {
-  style: ?any,
-  children: string,
-};
+export default class DialogDescription extends React.PureComponent {
+  static propTypes = {
+    ...Text.propTypes,
+    style: PropTypes.any,
+    children: PropTypes.node.isRequired
+  };
 
-export default class DialogDescription extends React.PureComponent<Props> {
   render() {
     const { style, children, ...otherProps } = this.props;
     return (
@@ -21,15 +22,15 @@ export default class DialogDescription extends React.PureComponent<Props> {
 const styles = StyleSheet.create({
   text: Platform.select({
     ios: {
-      textAlign: 'center',
-      color: 'black',
+      textAlign: "center",
+      color: "black",
       fontSize: 16,
-      marginTop: 10,
+      marginTop: 10
     },
     android: {
-      color: '#33383D',
+      color: "#33383D",
       fontSize: 16,
-      marginTop: 10,
-    },
-  }),
+      marginTop: 10
+    }
+  })
 });

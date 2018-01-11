@@ -1,14 +1,13 @@
-/* @flow */
-import DialogButton from './Button';
-import DialogContainer from './Container';
-import DialogDescription from './Description';
-import DialogInput from './Input';
-import DialogTitle from './Title';
+import DialogButton from "./Button";
+import DialogContainer from "./Container";
+import DialogDescription from "./Description";
+import DialogInput from "./Input";
+import DialogTitle from "./Title";
 
 export default {
   Button: DialogButton,
   Container: DialogContainer,
   Description: DialogDescription,
   Input: DialogInput,
-  Title: DialogTitle,
+  Title: DialogTitle
 };

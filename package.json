@@ -26,7 +26,6 @@
     "babel-eslint": "^8.2.1",
     "eslint": "^4.15.0",
     "eslint-plugin-react-app": "^1.0.2",
-    "flow-bin": "^0.63.1",
     "husky": "^0.14.3",
     "lint-staged": "^6.0.0",
     "prettier": "^1.10.2"
@@ -37,5 +36,8 @@
       "prettier --write",
       "git add"
     ]
+  },
+  "dependencies": {
+    "prop-types": "^15.6.0"
   }
 }
