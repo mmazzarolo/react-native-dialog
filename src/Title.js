@@ -6,7 +6,7 @@ export default class DialogTitle extends React.PureComponent {
   static propTypes = {
     ...Text.propTypes,
     style: PropTypes.any,
-    children: PropTypes.node.isRequired
+    children: PropTypes.string.isRequired
   };
 
   render() {

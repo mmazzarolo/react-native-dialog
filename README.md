@@ -27,25 +27,40 @@ WIP
 
 ## Available props
 
-| Name                        | Type             | Default        | Description                                                                                                                         |
-| --------------------------- | ---------------- | -------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| animationIn                 | string or object | 'slideInUp'    | Modal show animation                                                                                                                |
-| animationInTiming           | number           | 300            | Timing for the modal show animation (in ms)                                                                                         |
-| animationOut                | string or object | 'slideOutDown' | Modal hide animation                                                                                                                |
-| animationOutTiming          | number           | 300            | Timing for the modal hide animation (in ms)                                                                                         |
-| avoidKeyboard               | bool             | false          | Move the modal up if the keyboard is open                                                                                           |
-| backdropColor               | string           | 'black'        | The backdrop background color                                                                                                       |
-| backdropOpacity             | number           | 0.70           | The backdrop opacity when the modal is visible                                                                                      |
-| backdropTransitionInTiming  | number           | 300            | The backdrop show timing (in ms)                                                                                                    |
-| backdropTransitionOutTiming | number           | 300            | The backdrop hide timing (in ms)                                                                                                    |
-| onBackButtonPress           | func             | () => null     | Called when the Android back button is pressed                                                                                      |
-| onBackdropPress             | func             | () => null     | Called when the backdrop is pressed                                                                                                 |
-| useNativeDriver             | bool             | false          | Define if animations should use [native driver](https://facebook.github.io/react-native/docs/animated.html#using-the-native-driver) |
-| isVisible                   | bool             | **REQUIRED**   | Show the modal?                                                                                                                     |
-| children                    | node             | **REQUIRED**   | The modal content                                                                                                                   |
-| onModalShow                 | func             | () => null     | Called when the modal is completely visible                                                                                         |
-| onModalHide                 | func             | () => null     | Called when the modal is completely hidden                                                                                          |
-| style                       | any              | null           | Style applied to the modal                                                                                                          |
+### Dialog.Button props
+
+| Name     | Type   | Default                                | Description                           |
+| -------- | ------ | -------------------------------------- | ------------------------------------- |
+| label    | string | **REQUIRED**                           | The label text                        |
+| color    | string | `#007ff9` on iOS, `#169689` on Android | The label color                       |
+| bold     | bool   | false                                  | Show the label with bold font weight? |
+| disabled | bool   | false                                  | Disable the button?                   |
+| onPress  | func   | **REQUIRED**                           | Called when the button is pressed     |
+
+### Dialog.Description props
+
+| Name     | Type   | Default      | Description          |
+| -------- | ------ | ------------ | -------------------- |
+| children | string | **REQUIRED** | The description text |
+
+### Dialog.Container props
+
+| Name     | Type | Default      | Description        |
+| -------- | ---- | ------------ | ------------------ |
+| visible  | bool | **REQUIRED** | Show the dialog?   |
+| children | node | **REQUIRED** | The dialog content |
+
+### Dialog.Input props
+
+| Name         | Type | Default   | Description                                 |
+| ------------ | ---- | --------- | ------------------------------------------- |
+| wrapperStyle | any  | undefined | The style applied to the input wrapper View |
+
+### Dialog.Title props
+
+| Name     | Type   | Default      | Description    |
+| -------- | ------ | ------------ | -------------- |
+| children | string | **REQUIRED** | The title text |
 
 ## Frequently Asked Questions
 
