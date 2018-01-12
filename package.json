@@ -1,6 +1,6 @@
 {
-  "name": "react-native-dialog-builder",
-  "version": "1.0.0",
+  "name": "react-native-dialog",
+  "version": "2.0.0",
   "description": "A flexible react-native dialog",
   "main": "src/index.js",
   "scripts": {
@@ -9,14 +9,7 @@
     "test": "npm run lint",
     "prettier": "prettier --write src/**/*.js"
   },
-  "keywords": [
-    "react-native",
-    "dialog",
-    "alert",
-    "modal",
-    "button",
-    "input"
-  ],
+  "keywords": ["react-native", "dialog", "alert", "modal", "button", "input"],
   "author": "Mazzarolo Matteo",
   "license": "MIT",
   "peerDependencies": {
@@ -31,11 +24,7 @@
     "prettier": "^1.10.2"
   },
   "lint-staged": {
-    "*.js": [
-      "lint",
-      "prettier --write",
-      "git add"
-    ]
+    "*.js": ["lint", "prettier --write", "git add"]
   },
   "dependencies": {
     "prop-types": "^15.6.0"
