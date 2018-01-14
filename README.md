@@ -199,6 +199,12 @@ export default class DialogTester extends Component {
 | -------- | ------ | ------------ | -------------- |
 | children | string | **REQUIRED** | The title text |
 
+## TODO
+
+* Improve the animation of the iOS Dialog for better resembling it native counterpart
+* Handle the UI for more than 2 iOS buttons
+* Add even more components (a `Picker` for example)
+
 ## Acknowledgment
 
 Thanks to the user [@honaf](https://github.com/honaf) who has kindly offered the `react-native-dialog` namespace.  
