@@ -9,18 +9,15 @@
     "test": "npm run lint",
     "prettier": "prettier --write src/**/*.js"
   },
-  "keywords": [
-    "react-native",
-    "dialog",
-    "alert",
-    "modal",
-    "button",
-    "input"
-  ],
+  "keywords": ["react-native", "dialog", "alert", "modal", "button", "input"],
   "author": "Mazzarolo Matteo",
   "license": "MIT",
   "peerDependencies": {
     "react-native-blur": "^3.2.2"
+  },
+  "dependencies": {
+    "prop-types": "^15.6.0",
+    "react-native-modal": "^4.1.1"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",
@@ -31,13 +28,6 @@
     "prettier": "^1.10.2"
   },
   "lint-staged": {
-    "*.js": [
-      "lint",
-      "prettier --write",
-      "git add"
-    ]
-  },
-  "dependencies": {
-    "prop-types": "^15.6.0"
+    "*.js": ["lint", "prettier --write", "git add"]
   }
 }
