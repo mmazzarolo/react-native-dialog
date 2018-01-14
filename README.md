@@ -77,14 +77,14 @@ import Dialog from "react-native-dialog";
 render () {
     return (
       <View>
-        <Dialog>
+        <Dialog.Container>
           <Dialog.Title>Account delete</Dialog.Title>
           <Dialog.Description>
             Do you want to delete this account? You cannot undo this action.
           </Dialog.Description>
           <Dialog.Button label="Cancel" />
           <Dialog.Button label="Delete" />
-        </Dialog>
+        </Dialog.Container>
       </View>
     )
   }
@@ -96,14 +96,14 @@ render () {
 render () {
     return (
       <View>
-        <Dialog visible={true}>
+        <Dialog.Container visible={true}>
           <Dialog.Title>Account delete</Dialog.Title>
           <Dialog.Description>
             Do you want to delete this account? You cannot undo this action.
           </Dialog.Description>
           <Dialog.Button label="Cancel" />
           <Dialog.Button label="Delete" />
-        </Dialog>
+        </Dialog.Container>
       </View>
     )
   }
