@@ -12,3 +12,4 @@ example/
 .eslintrc
 package.lock
 yarn.lock
+.github
