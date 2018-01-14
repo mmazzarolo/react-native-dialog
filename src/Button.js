@@ -29,7 +29,7 @@ export default class DialogButton extends React.PureComponent {
       style,
       ...otherProps
     } = this.props;
-    const fontWeight = bold ? "500" : "normal";
+    const fontWeight = bold ? "600" : "normal";
     return (
       <TouchableOpacity
         style={styles.button}
