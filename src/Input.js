@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     ios: {
       backgroundColor: "white",
       borderWidth: StyleSheet.hairlineWidth,
-      borderRadius: 8,
+      borderRadius: 6,
       borderColor: "#A9ADAE",
       marginHorizontal: 20,
       marginBottom: 20,
