@@ -3,19 +3,56 @@
 [![npm version](https://badge.fury.io/js/react-native-modal.svg)](https://badge.fury.io/js/react-native-dialog)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
-A flexible react-native dialog.
+A 100% JavaScript react-native dialog that follows closely the UI of its native counterpart while expanding its features.
 
 ## Features
 
-WIP
+* Support for iOS and Android (100% JavaScript)
+* A flexible declarative API
+* Follows closely the UI of a native dialog/alert
 
 ## Demo
 
-WIP
+<p align="center">
+<img src="https://raw.githubusercontent.com/mmazzarolo/react-native-dialog/master/.github/react-native-dialog-android-alert" height="300" />
+<img src="https://raw.githubusercontent.com/mmazzarolo/react-native-dialog/master/.github/react-native-dialog-ios-alert" height="300" />
+</p>
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/mmazzarolo/react-native-dialog/master/.github/react-native-dialog-android-input" height="300" />
+<img src="https://raw.githubusercontent.com/mmazzarolo/react-native-dialog/master/.github/react-native-dialog-ios-input" height="300" />
+</p>
 
 ## Setup
 
-WIP
+Install the library using npm or yarn:
+
+```bash
+# using npm
+$ npm install react-native-dialog --save
+
+# using yarn
+$ yarn add react-native-dialog
+```
+
+The other dependency you must install is [react-native-blur](react-native-blur), which is used to achieve the "blurred" alert look on iOS.
+
+You can install it using npm or yarn:
+
+```bash
+# using npm
+$ npm install react-native-blur --save
+
+# using yarn
+$ yarn add react-native-blur
+```
+
+And last, you should link it using react-native link:
+
+```bash
+# link the react-native library
+$ react-native link react-native-blur
+```
 
 ## Usage
 
