@@ -10,17 +10,18 @@ A 100% JavaScript react-native dialog that follows closely the UI of its native 
 * Support for iOS and Android (100% JavaScript)
 * A flexible declarative API
 * Follows closely the UI of a native dialog/alert
+* Can be used both as an alert and as an input prompt
 
 ## Demo
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/mmazzarolo/react-native-dialog/master/.github/react-native-dialog-android-alert.png" height="400" />
-<img src="https://raw.githubusercontent.com/mmazzarolo/react-native-dialog/master/.github/react-native-dialog-ios-alert.png" height="400" />
+<img src="https://raw.githubusercontent.com/mmazzarolo/react-native-dialog/master/.github/react-native-dialog-ios-alert.png" height="500" />
+<img src="https://raw.githubusercontent.com/mmazzarolo/react-native-dialog/master/.github/react-native-dialog-android-alert.png" height="500" />
 </p>
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/mmazzarolo/react-native-dialog/master/.github/react-native-dialog-android-input.png" height="400" />
-<img src="https://raw.githubusercontent.com/mmazzarolo/react-native-dialog/master/.github/react-native-dialog-ios-input.png" height="400" />
+<img src="https://raw.githubusercontent.com/mmazzarolo/react-native-dialog/master/.github/react-native-dialog-ios-input.png" height="500" />
+<img src="https://raw.githubusercontent.com/mmazzarolo/react-native-dialog/master/.github/react-native-dialog-android-input.png" height="500" />
 </p>
 
 ## Setup
@@ -35,7 +36,7 @@ $ npm install react-native-dialog --save
 $ yarn add react-native-dialog
 ```
 
-The other dependency you must install is [react-native-blur](react-native-blur), which is used to achieve the "blurred" alert look on iOS.
+React-native-dialog requires and additional dependency to work correctly: [react-native-blur](https://github.com/react-native-community/react-native-blur), used to achieve the "blurred" alert look on iOS.
 
 You can install it using npm or yarn:
 
@@ -56,11 +57,110 @@ $ react-native link react-native-blur
 
 ## Usage
 
-WIP
+React-native-dialog exposes a set of components that can be used to build the UI of the dialog:
+
+* Dialog.Container: This component is the root component of the dialog and all the other components should be nested inside it.
+* Dialog.Title: A `Text` component styled as a native dialog title.
+* Dialog.Description: A `Text` component styled as a native dialog description.
+* Dialog.Button: A component styled as a native dialog button.
+* Dialog.Input: A `TextInput` component styled as a native dialog input.
+
+1. Import react-native-dialog:
+
+```javascript
+import Dialog from "react-native-dialog";
+```
+
+2. Create a dialog and nest its content inside of it:
+
+```javascript
+render () {
+    return (
+      <View>
+        <Dialog>
+          <Dialog.Title>Account delete</Dialog.Title>
+          <Dialog.Description>
+            Do you want to delete this account? You cannot undo this action.
+          </Dialog.Description>
+          <Dialog.Button label="Cancel" />
+          <Dialog.Button label="Delete" />
+        </Dialog>
+      </View>
+    )
+  }
+```
+
+3. Then simply show it by setting the `visible` prop to true:
+
+```javascript
+render () {
+    return (
+      <View>
+        <Dialog visible={true}>
+          <Dialog.Title>Account delete</Dialog.Title>
+          <Dialog.Description>
+            Do you want to delete this account? You cannot undo this action.
+          </Dialog.Description>
+          <Dialog.Button label="Cancel" />
+          <Dialog.Button label="Delete" />
+        </Dialog>
+      </View>
+    )
+  }
+```
+
+The `visible` prop is the only prop you'll really need to make the dialog work: you should control this prop value by saving it in your state and setting it to `true` or `false` when needed.
 
 ## A complete example
 
-WIP
+The following example consists in a component (`DialogTester`) with a button and a dialog.
+The dialog is controlled by the `dialogVisible` state variable and it is initially hidden, since its value is `false`.  
+Pressing the button sets `dialogVisible` to true, making the dialog visible.  
+Inside the dialog there are two button that, when pressed, sets `dialogVisible` to false, hiding the dialog.
+
+```javascript
+import React, { Component } from "react";
+import { Text, TouchableOpacity, View } from "react-native";
+import Dialog from "react-native-dialog";
+
+export default class DialogTester extends Component {
+  state = {
+    dialogVisible: false
+  };
+
+  showDialog = () => {
+    this.setState({ dialogVisible: true });
+  };
+
+  handleCancel = () => {
+    this.setState({ dialogVisible: false });
+  };
+
+  handleDelete = () => {
+    // The user has pressed the "Delete" button, so here you can do your own logic.
+    // ...Your logic
+    this.setState({ dialogVisible: false });
+  };
+
+  render() {
+    return (
+      <View>
+        <TouchableOpacity onPress={this.showDialog}>
+          <Text>Show Dialog</Text>
+        </TouchableOpacity>
+        <Dialog visible={true}>
+          <Dialog.Title>Account delete</Dialog.Title>
+          <Dialog.Description>
+            Do you want to delete this account? You cannot undo this action.
+          </Dialog.Description>
+          <Dialog.Button label="Cancel" onPress={this.handleCancel} />
+          <Dialog.Button label="Delete" onPress={this.handleDelete} />
+        </Dialog>
+      </View>
+    );
+  }
+}
+```
 
 ## Available props
 
@@ -99,8 +199,7 @@ WIP
 | -------- | ------ | ------------ | -------------- |
 | children | string | **REQUIRED** | The title text |
 
-## Frequently Asked Questions
-
-WIP
-
 ## Acknowledgment
+
+Thanks to the user [@honaf](https://github.com/honaf) who has kindly offered the `react-native-dialog` namespace.  
+Also thanks to the user [@leecade](https://github.com/leecade) who offered the namespace `react-native-alert` (which has not been used since "Dialog" seems to suit better this component).
