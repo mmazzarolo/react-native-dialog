@@ -1,6 +1,6 @@
 {
   "name": "react-native-dialog",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A flexible react-native dialog",
   "main": "src/index.js",
   "scripts": {
