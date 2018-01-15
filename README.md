@@ -204,6 +204,7 @@ export default class DialogTester extends Component {
 * Improve the animation of the iOS Dialog for better resembling it native counterpart
 * Handle the UI for more than 2 iOS buttons
 * Add even more components (a `Picker` for example)
+* Make `react-native-blur` optional
 
 ## Acknowledgment
 
