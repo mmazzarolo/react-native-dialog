@@ -3,11 +3,11 @@
 [![npm version](https://badge.fury.io/js/react-native-modal.svg)](https://badge.fury.io/js/react-native-dialog)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
-A 100% JavaScript react-native dialog that follows closely the UI of its native counterpart while expanding its features.
+A JavaScript react-native dialog that follows closely the UI of its native counterpart while expanding its features.
 
 ## Features
 
-* Support for iOS and Android (100% JavaScript)
+* Support for iOS and Android (JavaScript API)
 * A flexible declarative API
 * Follows closely the UI of a native dialog/alert
 * Can be used both as an alert and as an input prompt
