@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   text: Platform.select({
     ios: {
       textAlign: "center",
-      fontSize: 20,
+      fontSize: 17,
       backgroundColor: "transparent"
     },
     android: {

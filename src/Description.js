@@ -24,8 +24,8 @@ const styles = StyleSheet.create({
     ios: {
       textAlign: "center",
       color: "black",
-      fontSize: 16,
-      marginTop: 10
+      fontSize: 13,
+      marginTop: 4
     },
     android: {
       color: "#33383D",

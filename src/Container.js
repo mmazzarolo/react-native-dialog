@@ -4,6 +4,12 @@ import { KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native";
 import AnimatedModal from "react-native-modal";
 import { BlurView } from "react-native-blur";
 
+const IOS_MODAL_ANIMATION = {
+  from: { opacity: 0, scale: 1.2 },
+  0.5: { opacity: 1 },
+  to: { opacity: 1, scale: 1 }
+};
+
 export default class DialogContainer extends React.PureComponent {
   static propTypes = {
     visible: PropTypes.bool,
@@ -39,7 +45,7 @@ export default class DialogContainer extends React.PureComponent {
         backdropOpacity={0.4}
         style={styles.modal}
         isVisible={visible}
-        animationIn={"zoomIn"}
+        animationIn={Platform.OS === "ios" ? IOS_MODAL_ANIMATION : "zoomIn"}
         animationOut={"fadeOut"}
         {...otherProps}
       >
@@ -51,7 +57,7 @@ export default class DialogContainer extends React.PureComponent {
             {Platform.OS === "ios" && (
               <BlurView
                 style={styles.blur}
-                blurType={"xlight"}
+                blurType={"light"}
                 blurAmount={10}
               />
             )}
@@ -91,6 +97,8 @@ const styles = StyleSheet.create({
   },
   content: Platform.select({
     ios: {
+      width: 270,
+      backgroundColor: "rgba(255,255,255, 0.7)",
       flexDirection: "column",
       borderRadius: 13,
       overflow: "hidden"
@@ -107,7 +115,7 @@ const styles = StyleSheet.create({
   }),
   header: Platform.select({
     ios: {
-      margin: 20
+      margin: 18
     },
     android: {
       margin: 12
@@ -119,7 +127,7 @@ const styles = StyleSheet.create({
       justifyContent: "space-between",
       borderTopColor: "#A9ADAE",
       borderTopWidth: StyleSheet.hairlineWidth,
-      height: 52
+      height: 46
     },
     android: {
       flexDirection: "row",
