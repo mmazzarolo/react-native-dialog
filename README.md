@@ -1,13 +1,13 @@
 # react-native-dialog
 
-[![npm version](https://badge.fury.io/js/react-native-modal.svg)](https://badge.fury.io/js/react-native-dialog)
+[![npm version](https://badge.fury.io/js/react-native-dialog.svg)](https://badge.fury.io/js/react-native-dialog)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
-A 100% JavaScript react-native dialog that follows closely the UI of its native counterpart while expanding its features.
+A JavaScript react-native dialog that follows closely the UI of its native counterpart while expanding its features.
 
 ## Features
 
-* Support for iOS and Android (100% JavaScript)
+* Support for iOS and Android (JavaScript API)
 * A flexible declarative API
 * Follows closely the UI of a native dialog/alert
 * Can be used both as an alert and as an input prompt
@@ -77,14 +77,14 @@ import Dialog from "react-native-dialog";
 render () {
     return (
       <View>
-        <Dialog>
+        <Dialog.Container>
           <Dialog.Title>Account delete</Dialog.Title>
           <Dialog.Description>
             Do you want to delete this account? You cannot undo this action.
           </Dialog.Description>
           <Dialog.Button label="Cancel" />
           <Dialog.Button label="Delete" />
-        </Dialog>
+        </Dialog.Container>
       </View>
     )
   }
@@ -96,14 +96,14 @@ render () {
 render () {
     return (
       <View>
-        <Dialog visible={true}>
+        <Dialog.Container visible={true}>
           <Dialog.Title>Account delete</Dialog.Title>
           <Dialog.Description>
             Do you want to delete this account? You cannot undo this action.
           </Dialog.Description>
           <Dialog.Button label="Cancel" />
           <Dialog.Button label="Delete" />
-        </Dialog>
+        </Dialog.Container>
       </View>
     )
   }
@@ -204,6 +204,7 @@ export default class DialogTester extends Component {
 * Improve the animation of the iOS Dialog for better resembling it native counterpart
 * Handle the UI for more than 2 iOS buttons
 * Add even more components (a `Picker` for example)
+* Make `react-native-blur` optional
 
 ## Acknowledgment
 
