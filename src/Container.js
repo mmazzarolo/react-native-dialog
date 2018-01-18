@@ -82,10 +82,15 @@ export default class DialogContainer extends React.PureComponent {
 
 const styles = StyleSheet.create({
   modal: {
-    flex: 1
+    flex: 1,
+    marginLeft: 0,
+    marginRight: 0,
+    marginTop: 0,
+    marginBottom: 0
   },
   container: {
     flex: 1,
+    alignItems: "center",
     justifyContent: "center"
   },
   blur: {
