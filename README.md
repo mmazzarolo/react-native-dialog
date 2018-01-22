@@ -3,7 +3,7 @@
 [![npm version](https://badge.fury.io/js/react-native-dialog.svg)](https://badge.fury.io/js/react-native-dialog)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
-A JavaScript react-native dialog that follows closely the UI of its native counterpart while expanding its features.
+A JavaScript React-Native dialog that follows closely the UI of its native counterpart while expanding its features.
 
 ## Features
 
