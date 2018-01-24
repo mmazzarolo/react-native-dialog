@@ -19,6 +19,8 @@ export default class DialogButton extends React.PureComponent {
     disabled: false
   };
 
+  static displayName = "DialogButton";
+
   render() {
     const {
       label,

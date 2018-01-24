@@ -9,6 +9,8 @@ export default class DialogInput extends React.PureComponent {
     wrapperStyle: PropTypes.any
   };
 
+  static displayName = "DialogInput";
+
   render() {
     const { style, wrapperStyle, ...otherProps } = this.props;
     return (

@@ -9,6 +9,8 @@ export default class DialogTitle extends React.PureComponent {
     children: PropTypes.string.isRequired
   };
 
+  static displayName = "DialogTitle";
+
   render() {
     const { style, children, ...otherProps } = this.props;
     return (
