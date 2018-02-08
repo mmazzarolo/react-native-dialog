@@ -40,11 +40,11 @@ $ yarn add react-native-dialog
 
 React-native-dialog exposes a set of components that can be used to build the UI of the dialog:
 
-* Dialog.Container: This component is the root component of the dialog and all the other components should be nested inside it.
-* Dialog.Title: A `Text` component styled as a native dialog title.
-* Dialog.Description: A `Text` component styled as a native dialog description.
-* Dialog.Button: A component styled as a native dialog button.
-* Dialog.Input: A `TextInput` component styled as a native dialog input.
+* **Dialog.Container**: This component is the root component of the dialog and all the other components should be nested inside it.
+* **Dialog.Title**: A `Text` component styled as a native dialog title.
+* **Dialog.Description**: A `Text` component styled as a native dialog description.
+* **Dialog.Button**: A component styled as a native dialog button.
+* **Dialog.Input**: A `TextInput` component styled as a native dialog input.
 
 1. Import react-native-dialog:
 
@@ -190,7 +190,7 @@ export default class DialogTester extends Component {
 
 ### How can I use a custom blur component as the dialog background on iOS?
 
-To achieve an design even closer to the native iOS dialog you can provide your own component in the `blurComponentIOS` prop of a `Dialog.Container` and it will be injected in the dialog to be used as a background.  
+To achieve a look even closer to the native iOS dialog you can provide your own component in the `blurComponentIOS` prop of a `Dialog.Container` and it will be injected in the dialog to be used as a background.  
 The `blurComponentIOS` can be useful, for example, if you want to apply native blur effect to the dialog.  
 Here is an example using `react-native-blur`:
 
