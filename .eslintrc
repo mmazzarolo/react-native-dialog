@@ -1,3 +1,6 @@
 {
-  "extends": ["plugin:react-app/recommended"]
+  "extends": ["plugin:react-app/recommended"],
+  "rules": {
+    "no-use-before-define": "off"
+  }
 }

@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native";
 import AnimatedModal from "react-native-modal";
-import { BlurView } from "react-native-blur";
 
 const IOS_MODAL_ANIMATION = {
   from: { opacity: 0, scale: 1.2 },
@@ -12,8 +11,9 @@ const IOS_MODAL_ANIMATION = {
 
 export default class DialogContainer extends React.PureComponent {
   static propTypes = {
-    visible: PropTypes.bool,
-    children: PropTypes.node.isRequired
+    blurComponentIOS: PropTypes.node,
+    children: PropTypes.node.isRequired,
+    visible: PropTypes.bool
   };
 
   static defaultProps = {
@@ -21,18 +21,17 @@ export default class DialogContainer extends React.PureComponent {
   };
 
   render() {
-    const { visible, children, ...otherProps } = this.props;
+    const { blurComponentIOS, children, visible, ...otherProps } = this.props;
     const titleChildrens = [];
     const descriptionChildrens = [];
     const buttonChildrens = [];
     const otherChildrens = [];
     React.Children.forEach(children, child => {
-      const childName = child.type.displayName;
-      if (childName === "DialogTitle") {
+      if (child.type.name === "DialogTitle") {
         titleChildrens.push(child);
-      } else if (childName === "DialogDescription") {
+      } else if (child.type.name === "DialogDescription") {
         descriptionChildrens.push(child);
-      } else if (childName === "DialogButton") {
+      } else if (child.type.name === "DialogButton") {
         if (Platform.OS === "ios" && buttonChildrens.length > 0) {
           buttonChildrens.push(<View style={styles.buttonSeparator} />);
         }
@@ -43,7 +42,7 @@ export default class DialogContainer extends React.PureComponent {
     });
     return (
       <AnimatedModal
-        backdropOpacity={0.4}
+        backdropOpacity={0.3}
         style={styles.modal}
         isVisible={visible}
         animationIn={Platform.OS === "ios" ? IOS_MODAL_ANIMATION : "zoomIn"}
@@ -55,13 +54,9 @@ export default class DialogContainer extends React.PureComponent {
           style={styles.container}
         >
           <View style={styles.content}>
-            {Platform.OS === "ios" && (
-              <BlurView
-                style={styles.blur}
-                blurType={"light"}
-                blurAmount={10}
-              />
-            )}
+            {Platform.OS === "ios" && blurComponentIOS}
+            {Platform.OS === "ios" &&
+              !blurComponentIOS && <View style={styles.blur} />}
             <View style={styles.header}>
               {titleChildrens}
               {descriptionChildrens}
@@ -91,11 +86,12 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    alignItems: "center"
   },
   blur: {
     position: "absolute",
+    backgroundColor: "rgba(255,255,255, 0.8)",
     top: 0,
     left: 0,
     bottom: 0,
@@ -104,7 +100,6 @@ const styles = StyleSheet.create({
   content: Platform.select({
     ios: {
       width: 270,
-      backgroundColor: "rgba(255,255,255, 0.7)",
       flexDirection: "column",
       borderRadius: 13,
       overflow: "hidden"

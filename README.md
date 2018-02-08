@@ -3,7 +3,7 @@
 [![npm version](https://badge.fury.io/js/react-native-dialog.svg)](https://badge.fury.io/js/react-native-dialog)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
-A JavaScript React-Native dialog that follows closely the UI of its native counterpart while expanding its features.
+A pure JavaScript React-Native dialog that follows closely the UI of its native counterpart while expanding its features.
 
 ## Features
 
@@ -34,25 +34,6 @@ $ npm install react-native-dialog --save
 
 # using yarn
 $ yarn add react-native-dialog
-```
-
-React-native-dialog requires and additional dependency to work correctly: [react-native-blur](https://github.com/react-native-community/react-native-blur), used to achieve the "blurred" alert look on iOS.
-
-You can install it using npm or yarn:
-
-```bash
-# using npm
-$ npm install react-native-blur --save
-
-# using yarn
-$ yarn add react-native-blur
-```
-
-And last, you should link it using react-native link:
-
-```bash
-# link the react-native library
-$ react-native link react-native-blur
 ```
 
 ## Usage
@@ -182,10 +163,11 @@ export default class DialogTester extends Component {
 
 ### Dialog.Container props
 
-| Name     | Type | Default      | Description        |
-| -------- | ---- | ------------ | ------------------ |
-| visible  | bool | **REQUIRED** | Show the dialog?   |
-| children | node | **REQUIRED** | The dialog content |
+| Name             | Type | Default                | Description                    |
+| ---------------- | ---- | ---------------------- | ------------------------------ |
+| blurComponentIOS | node | A low-opacity <View /> | The blur component used in iOS |
+| visible          | bool | **REQUIRED**           | Show the dialog?               |
+| children         | node | **REQUIRED**           | The dialog content             |
 
 ### Dialog.Input props
 
@@ -201,10 +183,43 @@ export default class DialogTester extends Component {
 
 ## TODO
 
-* Improve the animation of the iOS Dialog for better resembling it native counterpart
 * Handle the UI for more than 2 iOS buttons
 * Add even more components (a `Picker` for example)
-* Make `react-native-blur` optional
+
+## Frequently Asked Questions
+
+### How can I use a custom blur component as the dialog background on iOS?
+
+To achieve an design even closer to the native iOS dialog you can provide your own component in the `blurComponentIOS` prop of a `Dialog.Container` and it will be injected in the dialog to be used as a background.  
+The `blurComponentIOS` can be useful, for example, if you want to apply native blur effect to the dialog.  
+Here is an example using `react-native-blur`:
+
+```javascript
+render() {
+  const blurComponentIOS = (
+    <BlurView
+      style={StyleSheet.absoluteFill}
+      blurType="xlight"
+      blurAmount={50}
+    />
+  )
+  return (
+    <View style={styles.container}>
+      <Dialog.Container
+        visible={this.state.dialogVisible}
+        blurComponentIOS={blurComponentIOS}
+      >
+        <Dialog.Title>Account delete</Dialog.Title>
+        <Dialog.Description>
+          Do you want to delete this account? You cannot undo this action.
+        </Dialog.Description>
+        <Dialog.Button label="Cancel" bold onPress={this.handleCancel} />
+        <Dialog.Button label="Delete" onPress={this.handleConfirm} />
+      </Dialog.Container>
+    </View>
+  );
+}
+```
 
 ## Acknowledgment
 
