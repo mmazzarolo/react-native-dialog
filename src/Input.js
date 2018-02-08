@@ -1,10 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Platform, StyleSheet, TextInput, View } from "react-native";
+import { Platform, StyleSheet, Text, TextInput, View } from "react-native";
 
 export default class DialogInput extends React.PureComponent {
   static propTypes = {
     ...TextInput.propTypes,
+    label: PropTypes.string,
     style: PropTypes.any,
     wrapperStyle: PropTypes.any
   };
@@ -12,9 +13,10 @@ export default class DialogInput extends React.PureComponent {
   static displayName = "DialogInput";
 
   render() {
-    const { style, wrapperStyle, ...otherProps } = this.props;
+    const { label, style, wrapperStyle, ...otherProps } = this.props;
     return (
       <View style={[styles.textInputWrapper, wrapperStyle]}>
+        {label && <Text style={styles.label}>{label}</Text>}
         <TextInput style={[styles.textInput, style]} {...otherProps} />
       </View>
     );
@@ -37,10 +39,21 @@ const styles = StyleSheet.create({
       marginBottom: 20
     }
   }),
+  label: Platform.select({
+    ios: {},
+    android: {
+      color: "rgba(0, 0, 0, 0.5)",
+      fontSize: 14
+    }
+  }),
   textInput: Platform.select({
     ios: {
       height: 32
     },
-    android: {}
+    android: {
+      marginLeft: -4,
+      paddingLeft: 4,
+      height: 40
+    }
   })
 });

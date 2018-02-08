@@ -171,9 +171,10 @@ export default class DialogTester extends Component {
 
 ### Dialog.Input props
 
-| Name         | Type | Default   | Description                                 |
-| ------------ | ---- | --------- | ------------------------------------------- |
-| wrapperStyle | any  | undefined | The style applied to the input wrapper View |
+| Name         | Type   | Default   | Description                                 |
+| ------------ | ------ | --------- | ------------------------------------------- |
+| label        | string | undefined | The input floating label                    |
+| wrapperStyle | any    | undefined | The style applied to the input wrapper View |
 
 ### Dialog.Title props
 
