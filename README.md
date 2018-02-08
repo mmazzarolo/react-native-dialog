@@ -147,13 +147,13 @@ export default class DialogTester extends Component {
 
 ### Dialog.Button props
 
-| Name     | Type   | Default                                | Description                           |
-| -------- | ------ | -------------------------------------- | ------------------------------------- |
-| label    | string | **REQUIRED**                           | The label text                        |
-| color    | string | `#007ff9` on iOS, `#169689` on Android | The label color                       |
-| bold     | bool   | false                                  | Show the label with bold font weight? |
-| disabled | bool   | false                                  | Disable the button?                   |
-| onPress  | func   | **REQUIRED**                           | Called when the button is pressed     |
+| Name     | Type   | Default                                | Description                             |
+| -------- | ------ | -------------------------------------- | --------------------------------------- |
+| label    | string | **REQUIRED**                           | The label text                          |
+| color    | string | `#007ff9` on iOS, `#169689` on Android | The label color                         |
+| bold     | bool   | false                                  | Show the label with a bold font weight? |
+| disabled | bool   | false                                  | Disable the button?                     |
+| onPress  | func   | **REQUIRED**                           | Called when the button is pressed       |
 
 ### Dialog.Description props
 
