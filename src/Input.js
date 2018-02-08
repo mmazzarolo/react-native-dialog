@@ -7,17 +7,28 @@ export default class DialogInput extends React.PureComponent {
     ...TextInput.propTypes,
     label: PropTypes.string,
     style: PropTypes.any,
+    textInputRef: PropTypes.any,
     wrapperStyle: PropTypes.any
   };
 
   static displayName = "DialogInput";
 
   render() {
-    const { label, style, wrapperStyle, ...otherProps } = this.props;
+    const {
+      label,
+      style,
+      wrapperStyle,
+      textInputRef,
+      ...otherProps
+    } = this.props;
     return (
       <View style={[styles.textInputWrapper, wrapperStyle]}>
         {label && <Text style={styles.label}>{label}</Text>}
-        <TextInput style={[styles.textInput, style]} {...otherProps} />
+        <TextInput
+          ref={textInputRef}
+          style={[styles.textInput, style]}
+          {...otherProps}
+        />
       </View>
     );
   }
