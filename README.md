@@ -193,7 +193,7 @@ export default class DialogTester extends Component {
 ### How can I use a custom blur component as the dialog background on iOS?
 
 To achieve a look even closer to the native iOS dialog you can provide your own component in the `blurComponentIOS` prop of a `Dialog.Container` and it will be injected in the dialog to be used as a background.  
-The `blurComponentIOS` can be useful, for example, if you want to apply native blur effect to the dialog.  
+The `blurComponentIOS` can be useful for example if you want to apply native blur effect to the dialog.  
 Here is an example using `react-native-blur`:
 
 ```javascript
