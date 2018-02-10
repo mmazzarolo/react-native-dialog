@@ -187,6 +187,7 @@ export default class DialogTester extends Component {
 
 * Handle the UI for more than 2 iOS buttons
 * Add even more components (a `Picker` for example)
+* Add a better documentation
 
 ## Frequently Asked Questions
 
