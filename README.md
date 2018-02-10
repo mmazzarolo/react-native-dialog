@@ -215,7 +215,7 @@ render() {
         <Dialog.Description>
           Do you want to delete this account? You cannot undo this action.
         </Dialog.Description>
-        <Dialog.Button label="Cancel" bold onPress={this.handleCancel} />
+        <Dialog.Button label="Cancel" onPress={this.handleCancel} />
         <Dialog.Button label="Delete" onPress={this.handleConfirm} />
       </Dialog.Container>
     </View>
