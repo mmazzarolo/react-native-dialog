@@ -188,6 +188,7 @@ export default class DialogTester extends Component {
 * Handle the UI for more than 2 iOS buttons
 * Add even more components (a `Picker` for example)
 * Add a documentation for implementing expo's `BlurView`
+* Try to get as close as possible to the native dialogs
 
 ## Frequently Asked Questions
 
