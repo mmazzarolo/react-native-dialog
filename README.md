@@ -11,6 +11,7 @@ A pure JavaScript React-Native dialog that follows closely the UI of its native 
 * A flexible declarative API
 * Follows closely the UI of a native dialog/alert
 * Can be used both as an alert and as an input prompt
+* Can be injected with any components you want
 
 ## Demo
 
