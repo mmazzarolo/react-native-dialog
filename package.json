@@ -21,7 +21,7 @@
   "license": "MIT",
   "dependencies": {
     "prop-types": "^15.6.0",
-    "react-native-modal": "^4.1.1"
+    "react-native-modal": "^5.0.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",
