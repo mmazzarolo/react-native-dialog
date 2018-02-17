@@ -225,7 +225,7 @@ render() {
 }
 ```
 
-## Acknowledgment
+## Acknowledgments
 
 Thanks to the user [@honaf](https://github.com/honaf) who has kindly offered the `react-native-dialog` namespace.  
 Also thanks to the user [@leecade](https://github.com/leecade) who offered the namespace `react-native-alert` (which has not been used since "Dialog" seems to suit better this component).
