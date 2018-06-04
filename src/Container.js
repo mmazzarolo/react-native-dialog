@@ -27,11 +27,20 @@ export default class DialogContainer extends React.PureComponent {
     const buttonChildrens = [];
     const otherChildrens = [];
     React.Children.forEach(children, child => {
-      if (child.type.name === "DialogTitle") {
+      if (
+        child.type.name === "DialogTitle" ||
+        child.type.displayName === "DialogTitle"
+      ) {
         titleChildrens.push(child);
-      } else if (child.type.name === "DialogDescription") {
+      } else if (
+        child.type.name === "DialogDescription" ||
+        child.type.displayName === "DialogDescription"
+      ) {
         descriptionChildrens.push(child);
-      } else if (child.type.name === "DialogButton") {
+      } else if ( 
+        child.type.name === "DialogButton" ||
+        child.type.displayName === "DialogButton"
+      ) {
         if (Platform.OS === "ios" && buttonChildrens.length > 0) {
           buttonChildrens.push(<View style={styles.buttonSeparator} />);
         }
