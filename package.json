@@ -15,7 +15,8 @@
     "alert",
     "modal",
     "button",
-    "input"
+    "input",
+    "switch"
   ],
   "author": "Mazzarolo Matteo",
   "license": "MIT",

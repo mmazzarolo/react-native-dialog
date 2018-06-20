@@ -46,6 +46,7 @@ React-native-dialog exposes a set of components that can be used to build the UI
 * **Dialog.Description**: A `Text` component styled as a native dialog description.
 * **Dialog.Button**: A component styled as a native dialog button.
 * **Dialog.Input**: A `TextInput` component styled as a native dialog input.
+* **Dialog.Switch**: A native `Switch` component with an optional label.
 
 1. Import react-native-dialog:
 
@@ -182,6 +183,12 @@ export default class DialogTester extends Component {
 | Name     | Type   | Default      | Description    |
 | -------- | ------ | ------------ | -------------- |
 | children | string | **REQUIRED** | The title text |
+
+### Dialog.Switch props
+
+| Name     | Type   | Default      | Description                 |
+| -------- | ------ | ------------ | --------------------------- |
+| label    | string | undefined    | The switch description text |
 
 ## TODO
 
