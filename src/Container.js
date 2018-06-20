@@ -27,6 +27,9 @@ export default class DialogContainer extends React.PureComponent {
     const buttonChildrens = [];
     const otherChildrens = [];
     React.Children.forEach(children, child => {
+      if (!child) {
+        return;
+      }
       if (
         child.type.name === "DialogTitle" ||
         child.type.displayName === "DialogTitle"
@@ -37,7 +40,7 @@ export default class DialogContainer extends React.PureComponent {
         child.type.displayName === "DialogDescription"
       ) {
         descriptionChildrens.push(child);
-      } else if ( 
+      } else if (
         child.type.name === "DialogButton" ||
         child.type.displayName === "DialogButton"
       ) {
