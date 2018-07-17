@@ -131,14 +131,14 @@ export default class DialogTester extends Component {
         <TouchableOpacity onPress={this.showDialog}>
           <Text>Show Dialog</Text>
         </TouchableOpacity>
-        <Dialog visible={true}>
+        <Dialog.Container visible={true}>
           <Dialog.Title>Account delete</Dialog.Title>
           <Dialog.Description>
             Do you want to delete this account? You cannot undo this action.
           </Dialog.Description>
           <Dialog.Button label="Cancel" onPress={this.handleCancel} />
           <Dialog.Button label="Delete" onPress={this.handleDelete} />
-        </Dialog>
+        </Dialog.Container>
       </View>
     );
   }
