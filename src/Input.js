@@ -8,7 +8,9 @@ export default class DialogInput extends React.PureComponent {
     label: PropTypes.string,
     style: PropTypes.any,
     textInputRef: PropTypes.any,
-    wrapperStyle: PropTypes.any
+    wrapperStyle: PropTypes.any,
+    numberOfLines: PropTypes.number,
+    multiline: PropTypes.bool
   };
 
   static displayName = "DialogInput";
@@ -19,14 +21,20 @@ export default class DialogInput extends React.PureComponent {
       style,
       wrapperStyle,
       textInputRef,
+      multiline,
+      numberOfLines,
       ...otherProps
     } = this.props;
+    const lines = (multiline && numberOfLines) || 1;
+    const height = 18 + Platform.select({ ios: 14, android: 22 }) * lines;
     return (
       <View style={[styles.textInputWrapper, wrapperStyle]}>
         {label && <Text style={styles.label}>{label}</Text>}
         <TextInput
           ref={textInputRef}
-          style={[styles.textInput, style]}
+          style={[styles.textInput, style, { height }]}
+          multiline={multiline}
+          numberOfLines={numberOfLines}
           {...otherProps}
         />
       </View>
@@ -58,13 +66,10 @@ const styles = StyleSheet.create({
     }
   }),
   textInput: Platform.select({
-    ios: {
-      height: 32
-    },
+    ios: {},
     android: {
       marginLeft: -4,
       paddingLeft: 4,
-      height: 40
     }
   })
 });
