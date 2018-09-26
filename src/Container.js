@@ -13,7 +13,9 @@ export default class DialogContainer extends React.PureComponent {
   static propTypes = {
     blurComponentIOS: PropTypes.node,
     children: PropTypes.node.isRequired,
-    visible: PropTypes.bool
+    visible: PropTypes.bool,
+    dialogOpacity: PropTypes.number,
+    backgroundOpacity: PropTypes.number
   };
 
   static defaultProps = {
@@ -54,7 +56,7 @@ export default class DialogContainer extends React.PureComponent {
     });
     return (
       <AnimatedModal
-        backdropOpacity={0.3}
+        backdropOpacity={this.props.backgroundOpacity || 0.3}
         style={styles.modal}
         isVisible={visible}
         animationIn={Platform.OS === "ios" ? IOS_MODAL_ANIMATION : "zoomIn"}
@@ -68,7 +70,7 @@ export default class DialogContainer extends React.PureComponent {
           <View style={styles.content}>
             {Platform.OS === "ios" && blurComponentIOS}
             {Platform.OS === "ios" &&
-              !blurComponentIOS && <View style={styles.blur} />}
+              !blurComponentIOS && <View style={[{backgroundOpacity: this.props.dialogOpacity || 0.8}, styles.blur]} />}
             <View style={styles.header}>
               {titleChildrens}
               {descriptionChildrens}
@@ -103,7 +105,7 @@ const styles = StyleSheet.create({
   },
   blur: {
     position: "absolute",
-    backgroundColor: "rgba(255,255,255, 0.8)",
+    backgroundColor: "rgb(255,255,255)",
     top: 0,
     left: 0,
     bottom: 0,
