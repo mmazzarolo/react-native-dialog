@@ -13,18 +13,16 @@ export default class DialogContainer extends React.PureComponent {
   static propTypes = {
     blurComponentIOS: PropTypes.node,
     children: PropTypes.node.isRequired,
-    visible: PropTypes.bool,
-    customOpacity: PropTypes.number
+    visible: PropTypes.bool
   };
 
   static defaultProps = {
-    visible: false,
-    customOpacity: 1
+    visible: false
   };
 
   render() {
     const {
-      blurComponentIOS, children, visible, customOpacity, ...otherProps
+      blurComponentIOS, children, visible, ...otherProps
     } = this.props;
     const titleChildrens = [];
     const descriptionChildrens = [];
@@ -74,7 +72,7 @@ export default class DialogContainer extends React.PureComponent {
             {Platform.OS === "ios" &&
               !blurComponentIOS &&
               <View
-                style={[styles.blur, { opacity: customOpacity }]}
+                style={styles.blur}
               />
             }
             <View style={styles.header}>
@@ -111,7 +109,7 @@ const styles = StyleSheet.create({
   },
   blur: {
     position: "absolute",
-    backgroundColor: "#FFF",
+    backgroundColor: "rgb(255,255,255)",
     top: 0,
     left: 0,
     bottom: 0,
