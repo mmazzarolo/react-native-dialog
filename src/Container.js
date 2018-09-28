@@ -74,13 +74,13 @@ export default class DialogContainer extends React.PureComponent {
               {descriptionChildrens}
             </View>
             {otherChildrens}
-            <View style={styles.footer}>
+            {Bollean(buttonChildrens.length) && <View style={styles.footer}>
               {buttonChildrens.map((x, i) =>
                 React.cloneElement(x, {
                   key: `dialog-button-${i}`
                 })
               )}
-            </View>
+            </View>}
           </View>
         </KeyboardAvoidingView>
       </AnimatedModal>
@@ -120,6 +120,7 @@ const styles = StyleSheet.create({
       flexDirection: "column",
       borderRadius: 3,
       padding: 16,
+      margin: 16,
       backgroundColor: "white",
       overflow: "hidden",
       elevation: 4,
