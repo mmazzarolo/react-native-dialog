@@ -74,7 +74,7 @@ export default class DialogContainer extends React.PureComponent {
               {descriptionChildrens}
             </View>
             {otherChildrens}
-            {Bollean(buttonChildrens.length) && <View style={styles.footer}>
+            {Boolean(buttonChildrens.length) && <View style={styles.footer}>
               {buttonChildrens.map((x, i) =>
                 React.cloneElement(x, {
                   key: `dialog-button-${i}`
