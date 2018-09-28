@@ -70,11 +70,7 @@ export default class DialogContainer extends React.PureComponent {
           <View style={styles.content}>
             {Platform.OS === "ios" && blurComponentIOS}
             {Platform.OS === "ios" &&
-              !blurComponentIOS &&
-              <View
-                style={styles.blur}
-              />
-            }
+              !blurComponentIOS && <View style={styles.blur} />}
             <View style={styles.header}>
               {titleChildrens}
               {descriptionChildrens}
