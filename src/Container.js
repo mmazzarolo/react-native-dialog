@@ -21,7 +21,9 @@ export default class DialogContainer extends React.PureComponent {
   };
 
   render() {
-    const { blurComponentIOS, children, visible, ...otherProps } = this.props;
+    const {
+      blurComponentIOS, children, visible, ...otherProps
+    } = this.props;
     const titleChildrens = [];
     const descriptionChildrens = [];
     const buttonChildrens = [];
@@ -103,7 +105,7 @@ const styles = StyleSheet.create({
   },
   blur: {
     position: "absolute",
-    backgroundColor: "rgba(255,255,255, 0.8)",
+    backgroundColor: "rgb(255,255,255)",
     top: 0,
     left: 0,
     bottom: 0,
