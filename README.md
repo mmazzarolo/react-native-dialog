@@ -97,8 +97,8 @@ The `visible` prop is the only prop you'll really need to make the dialog work: 
 ## A complete example
 
 The following example consists in a component (`DialogTester`) with a button and a dialog.
-The dialog is controlled by the `dialogVisible` state variable and it is initially hidden, since its value is `false`.  
-Pressing the button sets `dialogVisible` to true, making the dialog visible.  
+The dialog is controlled by the `dialogVisible` state variable and it is initially hidden, since its value is `false`.
+Pressing the button sets `dialogVisible` to true, making the dialog visible.
 Inside the dialog there are two button that, when pressed, sets `dialogVisible` to false, hiding the dialog.
 
 ```javascript
@@ -165,11 +165,15 @@ export default class DialogTester extends Component {
 
 ### Dialog.Container props
 
-| Name             | Type | Default                | Description                    |
-| ---------------- | ---- | ---------------------- | ------------------------------ |
-| blurComponentIOS | node | A low-opacity <View /> | The blur component used in iOS |
-| visible          | bool | **REQUIRED**           | Show the dialog?               |
-| children         | node | **REQUIRED**           | The dialog content             |
+| Name                 | Type | Default                | Description                                        |
+| -------------------- | ---- | ---------------------- | -------------------------------------------------- |
+| blurComponentIOS     | node | A low-opacity <View /> | The blur component used in iOS                     |
+| visible              | bool | **REQUIRED**           | Show the dialog?                                   |
+| children             | node | **REQUIRED**           | The dialog content                                 |
+| contentStyle         | any  | undefined              | Extra style applied to the dialog content          |
+| headerStyle          | any  | undefined              | Extra style applied to the dialog header           |
+| footerStyle          | any  | undefined              | Extra style applied to the dialog footer           |
+| buttonSeparatorStyle | any  | undefined              | Extra style applied to the dialog button separator |
 
 ### Dialog.Input props
 
@@ -186,9 +190,9 @@ export default class DialogTester extends Component {
 
 ### Dialog.Switch props
 
-| Name     | Type   | Default      | Description                 |
-| -------- | ------ | ------------ | --------------------------- |
-| label    | string | undefined    | The switch description text |
+| Name  | Type   | Default   | Description                 |
+| ----- | ------ | --------- | --------------------------- |
+| label | string | undefined | The switch description text |
 
 ## TODO
 
@@ -201,8 +205,8 @@ export default class DialogTester extends Component {
 
 ### How can I use a custom blur component as the dialog background on iOS?
 
-To achieve a look even closer to the native iOS dialog you can provide your own component in the `blurComponentIOS` prop of a `Dialog.Container` and it will be injected in the dialog to be used as a background.  
-The `blurComponentIOS` can be useful for example if you want to apply native blur effect to the dialog.  
+To achieve a look even closer to the native iOS dialog you can provide your own component in the `blurComponentIOS` prop of a `Dialog.Container` and it will be injected in the dialog to be used as a background.
+The `blurComponentIOS` can be useful for example if you want to apply native blur effect to the dialog.
 Here is an example using `react-native-blur`:
 
 ```javascript
@@ -234,5 +238,5 @@ render() {
 
 ## Acknowledgments
 
-Thanks to the user [@honaf](https://github.com/honaf) who has kindly offered the `react-native-dialog` namespace.  
+Thanks to the user [@honaf](https://github.com/honaf) who has kindly offered the `react-native-dialog` namespace.
 Also thanks to the user [@leecade](https://github.com/leecade) who offered the namespace `react-native-alert` (which has not been used since "Dialog" seems to suit better this component).
