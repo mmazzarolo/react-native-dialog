@@ -12,7 +12,11 @@ const IOS_MODAL_ANIMATION = {
 export default class DialogContainer extends React.PureComponent {
   static propTypes = {
     blurComponentIOS: PropTypes.node,
+    buttonSeparatorStyle: PropTypes.object,
     children: PropTypes.node.isRequired,
+    contentStyle: PropTypes.object,
+    footerStyle: PropTypes.object,
+    headerStyle: PropTypes.object,
     visible: PropTypes.bool
   };
 
@@ -22,7 +26,14 @@ export default class DialogContainer extends React.PureComponent {
 
   render() {
     const {
-      blurComponentIOS, children, visible, ...otherProps
+      blurComponentIOS,
+      buttonSeparatorStyle = {},
+      children,
+      contentStyle = {},
+      footerStyle = {},
+      headerStyle = {},
+      visible,
+      ...otherProps
     } = this.props;
     const titleChildrens = [];
     const descriptionChildrens = [];
@@ -47,7 +58,7 @@ export default class DialogContainer extends React.PureComponent {
         child.type.displayName === "DialogButton"
       ) {
         if (Platform.OS === "ios" && buttonChildrens.length > 0) {
-          buttonChildrens.push(<View style={styles.buttonSeparator} />);
+          buttonChildrens.push(<View style={[styles.buttonSeparator, buttonSeparatorStyle]} />);
         }
         buttonChildrens.push(child);
       } else {
@@ -67,16 +78,16 @@ export default class DialogContainer extends React.PureComponent {
           behavior={Platform.OS === "ios" ? "padding" : undefined}
           style={styles.container}
         >
-          <View style={styles.content}>
+          <View style={[styles.content, contentStyle]}>
             {Platform.OS === "ios" && blurComponentIOS}
             {Platform.OS === "ios" &&
               !blurComponentIOS && <View style={styles.blur} />}
-            <View style={styles.header}>
+            <View style={[styles.header, headerStyle]}>
               {titleChildrens}
               {descriptionChildrens}
             </View>
             {otherChildrens}
-            {Boolean(buttonChildrens.length) && <View style={styles.footer}>
+            {Boolean(buttonChildrens.length) && <View style={[styles.footer, footerStyle]}>
               {buttonChildrens.map((x, i) =>
                 React.cloneElement(x, {
                   key: `dialog-button-${i}`
