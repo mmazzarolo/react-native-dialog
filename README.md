@@ -236,6 +236,34 @@ render() {
 }
 ```
 
+### How can I add a 'tap outside dialog' callback?
+
+`react-native-dialog` uses [`react-native-modal`](https://github.com/react-native-community/react-native-modal) for the backdrop and any properties you add to `Dialog.Container` are mapped through to the modal.
+`react-native-modal` has an `onBackdropPress` property that can be used to register clicks on the backdrop.
+
+Below is an example on how you can close the dialog by tapping outside.
+
+```javascript
+render() {
+  const { onCancel, visible } = this.props;
+  const extraProps = {
+    onBackdropPress: onCancel,
+  };
+  return (
+    <Dialog.Container visible={visible} {...extraProps}>
+      <Dialog.Title>{'title'}</Dialog.Title>
+      <Dialog.Button label="cancel" onPress={onCancel} />
+    </Dialog.Container>
+  );
+}
+
+onCancel() {
+  this.setState({
+    visible: false,
+  })
+}
+```
+
 ## Acknowledgments
 
 Thanks to the user [@honaf](https://github.com/honaf) who has kindly offered the `react-native-dialog` namespace.
