@@ -17,6 +17,7 @@ export default class DialogContainer extends React.PureComponent {
     contentStyle: PropTypes.object,
     footerStyle: PropTypes.object,
     headerStyle: PropTypes.object,
+    blurStyle: PropTypes.object,
     visible: PropTypes.bool
   };
 
@@ -32,6 +33,7 @@ export default class DialogContainer extends React.PureComponent {
       contentStyle = {},
       footerStyle = {},
       headerStyle = {},
+      blurStyle = {},
       visible,
       ...otherProps
     } = this.props;
@@ -81,7 +83,7 @@ export default class DialogContainer extends React.PureComponent {
           <View style={[styles.content, contentStyle]}>
             {Platform.OS === "ios" && blurComponentIOS}
             {Platform.OS === "ios" &&
-              !blurComponentIOS && <View style={styles.blur} />}
+              !blurComponentIOS && <View style={[styles.blur, blurStyle]} />}
             <View style={[styles.header, headerStyle]}>
               {titleChildrens}
               {descriptionChildrens}
