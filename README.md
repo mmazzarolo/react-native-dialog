@@ -244,24 +244,21 @@ render() {
 Below is an example on how you can close the dialog by tapping outside.
 
 ```javascript
-render() {
-  const { onCancel, visible } = this.props;
-  const extraProps = {
-    onBackdropPress: onCancel,
+
+state = {
+    dialogVisible: true
   };
+  
+render() {
+  
   return (
-    <Dialog.Container visible={visible} {...extraProps}>
+    <Dialog.Container visible={this.state.dialogVisible} onBackdropPress={() => this.setState({dialogVisible:false})}>
       <Dialog.Title>{'title'}</Dialog.Title>
       <Dialog.Button label="cancel" onPress={onCancel} />
     </Dialog.Container>
   );
 }
 
-onCancel() {
-  this.setState({
-    visible: false,
-  })
-}
 ```
 
 ## Acknowledgments
