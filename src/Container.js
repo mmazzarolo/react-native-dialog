@@ -139,6 +139,16 @@ const styles = StyleSheet.create({
       overflow: "hidden",
       elevation: 4,
       minWidth: 300
+    },
+    web: {
+      flexDirection: "column",
+      borderRadius: 3,
+      padding: 16,
+      margin: 16,
+      backgroundColor: "white",
+      overflow: "hidden",
+      elevation: 4,
+      minWidth: 300
     }
   }),
   header: Platform.select({
@@ -146,6 +156,9 @@ const styles = StyleSheet.create({
       margin: 18
     },
     android: {
+      margin: 12
+    },
+    web: {
       margin: 12
     }
   }),
@@ -162,6 +175,12 @@ const styles = StyleSheet.create({
       alignItems: "center",
       justifyContent: "flex-end",
       marginTop: 4
+    },
+    web: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "flex-end",
+        marginTop: 4
     }
   }),
   buttonSeparator: {

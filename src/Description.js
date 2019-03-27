@@ -33,6 +33,11 @@ const styles = StyleSheet.create({
       color: "#33383D",
       fontSize: 16,
       marginTop: 10
+    },
+    web: {
+      color: "#33383D",
+      fontSize: 16,
+      marginTop: 10
     }
   })
 });
