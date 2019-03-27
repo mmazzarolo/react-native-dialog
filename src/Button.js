@@ -59,6 +59,10 @@ const styles = StyleSheet.create({
     android: {
       justifyContent: "center",
       alignItems: "center"
+    },
+    web: {
+      justifyContent: "center",
+      alignItems: "center"
     }
   }),
   text: Platform.select({
@@ -68,6 +72,12 @@ const styles = StyleSheet.create({
       backgroundColor: "transparent"
     },
     android: {
+      textAlign: "center",
+      backgroundColor: "transparent",
+      padding: 8,
+      fontSize: 14
+    },
+    web: {
       textAlign: "center",
       backgroundColor: "transparent",
       padding: 8,
