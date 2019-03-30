@@ -1,5 +1,5 @@
-import React from "react";
 import PropTypes from "prop-types";
+import React from "react";
 import { KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native";
 import AnimatedModal from "react-native-modal";
 
@@ -60,7 +60,9 @@ export default class DialogContainer extends React.PureComponent {
         child.type.displayName === "DialogButton"
       ) {
         if (Platform.OS === "ios" && buttonChildrens.length > 0) {
-          buttonChildrens.push(<View style={[styles.buttonSeparator, buttonSeparatorStyle]} />);
+          buttonChildrens.push(
+            <View style={[styles.buttonSeparator, buttonSeparatorStyle]} />
+          );
         }
         buttonChildrens.push(child);
       } else {
@@ -82,20 +84,23 @@ export default class DialogContainer extends React.PureComponent {
         >
           <View style={[styles.content, contentStyle]}>
             {Platform.OS === "ios" && blurComponentIOS}
-            {Platform.OS === "ios" &&
-              !blurComponentIOS && <View style={[styles.blur, blurStyle]} />}
+            {Platform.OS === "ios" && !blurComponentIOS && (
+              <View style={[styles.blur, blurStyle]} />
+            )}
             <View style={[styles.header, headerStyle]}>
               {titleChildrens}
               {descriptionChildrens}
             </View>
             {otherChildrens}
-            {Boolean(buttonChildrens.length) && <View style={[styles.footer, footerStyle]}>
-              {buttonChildrens.map((x, i) =>
-                React.cloneElement(x, {
-                  key: `dialog-button-${i}`
-                })
-              )}
-            </View>}
+            {Boolean(buttonChildrens.length) && (
+              <View style={[styles.footer, footerStyle]}>
+                {buttonChildrens.map((x, i) =>
+                  React.cloneElement(x, {
+                    key: `dialog-button-${i}`
+                  })
+                )}
+              </View>
+            )}
           </View>
         </KeyboardAvoidingView>
       </AnimatedModal>
@@ -177,10 +182,10 @@ const styles = StyleSheet.create({
       marginTop: 4
     },
     web: {
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "flex-end",
-        marginTop: 4
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "flex-end",
+      marginTop: 4
     }
   }),
   buttonSeparator: {

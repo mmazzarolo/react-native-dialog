@@ -1,5 +1,5 @@
-import React from "react";
 import PropTypes from "prop-types";
+import React from "react";
 import { Platform, StyleSheet, Switch, Text, View } from "react-native";
 
 export default class DialogSwitch extends React.PureComponent {

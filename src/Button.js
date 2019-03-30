@@ -1,5 +1,5 @@
-import React from "react";
 import PropTypes from "prop-types";
+import React from "react";
 import { Platform, StyleSheet, Text, TouchableOpacity } from "react-native";
 
 const COLOR = Platform.OS === "ios" ? "#007ff9" : "#169689";

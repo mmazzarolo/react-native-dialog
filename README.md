@@ -7,11 +7,11 @@ A pure JavaScript React-Native dialog that follows closely the UI of its native 
 
 ## Features
 
-* Support for iOS and Android (JavaScript API)
-* A flexible declarative API
-* Follows closely the UI of a native dialog/alert
-* Can be used both as an alert and as an input prompt
-* Can be injected with any component
+- Support for iOS and Android (JavaScript API)
+- A flexible declarative API
+- Follows closely the UI of a native dialog/alert
+- Can be used both as an alert and as an input prompt
+- Can be injected with any component
 
 ## Demo
 
@@ -41,12 +41,12 @@ $ yarn add react-native-dialog
 
 React-native-dialog exposes a set of components that can be used to build the UI of the dialog:
 
-* **Dialog.Container**: This component is the root component of the dialog and all the other components should be nested inside it.
-* **Dialog.Title**: A `Text` component styled as a native dialog title.
-* **Dialog.Description**: A `Text` component styled as a native dialog description.
-* **Dialog.Button**: A component styled as a native dialog button.
-* **Dialog.Input**: A `TextInput` component styled as a native dialog input.
-* **Dialog.Switch**: A native `Switch` component with an optional label.
+- **Dialog.Container**: This component is the root component of the dialog and all the other components should be nested inside it.
+- **Dialog.Title**: A `Text` component styled as a native dialog title.
+- **Dialog.Description**: A `Text` component styled as a native dialog description.
+- **Dialog.Button**: A component styled as a native dialog button.
+- **Dialog.Input**: A `TextInput` component styled as a native dialog input.
+- **Dialog.Switch**: A native `Switch` component with an optional label.
 
 1. Import react-native-dialog:
 
@@ -196,10 +196,10 @@ export default class DialogTester extends Component {
 
 ## TODO
 
-* Handle the UI for more than 2 iOS buttons
-* Add even more components (a `Picker` for example)
-* Add a documentation for implementing expo's `BlurView`
-* Try to get as close as possible to the native dialogs
+- Handle the UI for more than 2 iOS buttons
+- Add even more components (a `Picker` for example)
+- Add a documentation for implementing expo's `BlurView`
+- Try to get as close as possible to the native dialogs
 
 ## Frequently Asked Questions
 
