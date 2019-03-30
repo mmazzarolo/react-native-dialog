@@ -246,11 +246,11 @@ Below is an example on how you can close the dialog by tapping outside.
 ```javascript
 render() {
   const { onCancel, visible } = this.props;
-  const extraProps = {
+  const reactNativeModalProps = {
     onBackdropPress: onCancel,
   };
   return (
-    <Dialog.Container visible={visible} {...extraProps}>
+    <Dialog.Container visible={visible} {...reactNativeModalProps}>
       <Dialog.Title>{'title'}</Dialog.Title>
       <Dialog.Button label="cancel" onPress={onCancel} />
     </Dialog.Container>
