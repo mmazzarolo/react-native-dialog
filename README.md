@@ -182,17 +182,23 @@ export default class DialogTester extends Component {
 | label        | string | undefined | The input floating label                    |
 | wrapperStyle | any    | undefined | The style applied to the input wrapper View |
 
+`Dialog.Input` also accepts all the React-Native's `TextInput` component props.  
+
 ### Dialog.Title props
 
 | Name     | Type   | Default      | Description    |
 | -------- | ------ | ------------ | -------------- |
 | children | string | **REQUIRED** | The title text |
 
+`Dialog.Input` also accepts all the React-Native's `Text` component props.  
+
 ### Dialog.Switch props
 
 | Name  | Type   | Default   | Description                 |
 | ----- | ------ | --------- | --------------------------- |
 | label | string | undefined | The switch description text |
+
+`Dialog.Input` also accepts all the React-Native's `Switch` component props.  
 
 ## TODO
 
