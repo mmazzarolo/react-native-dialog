@@ -190,7 +190,7 @@ export default class DialogTester extends Component {
 | -------- | ------ | ------------ | -------------- |
 | children | string | **REQUIRED** | The title text |
 
-`Dialog.Input` also accepts all the React-Native's `Text` component props.  
+`Dialog.Title` also accepts all the React-Native's `Text` component props.  
 
 ### Dialog.Switch props
 
@@ -198,7 +198,7 @@ export default class DialogTester extends Component {
 | ----- | ------ | --------- | --------------------------- |
 | label | string | undefined | The switch description text |
 
-`Dialog.Input` also accepts all the React-Native's `Switch` component props.  
+`Dialog.Switch` also accepts all the React-Native's `Switch` component props.  
 
 ## TODO
 
