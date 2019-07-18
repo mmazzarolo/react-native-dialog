@@ -5,16 +5,17 @@ import { Platform, StyleSheet, Switch, Text, View } from "react-native";
 export default class DialogSwitch extends React.PureComponent {
   static propTypes = {
     ...Switch.propTypes,
-    label: PropTypes.string
+    label: PropTypes.string,
+    labelStyle: Text.propTypes.style
   };
 
   static displayName = "DialogSwitch";
 
   render() {
-    const { label, ...otherProps } = this.props;
+    const { label, labelStyle, ...otherProps } = this.props;
     return (
       <View style={styles.switchWrapper}>
-        <Text style={styles.label}>{label}</Text>
+        <Text style={[styles.label, labelStyle || {}]}>{label}</Text>
         <Switch {...otherProps} />
       </View>
     );
