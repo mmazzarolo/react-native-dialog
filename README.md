@@ -30,17 +30,15 @@ A pure JavaScript React-Native dialog that follows closely the UI of its native 
 Install the library using npm or yarn:
 
 ```bash
-# using npm first install react-native-modal , if you have not yet 
-$ npm install react-native-modal --save
+# Using npm:
+$ npm install react-native-dialog
+# Also, if you are not already using it, install react-native-modal
+$ npm install react-native-modal
 
-# using yarn first install react-native-modal , if you have not yet 
-$ yarn add react-native-modal --save
-
-# using npm then library 
-$ npm install react-native-dialog --save
-
-# using yarn
+# Using yarn:
 $ yarn add react-native-dialog
+# Also, if you are not already using it, install react-native-modal
+$ yarn add react-native-modal
 ```
 
 ## Usage
