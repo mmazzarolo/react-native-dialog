@@ -11,12 +11,14 @@ export default class DialogButton extends React.PureComponent {
     color: PropTypes.string,
     bold: PropTypes.bool,
     disabled: PropTypes.bool,
-    onPress: PropTypes.func.isRequired
+    onPress: PropTypes.func.isRequired,
+    Component: PropTypes.node,
   };
 
   static defaultProps = {
     color: COLOR,
     disabled: false
+    Component: TouchableOpacity,
   };
 
   static displayName = "DialogButton";
@@ -32,8 +34,10 @@ export default class DialogButton extends React.PureComponent {
       ...otherProps
     } = this.props;
     const fontWeight = bold ? "600" : "normal";
+    const Component = this.props.Component;
+
     return (
-      <TouchableOpacity
+      <Component
         style={styles.button}
         onPress={onPress}
         disabled={disabled}
@@ -44,7 +48,7 @@ export default class DialogButton extends React.PureComponent {
         >
           {Platform.OS === "ios" ? label : label.toUpperCase()}
         </Text>
-      </TouchableOpacity>
+      </Component>
     );
   }
 }
