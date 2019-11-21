@@ -31,10 +31,10 @@ export default class DialogButton extends React.PureComponent {
       bold,
       onPress,
       style,
+      Component,
       ...otherProps
     } = this.props;
     const fontWeight = bold ? "600" : "normal";
-    const Component = this.props.Component;
 
     return (
       <Component
