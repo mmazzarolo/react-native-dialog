@@ -17,7 +17,7 @@ export default class DialogButton extends React.PureComponent {
 
   static defaultProps = {
     color: COLOR,
-    disabled: false
+    disabled: false,
     Component: TouchableOpacity,
   };
 
