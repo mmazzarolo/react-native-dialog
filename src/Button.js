@@ -12,7 +12,7 @@ export default class DialogButton extends React.PureComponent {
     bold: PropTypes.bool,
     disabled: PropTypes.bool,
     onPress: PropTypes.func.isRequired,
-    Component: PropTypes.node,
+    Component: PropTypes.elementType,
   };
 
   static defaultProps = {
