@@ -1,3 +1,5 @@
+# NOT ACTIVELY MAINTAINED ANYMORE
+
 # react-native-dialog
 
 [![npm version](https://badge.fury.io/js/react-native-dialog.svg)](https://badge.fury.io/js/react-native-dialog)
