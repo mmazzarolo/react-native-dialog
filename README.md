@@ -187,6 +187,7 @@ export default class DialogTester extends Component {
 | ------------ | ------ | --------- | ------------------------------------------- |
 | label        | string | undefined | The input floating label                    |
 | wrapperStyle | any    | undefined | The style applied to the input wrapper View |
+| textInputRef | ref    | undefined | Ref to the input                            |
 
 `Dialog.Input` also accepts all the React-Native's `TextInput` component props.  
 
