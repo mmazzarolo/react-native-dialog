@@ -1,4 +1,5 @@
 # NOT ACTIVELY MAINTAINED ANYMORE
+# I can still follow issues/PRs
 
 # react-native-dialog
 
