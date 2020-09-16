@@ -4,33 +4,16 @@ import { Platform, StyleSheet, Text, TouchableOpacity } from "react-native";
 
 const COLOR = Platform.OS === "ios" ? "#007ff9" : "#169689";
 
-export default class DialogButton extends React.PureComponent {
-  static propTypes = {
-    ...Text.propTypes,
-    label: PropTypes.string.isRequired,
-    color: PropTypes.string,
-    bold: PropTypes.bool,
-    disabled: PropTypes.bool,
-    onPress: PropTypes.func.isRequired
-  };
-
-  static defaultProps = {
-    color: COLOR,
-    disabled: false
-  };
-
-  static displayName = "DialogButton";
-
-  render() {
-    const {
+const DialogButton=(props)=>{
+  const {
       label,
       color,
       disabled,
       bold,
       onPress,
       style,
-      ...otherProps
-    } = this.props;
+      ...nodeProps
+    } = props;
     const fontWeight = bold ? "600" : "normal";
     return (
       <TouchableOpacity
@@ -40,14 +23,29 @@ export default class DialogButton extends React.PureComponent {
       >
         <Text
           style={[styles.text, { color: color, fontWeight: fontWeight }, style]}
-          {...otherProps}
+          {...nodeProps}
         >
           {Platform.OS === "ios" ? label : label.toUpperCase()}
         </Text>
       </TouchableOpacity>
     );
-  }
 }
+
+DialogButton.propTypes = {
+  ...Text.propTypes,
+  label: PropTypes.string.isRequired,
+  color: PropTypes.string,
+  bold: PropTypes.bool,
+  disabled: PropTypes.bool,
+  onPress: PropTypes.func.isRequired
+}
+
+DialogButton.defaultProps = {
+  color: COLOR,
+  disabled: false
+}
+
+DialogButton.displayName = "DialogButton"
 
 const styles = StyleSheet.create({
   button: Platform.select({
@@ -85,3 +83,5 @@ const styles = StyleSheet.create({
     }
   })
 });
+
+export default DialogButton;

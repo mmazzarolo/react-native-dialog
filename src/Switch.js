@@ -2,24 +2,22 @@ import PropTypes from "prop-types";
 import React from "react";
 import { Platform, StyleSheet, Switch, Text, View } from "react-native";
 
-export default class DialogSwitch extends React.PureComponent {
-  static propTypes = {
-    ...Switch.propTypes,
-    label: PropTypes.string
-  };
-
-  static displayName = "DialogSwitch";
-
-  render() {
-    const { label, ...otherProps } = this.props;
+const DialogSwitch = (props) => {
+  const { label, ...nodeProps } = props;
     return (
       <View style={styles.switchWrapper}>
         <Text style={styles.label}>{label}</Text>
-        <Switch {...otherProps} />
+        <Switch {...nodeProps} />
       </View>
     );
-  }
 }
+
+DialogSwitch.propTypes = {
+  ...Switch.propTypes,
+  label: PropTypes.string
+};
+
+DialogSwitch.displayName = "DialogSwitch";
 
 const styles = StyleSheet.create({
   switchWrapper: Platform.select({
@@ -54,3 +52,5 @@ const styles = StyleSheet.create({
     }
   })
 });
+
+export default DialogSwitch;

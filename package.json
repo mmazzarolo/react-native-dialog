@@ -27,9 +27,6 @@
   "dependencies": {
     "prop-types": "^15.7.2"
   },
-  "peerDependencies": {
-    "react-native-modal": "^9.0.0"
-  },
   "devDependencies": {
     "eslint": "^5.16.0",
     "eslint-plugin-react-app": "^4.0.1",

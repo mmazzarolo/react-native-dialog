@@ -2,29 +2,16 @@ import PropTypes from "prop-types";
 import React from "react";
 import { Platform, StyleSheet, Text, TextInput, View } from "react-native";
 
-export default class DialogInput extends React.PureComponent {
-  static propTypes = {
-    ...TextInput.propTypes,
-    label: PropTypes.string,
-    style: PropTypes.any,
-    textInputRef: PropTypes.any,
-    wrapperStyle: PropTypes.any,
-    numberOfLines: PropTypes.number,
-    multiline: PropTypes.bool
-  };
-
-  static displayName = "DialogInput";
-
-  render() {
-    const {
+const DialogInput = (props) => {
+  const {
       label,
       style,
       wrapperStyle,
       textInputRef,
       multiline,
       numberOfLines,
-      ...otherProps
-    } = this.props;
+      ...nodeProps
+    } = props;
     const lines = (multiline && numberOfLines) || 1;
     const height = 18 + Platform.select({ ios: 14, android: 22 }) * lines;
     return (
@@ -35,12 +22,23 @@ export default class DialogInput extends React.PureComponent {
           style={[styles.textInput, style, { height }]}
           multiline={multiline}
           numberOfLines={numberOfLines}
-          {...otherProps}
+          {...nodeProps}
         />
       </View>
     );
-  }
 }
+
+DialogInput.propTypes = {
+  ...TextInput.propTypes,
+  label: PropTypes.string,
+  style: PropTypes.any,
+  textInputRef: PropTypes.any,
+  wrapperStyle: PropTypes.any,
+  numberOfLines: PropTypes.number,
+  multiline: PropTypes.bool
+};
+
+DialogInput.displayName = "DialogInput";
 
 const styles = StyleSheet.create({
   textInputWrapper: Platform.select({
@@ -73,3 +71,5 @@ const styles = StyleSheet.create({
     }
   })
 });
+
+export default DialogInput;

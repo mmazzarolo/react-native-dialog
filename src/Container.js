@@ -1,7 +1,8 @@
 import PropTypes from "prop-types";
 import React from "react";
-import { KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native";
-import AnimatedModal from "react-native-modal";
+import { KeyboardAvoidingView, Platform, StyleSheet, View, Modal } from "react-native";
+import Constants from 'expo-constants';
+// import AnimatedModal from "react-native-modal";
 
 const IOS_MODAL_ANIMATION = {
   from: { opacity: 0, scale: 1.2 },
@@ -9,24 +10,8 @@ const IOS_MODAL_ANIMATION = {
   to: { opacity: 1, scale: 1 }
 };
 
-export default class DialogContainer extends React.PureComponent {
-  static propTypes = {
-    blurComponentIOS: PropTypes.node,
-    buttonSeparatorStyle: PropTypes.object,
-    children: PropTypes.node.isRequired,
-    contentStyle: PropTypes.object,
-    footerStyle: PropTypes.object,
-    headerStyle: PropTypes.object,
-    blurStyle: PropTypes.object,
-    visible: PropTypes.bool
-  };
-
-  static defaultProps = {
-    visible: false
-  };
-
-  render() {
-    const {
+const DialogContainer = (props) => {
+  const {
       blurComponentIOS,
       buttonSeparatorStyle = {},
       children,
@@ -35,8 +20,8 @@ export default class DialogContainer extends React.PureComponent {
       headerStyle = {},
       blurStyle = {},
       visible,
-      ...otherProps
-    } = this.props;
+      ...nodeProps
+    } = props;
     const titleChildrens = [];
     const descriptionChildrens = [];
     const buttonChildrens = [];
@@ -70,17 +55,16 @@ export default class DialogContainer extends React.PureComponent {
       }
     });
     return (
-      <AnimatedModal
-        backdropOpacity={0.3}
+      <Modal
+        transparent={true}
         style={styles.modal}
-        isVisible={visible}
-        animationIn={Platform.OS === "ios" ? IOS_MODAL_ANIMATION : "zoomIn"}
-        animationOut={"fadeOut"}
-        {...otherProps}
+        visible={visible}
+        animationType={(props.animationType)?props.animationType:"fade"}
+        {...nodeProps}
       >
         <KeyboardAvoidingView
           behavior={Platform.OS === "ios" ? "padding" : undefined}
-          style={styles.container}
+          style={styles.centeredView}
         >
           <View style={[styles.content, contentStyle]}>
             {Platform.OS === "ios" && blurComponentIOS}
@@ -103,10 +87,24 @@ export default class DialogContainer extends React.PureComponent {
             )}
           </View>
         </KeyboardAvoidingView>
-      </AnimatedModal>
+      </Modal>
     );
-  }
 }
+
+DialogContainer.propTypes = {
+  blurComponentIOS: PropTypes.node,
+  buttonSeparatorStyle: PropTypes.object,
+  children: PropTypes.node.isRequired,
+  contentStyle: PropTypes.object,
+  footerStyle: PropTypes.object,
+  headerStyle: PropTypes.object,
+  blurStyle: PropTypes.object,
+  visible: PropTypes.bool
+};
+
+DialogContainer.defaultProps = {
+  visible: false
+};
 
 const styles = StyleSheet.create({
   modal: {
@@ -114,12 +112,18 @@ const styles = StyleSheet.create({
     marginLeft: 0,
     marginRight: 0,
     marginTop: 0,
-    marginBottom: 0
+    marginBottom: 0,
   },
-  container: {
+  centeredView: {
+    flex: 1,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    marginTop: 22
   },
+  // container: {
+  //   justifyContent: "center",
+  //   alignItems: "center"
+  // },
   blur: {
     position: "absolute",
     backgroundColor: "rgb(255,255,255)",
@@ -194,3 +198,5 @@ const styles = StyleSheet.create({
     width: StyleSheet.hairlineWidth
   }
 });
+
+export default DialogContainer;
