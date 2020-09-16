@@ -27,7 +27,7 @@ A pure JavaScript React-Native dialog that follows closely the UI of its native 
 
 ## Setup
 
-Install the library using npm or yarn:
+Install the library using yarn or npm:
 
 ```bash
 # Using yarn:
@@ -52,11 +52,7 @@ React-native-dialog exposes a set of components that can be used to build the UI
 - **Dialog.Input**: A `TextInput` component styled as a native dialog input.
 - **Dialog.Switch**: A native `Switch` component with an optional label.
 
-1. Import react-native-dialog:
-
-```javascript
-import Dialog from "react-native-dialog";
-```
+1. Import this module.
 
 2. Create a dialog and nest its content inside of it:
 
