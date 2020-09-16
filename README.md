@@ -95,8 +95,7 @@ import Dialog from "react-native-dialog";
 The `visible` prop is the only prop you'll really need to make the dialog work: you should control this prop value by saving it in your state and setting it to `true` or `false` when needed.
 
 ## A complete example
-can be found [here]
-(https://snack.expo.io/@tyxou/dialog)
+can be found <a href="https://snack.expo.io/@tyxou/dialog" target="_blank">here</a>
 
 ## Available props
 
