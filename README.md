@@ -199,13 +199,6 @@ export default class DialogTester extends Component {
 
 `Dialog.Switch` also accepts all the React-Native's `Switch` component props.
 
-## TODO
-
-- Handle the UI for more than 2 iOS buttons
-- Add even more components (a `Picker` for example)
-- Add a documentation for implementing expo's `BlurView`
-- Try to get as close as possible to the native dialogs
-
 ## Frequently Asked Questions
 
 ### How can I use a custom blur component as the dialog background on iOS?
