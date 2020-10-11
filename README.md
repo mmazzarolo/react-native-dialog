@@ -15,13 +15,13 @@ A pure JavaScript React-Native dialog that follows closely the UI of its native 
 ## Demo
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/mmazzarolo/react-native-dialog/master/.github/react-native-dialog-ios-alert.png" height="500" />
-<img src="https://raw.githubusercontent.com/mmazzarolo/react-native-dialog/master/.github/react-native-dialog-android-alert.png" height="500" />
+<img src="https://raw.githubusercontent.com/mmazzarolo/react-native-dialog/master/.github/docs-images/react-native-dialog-ios-alert.png" height="500" />
+<img src="https://raw.githubusercontent.com/mmazzarolo/react-native-dialog/master/.github/docs-images/react-native-dialog-android-alert.png" height="500" />
 </p>
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/mmazzarolo/react-native-dialog/master/.github/react-native-dialog-ios-input.png" height="500" />
-<img src="https://raw.githubusercontent.com/mmazzarolo/react-native-dialog/master/.github/react-native-dialog-android-input.png" height="500" />
+<img src="https://raw.githubusercontent.com/mmazzarolo/react-native-dialog/master/.github/docs-images/react-native-dialog-ios-input.png" height="500" />
+<img src="https://raw.githubusercontent.com/mmazzarolo/react-native-dialog/master/.github/docs-images/react-native-dialog-android-input.png" height="500" />
 </p>
 
 ## Setup
