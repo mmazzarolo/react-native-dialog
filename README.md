@@ -1,10 +1,6 @@
-# NOT ACTIVELY MAINTAINED ANYMORE
-# I can still follow issues/PRs
-
 # react-native-dialog
 
 [![npm version](https://badge.fury.io/js/react-native-dialog.svg)](https://badge.fury.io/js/react-native-dialog)
-[![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
 A pure JavaScript React-Native dialog that follows closely the UI of its native counterpart while expanding its features.
 
@@ -35,13 +31,8 @@ Install the library using npm or yarn:
 ```bash
 # Using npm:
 $ npm install react-native-dialog
-# Also, if you are not already using it, install react-native-modal
-$ npm install react-native-modal
-
 # Using yarn:
 $ yarn add react-native-dialog
-# Also, if you are not already using it, install react-native-modal
-$ yarn add react-native-modal
 ```
 
 ## Usage
@@ -115,7 +106,7 @@ import Dialog from "react-native-dialog";
 
 export default class DialogTester extends Component {
   state = {
-    dialogVisible: false
+    dialogVisible: false,
   };
 
   showDialog = () => {
@@ -190,7 +181,7 @@ export default class DialogTester extends Component {
 | wrapperStyle | any    | undefined | The style applied to the input wrapper View |
 | textInputRef | ref    | undefined | Ref to the input                            |
 
-`Dialog.Input` also accepts all the React-Native's `TextInput` component props.  
+`Dialog.Input` also accepts all the React-Native's `TextInput` component props.
 
 ### Dialog.Title props
 
@@ -198,7 +189,7 @@ export default class DialogTester extends Component {
 | -------- | ------ | ------------ | -------------- |
 | children | string | **REQUIRED** | The title text |
 
-`Dialog.Title` also accepts all the React-Native's `Text` component props.  
+`Dialog.Title` also accepts all the React-Native's `Text` component props.
 
 ### Dialog.Switch props
 
@@ -206,7 +197,7 @@ export default class DialogTester extends Component {
 | ----- | ------ | --------- | --------------------------- |
 | label | string | undefined | The switch description text |
 
-`Dialog.Switch` also accepts all the React-Native's `Switch` component props.  
+`Dialog.Switch` also accepts all the React-Native's `Switch` component props.
 
 ## TODO
 
@@ -252,12 +243,18 @@ render() {
 
 ### How can I add a 'tap outside dialog' callback?
 
-`react-native-dialog` uses [`react-native-modal`](https://github.com/react-native-community/react-native-modal) for the backdrop and any properties you add to `Dialog.Container` are mapped through to the modal.
-`react-native-modal` has an `onBackdropPress` property that can be used to register clicks on the backdrop.
+`react-native-dialog` uses [a thin abstraction on top of the React-Native's modal component](./src/Modal.js). Any properties you add to `Dialog.Container` are mapped through to the modal.
+The modal has an `onBackdropPress` property that can be used to register clicks on the backdrop.
 
 Below is an example on how you can close the dialog by tapping outside.
 
 ```javascript
+onCancel() {
+  this.setState({
+    visible: false,
+  })
+}
+
 render() {
   const { onCancel, visible } = this.props;
   const reactNativeModalProps = {
@@ -265,16 +262,10 @@ render() {
   };
   return (
     <Dialog.Container visible={visible} {...reactNativeModalProps}>
-      <Dialog.Title>{'title'}</Dialog.Title>
-      <Dialog.Button label="cancel" onPress={onCancel} />
+      <Dialog.Title>Title</Dialog.Title>
+      <Dialog.Button label="Cancel" onPress={onCancel} />
     </Dialog.Container>
   );
-}
-
-onCancel() {
-  this.setState({
-    visible: false,
-  })
 }
 ```
 

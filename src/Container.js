@@ -1,112 +1,97 @@
 import PropTypes from "prop-types";
 import React from "react";
 import { KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native";
-import AnimatedModal from "react-native-modal";
+import Modal from "./Modal";
 
-const IOS_MODAL_ANIMATION = {
-  from: { opacity: 0, scale: 1.2 },
-  0.5: { opacity: 1 },
-  to: { opacity: 1, scale: 1 }
+const DialogContainer = (props) => {
+  const {
+    blurComponentIOS,
+    buttonSeparatorStyle = {},
+    children,
+    contentStyle = {},
+    footerStyle = {},
+    headerStyle = {},
+    blurStyle = {},
+    visible,
+    ...nodeProps
+  } = props;
+  const titleChildrens = [];
+  const descriptionChildrens = [];
+  const buttonChildrens = [];
+  const otherChildrens = [];
+  React.Children.forEach(children, (child) => {
+    if (!child) {
+      return;
+    }
+    if (
+      child.type.name === "DialogTitle" ||
+      child.type.displayName === "DialogTitle"
+    ) {
+      titleChildrens.push(child);
+    } else if (
+      child.type.name === "DialogDescription" ||
+      child.type.displayName === "DialogDescription"
+    ) {
+      descriptionChildrens.push(child);
+    } else if (
+      child.type.name === "DialogButton" ||
+      child.type.displayName === "DialogButton"
+    ) {
+      if (Platform.OS === "ios" && buttonChildrens.length > 0) {
+        buttonChildrens.push(
+          <View style={[styles.buttonSeparator, buttonSeparatorStyle]} />
+        );
+      }
+      buttonChildrens.push(child);
+    } else {
+      otherChildrens.push(child);
+    }
+  });
+  return (
+    <Modal transparent={true} visible={visible} {...nodeProps}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : undefined}
+        style={styles.centeredView}
+      >
+        <View style={[styles.content, contentStyle]}>
+          {Platform.OS === "ios" && blurComponentIOS}
+          {Platform.OS === "ios" && !blurComponentIOS && (
+            <View style={[styles.blur, blurStyle]} />
+          )}
+          <View style={[styles.header, headerStyle]}>
+            {titleChildrens}
+            {descriptionChildrens}
+          </View>
+          {otherChildrens}
+          {Boolean(buttonChildrens.length) && (
+            <View style={[styles.footer, footerStyle]}>
+              {buttonChildrens.map((x, i) =>
+                React.cloneElement(x, {
+                  key: `dialog-button-${i}`,
+                })
+              )}
+            </View>
+          )}
+        </View>
+      </KeyboardAvoidingView>
+    </Modal>
+  );
 };
 
-export default class DialogContainer extends React.PureComponent {
-  static propTypes = {
-    blurComponentIOS: PropTypes.node,
-    buttonSeparatorStyle: PropTypes.object,
-    children: PropTypes.node.isRequired,
-    contentStyle: PropTypes.object,
-    footerStyle: PropTypes.object,
-    headerStyle: PropTypes.object,
-    blurStyle: PropTypes.object,
-    visible: PropTypes.bool
-  };
+DialogContainer.propTypes = {
+  blurComponentIOS: PropTypes.node,
+  buttonSeparatorStyle: PropTypes.object,
+  children: PropTypes.node.isRequired,
+  contentStyle: PropTypes.object,
+  footerStyle: PropTypes.object,
+  headerStyle: PropTypes.object,
+  blurStyle: PropTypes.object,
+  visible: PropTypes.bool,
+};
 
-  static defaultProps = {
-    visible: false
-  };
-
-  render() {
-    const {
-      blurComponentIOS,
-      buttonSeparatorStyle = {},
-      children,
-      contentStyle = {},
-      footerStyle = {},
-      headerStyle = {},
-      blurStyle = {},
-      visible,
-      ...otherProps
-    } = this.props;
-    const titleChildrens = [];
-    const descriptionChildrens = [];
-    const buttonChildrens = [];
-    const otherChildrens = [];
-    React.Children.forEach(children, child => {
-      if (!child) {
-        return;
-      }
-      if (
-        child.type.name === "DialogTitle" ||
-        child.type.displayName === "DialogTitle"
-      ) {
-        titleChildrens.push(child);
-      } else if (
-        child.type.name === "DialogDescription" ||
-        child.type.displayName === "DialogDescription"
-      ) {
-        descriptionChildrens.push(child);
-      } else if (
-        child.type.name === "DialogButton" ||
-        child.type.displayName === "DialogButton"
-      ) {
-        if (Platform.OS === "ios" && buttonChildrens.length > 0) {
-          buttonChildrens.push(
-            <View style={[styles.buttonSeparator, buttonSeparatorStyle]} />
-          );
-        }
-        buttonChildrens.push(child);
-      } else {
-        otherChildrens.push(child);
-      }
-    });
-    return (
-      <AnimatedModal
-        backdropOpacity={0.3}
-        style={styles.modal}
-        isVisible={visible}
-        animationIn={Platform.OS === "ios" ? IOS_MODAL_ANIMATION : "zoomIn"}
-        animationOut={"fadeOut"}
-        {...otherProps}
-      >
-        <KeyboardAvoidingView
-          behavior={Platform.OS === "ios" ? "padding" : undefined}
-          style={styles.container}
-        >
-          <View style={[styles.content, contentStyle]}>
-            {Platform.OS === "ios" && blurComponentIOS}
-            {Platform.OS === "ios" && !blurComponentIOS && (
-              <View style={[styles.blur, blurStyle]} />
-            )}
-            <View style={[styles.header, headerStyle]}>
-              {titleChildrens}
-              {descriptionChildrens}
-            </View>
-            {otherChildrens}
-            {Boolean(buttonChildrens.length) && (
-              <View style={[styles.footer, footerStyle]}>
-                {buttonChildrens.map((x, i) =>
-                  React.cloneElement(x, {
-                    key: `dialog-button-${i}`
-                  })
-                )}
-              </View>
-            )}
-          </View>
-        </KeyboardAvoidingView>
-      </AnimatedModal>
-    );
-  }
-}
+DialogContainer.defaultProps = {
+  visible: false,
+};
 
 const styles = StyleSheet.create({
   modal: {
@@ -114,11 +99,13 @@ const styles = StyleSheet.create({
     marginLeft: 0,
     marginRight: 0,
     marginTop: 0,
-    marginBottom: 0
+    marginBottom: 0,
   },
-  container: {
+  centeredView: {
+    flex: 1,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    marginTop: 22,
   },
   blur: {
     position: "absolute",
@@ -126,14 +113,14 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     bottom: 0,
-    right: 0
+    right: 0,
   },
   content: Platform.select({
     ios: {
       width: 270,
       flexDirection: "column",
       borderRadius: 13,
-      overflow: "hidden"
+      overflow: "hidden",
     },
     android: {
       flexDirection: "column",
@@ -143,7 +130,7 @@ const styles = StyleSheet.create({
       backgroundColor: "white",
       overflow: "hidden",
       elevation: 4,
-      minWidth: 300
+      minWidth: 300,
     },
     web: {
       flexDirection: "column",
@@ -153,19 +140,19 @@ const styles = StyleSheet.create({
       backgroundColor: "white",
       overflow: "hidden",
       elevation: 4,
-      minWidth: 300
-    }
+      minWidth: 300,
+    },
   }),
   header: Platform.select({
     ios: {
-      margin: 18
+      margin: 18,
     },
     android: {
-      margin: 12
+      margin: 12,
     },
     web: {
-      margin: 12
-    }
+      margin: 12,
+    },
   }),
   footer: Platform.select({
     ios: {
@@ -173,24 +160,26 @@ const styles = StyleSheet.create({
       justifyContent: "space-between",
       borderTopColor: "#A9ADAE",
       borderTopWidth: StyleSheet.hairlineWidth,
-      height: 46
+      height: 46,
     },
     android: {
       flexDirection: "row",
       alignItems: "center",
       justifyContent: "flex-end",
-      marginTop: 4
+      marginTop: 4,
     },
     web: {
       flexDirection: "row",
       alignItems: "center",
       justifyContent: "flex-end",
-      marginTop: 4
-    }
+      marginTop: 4,
+    },
   }),
   buttonSeparator: {
     height: "100%",
     backgroundColor: "#A9ADAE",
-    width: StyleSheet.hairlineWidth
-  }
+    width: StyleSheet.hairlineWidth,
+  },
 });
+
+export default DialogContainer;
