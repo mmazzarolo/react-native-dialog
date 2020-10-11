@@ -9,29 +9,28 @@ on:
       - master
 
 jobs:
-  install:
+  test:
     runs-on: ubuntu-latest
-    name: Install
+    name: Test & Lint
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '13.x'
-      - run: npm install
-      - uses: actions/cache@v1
-        id: cache-build
-        with:
-          path: '.'
-          key: ${{ github.sha }}
+      - name: Checkout
+        uses: actions/checkout@v2
 
-  lint:
-    runs-on: ubuntu-latest
-    name: Lint
-    needs: install
-    steps:
-      - uses: actions/cache@v1
-        id: restore-build
+      - name: Setup node
+        uses: actions/setup-node@v1
         with:
-          path: '.'
-          key: ${{ github.sha }}
-      - run: npm run lint
+          node-version: '12.x'
+
+      - name: Restore ~/.npm cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run lint
+        run: npm run lint
