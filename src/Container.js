@@ -48,7 +48,12 @@ const DialogContainer = (props) => {
     }
   });
   return (
-    <Modal renderToHardwareTextureAndroid={true} transparent={true} visible={visible} {...nodeProps}>
+    <Modal
+      renderToHardwareTextureAndroid={true}
+      transparent={true}
+      visible={visible}
+      {...nodeProps}
+    >
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : undefined}
         style={styles.centeredView}
