@@ -199,6 +199,7 @@ export class Modal extends Component {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     position: "absolute",
     top: 0,
     left: 0,
@@ -216,6 +217,8 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
 });
 
