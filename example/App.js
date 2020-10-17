@@ -22,7 +22,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Button title="Show dialog" onPress={showDialog} />
-      <Dialog.Container visible={visible} onBackdropPress={handleCancel}>
+      <Dialog.Container visible={visible}>
         <Dialog.Title>Account delete</Dialog.Title>
         <Dialog.Description>
           Do you want to delete this account? You cannot undo this action.

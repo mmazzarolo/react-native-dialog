@@ -11,7 +11,7 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 
-const MODAL_ANIM_DURATION = 500;
+const MODAL_ANIM_DURATION = 300;
 const MODAL_BACKDROP_OPACITY = 0.3;
 
 const CONTENT_ANIMATION_IN = Platform.select({
