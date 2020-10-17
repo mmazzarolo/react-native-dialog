@@ -48,7 +48,12 @@ const DialogContainer = (props) => {
     }
   });
   return (
-    <Modal transparent={true} visible={visible} {...nodeProps}>
+    <Modal
+      renderToHardwareTextureAndroid={true}
+      transparent={true}
+      visible={visible}
+      {...nodeProps}
+    >
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : undefined}
         style={styles.centeredView}
@@ -102,7 +107,6 @@ const styles = StyleSheet.create({
     marginBottom: 0,
   },
   centeredView: {
-    flex: 1,
     justifyContent: "center",
     alignItems: "center",
     marginTop: 22,
