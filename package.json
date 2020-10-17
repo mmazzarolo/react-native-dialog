@@ -1,6 +1,6 @@
 {
   "name": "react-native-dialog",
-  "version": "6.0.1",
+  "version": "6.1.0",
   "description": "A flexible react-native dialog",
   "main": "src/index.js",
   "author": "Mazzarolo Matteo",

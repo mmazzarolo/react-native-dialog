@@ -1,3 +1,11 @@
+# [6.1.0](https://github.com/mmazzarolo/react-native-dialog/compare/v6.0.1...v6.1.0) (2020-10-17)
+
+
+### Features
+
+* Improved animation fidelity ([63ffbce](https://github.com/mmazzarolo/react-native-dialog/commit/63ffbce5f0e0fa63604529589815b94fc1625c85))
+* Improved animation fidelity ([4480c0e](https://github.com/mmazzarolo/react-native-dialog/commit/4480c0e4c1622d8a29287112c07ba6e0c7ae2d8a))
+
 ## [6.0.1](https://github.com/mmazzarolo/react-native-dialog/compare/v6.0.0...v6.0.1) (2020-10-17)
 
 
