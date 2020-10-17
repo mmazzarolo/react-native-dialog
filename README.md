@@ -55,39 +55,35 @@ import Dialog from "react-native-dialog";
 2. Create a dialog and nest its content inside of it:
 
 ```javascript
-render () {
-    return (
-      <View>
-        <Dialog.Container>
-          <Dialog.Title>Account delete</Dialog.Title>
-          <Dialog.Description>
-            Do you want to delete this account? You cannot undo this action.
-          </Dialog.Description>
-          <Dialog.Button label="Cancel" />
-          <Dialog.Button label="Delete" />
-        </Dialog.Container>
-      </View>
-    )
-  }
+return (
+  <View>
+    <Dialog.Container>
+      <Dialog.Title>Account delete</Dialog.Title>
+      <Dialog.Description>
+        Do you want to delete this account? You cannot undo this action.
+      </Dialog.Description>
+      <Dialog.Button label="Cancel" />
+      <Dialog.Button label="Delete" />
+    </Dialog.Container>
+  </View>
+);
 ```
 
 3. Then simply show it by setting the `visible` prop to true:
 
 ```javascript
-render () {
-    return (
-      <View>
-        <Dialog.Container visible={true}>
-          <Dialog.Title>Account delete</Dialog.Title>
-          <Dialog.Description>
-            Do you want to delete this account? You cannot undo this action.
-          </Dialog.Description>
-          <Dialog.Button label="Cancel" />
-          <Dialog.Button label="Delete" />
-        </Dialog.Container>
-      </View>
-    )
-  }
+return (
+  <View>
+    <Dialog.Container visible={true}>
+      <Dialog.Title>Account delete</Dialog.Title>
+      <Dialog.Description>
+        Do you want to delete this account? You cannot undo this action.
+      </Dialog.Description>
+      <Dialog.Button label="Cancel" />
+      <Dialog.Button label="Delete" />
+    </Dialog.Container>
+  </View>
+);
 ```
 
 The `visible` prop is the only prop you'll really need to make the dialog work: you should control this prop value by saving it in your state and setting it to `true` or `false` when needed.
@@ -175,6 +171,7 @@ const styles = StyleSheet.create({
 | headerStyle          | any  | undefined              | Extra style applied to the dialog header           |
 | footerStyle          | any  | undefined              | Extra style applied to the dialog footer           |
 | buttonSeparatorStyle | any  | undefined              | Extra style applied to the dialog button separator |
+| onBackdropPress      | func | undefined              | Callback invoked when the backdrop is pressed      |
 
 ### Dialog.Input props
 
