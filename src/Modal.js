@@ -12,25 +12,49 @@ import {
 } from "react-native";
 
 const MODAL_ANIM_DURATION = 300;
-const MODAL_BACKDROP_OPACITY = 0.4;
+const MODAL_BACKDROP_OPACITY = 0.3;
 
-const IOS_CONTENT_ANIMATION = {
-  from: { opacity: 0, scale: 1.2 },
-  0.5: { opacity: 1, scale: 1.1 },
-  to: { opacity: 1, scale: 1 },
-};
+const CONTENT_ANIMATION_IN = Platform.select({
+  ios: {
+    opacity: {
+      inputRange: [0, 1],
+      outputRange: [0, 1],
+    },
+    scale: {
+      inputRange: [0, 0.5, 1],
+      outputRange: [1.2, 1.1, 1],
+    },
+  },
+  android: {
+    opacity: {
+      inputRange: [0, 0.5, 1],
+      outputRange: [0, 1, 1],
+    },
+    scale: {
+      inputRange: [0, 1],
+      outputRange: [0.3, 1],
+    },
+  },
+  default: {
+    opacity: {
+      inputRange: [0, 0.5, 1],
+      outputRange: [0, 1, 1],
+    },
+    scale: {
+      inputRange: [0, 1],
+      outputRange: [0.3, 1],
+    },
+  },
+});
 
-const ANDROID_CONTENT_ANIMATION = {
-  from: { opacity: 0, scale: 0.3 },
-  0.5: { opacity: 1, scale: 0.7 },
-  to: { opacity: 1, scale: 1 },
-};
-
-const OTHER_OS_CONTENT_ANIMATION = {
-  from: { opacity: 0, scale: 0.3 },
-  0.5: { opacity: 1, scale: 0.7 },
-  to: { opacity: 1, scale: 1 },
-};
+const CONTENT_ANIMATION_OUT = Platform.select({
+  default: {
+    opacity: {
+      inputRange: [0, 1],
+      outputRange: [0, 1],
+    },
+  },
+});
 
 export class Modal extends Component {
   static propTypes = {
@@ -48,6 +72,7 @@ export class Modal extends Component {
 
   state = {
     visible: this.props.visible,
+    currentAnimation: "none",
     deviceWidth: Dimensions.get("window").width,
     deviceHeight: Dimensions.get("window").height,
   };
@@ -94,27 +119,33 @@ export class Modal extends Component {
   };
 
   show = () => {
-    this.setState({ visible: true });
-    Animated.timing(this.animVal, {
-      easing: Easing.inOut(Easing.quad),
-      // Using native driver in the modal makes the content flash
-      useNativeDriver: false,
-      duration: MODAL_ANIM_DURATION,
-      toValue: 1,
-    }).start();
+    this.setState({ visible: true, currentAnimation: "in" }, () => {
+      Animated.timing(this.animVal, {
+        easing: Easing.inOut(Easing.quad),
+        // Using native driver in the modal makes the content flash
+        useNativeDriver: false,
+        duration: MODAL_ANIM_DURATION,
+        toValue: 1,
+      }).start(() => {
+        this.setState({ currentAnimation: "none" });
+      });
+    });
   };
 
   hide = () => {
-    Animated.timing(this.animVal, {
-      easing: Easing.inOut(Easing.quad),
-      // Using native driver in the modal makes the content flash
-      useNativeDriver: false,
-      duration: MODAL_ANIM_DURATION,
-      toValue: 0,
-    }).start(() => {
-      if (this._isMounted) {
-        this.setState({ visible: false }, this.props.onHide);
-      }
+    this.setState({ animationDirection: "out" }, () => {
+      Animated.timing(this.animVal, {
+        easing: Easing.inOut(Easing.quad),
+        // Using native driver in the modal makes the content flash
+        useNativeDriver: false,
+        duration: MODAL_ANIM_DURATION,
+        toValue: 0,
+      }).start(() => {
+        if (this._isMounted) {
+          this.setState({ currentAnimation: "none" });
+          this.setState({ visible: false }, this.props.onHide);
+        }
+      });
     });
   };
 
@@ -125,7 +156,7 @@ export class Modal extends Component {
       contentStyle,
       ...otherProps
     } = this.props;
-    const { deviceHeight, deviceWidth, visible } = this.state;
+    const { currentAnimation, deviceHeight, deviceWidth, visible } = this.state;
 
     const backdropAnimatedStyle = {
       opacity: this.animVal.interpolate({
@@ -134,46 +165,38 @@ export class Modal extends Component {
       }),
     };
 
-    const contentAnimationSteps = Platform.select({
-      ios: [
-        IOS_CONTENT_ANIMATION.from,
-        IOS_CONTENT_ANIMATION["0.5"],
-        IOS_CONTENT_ANIMATION.to,
-      ],
-      android: [
-        ANDROID_CONTENT_ANIMATION.from,
-        ANDROID_CONTENT_ANIMATION["0.5"],
-        ANDROID_CONTENT_ANIMATION.to,
-      ],
-      default: [
-        OTHER_OS_CONTENT_ANIMATION.from,
-        OTHER_OS_CONTENT_ANIMATION["0.5"],
-        OTHER_OS_CONTENT_ANIMATION.to,
-      ],
-    });
+    const contentAnimatedStyle =
+      currentAnimation === "in"
+        ? {
+            opacity: this.animVal.interpolate({
+              inputRange: CONTENT_ANIMATION_IN.opacity.inputRange,
+              outputRange: CONTENT_ANIMATION_IN.opacity.outputRange,
+              extrapolate: "clamp",
+            }),
+            transform: [
+              {
+                scale: this.animVal.interpolate({
+                  inputRange: CONTENT_ANIMATION_IN.scale.inputRange,
+                  outputRange: CONTENT_ANIMATION_IN.scale.outputRange,
+                  extrapolate: "clamp",
+                }),
+              },
+            ],
+          }
+        : {
+            opacity: this.animVal.interpolate({
+              inputRange: CONTENT_ANIMATION_OUT.opacity.inputRange,
+              outputRange: CONTENT_ANIMATION_OUT.opacity.outputRange,
+              extrapolate: "clamp",
+            }),
+          };
 
-    const contentAnimatedStyle = {
-      opacity: this.animVal.interpolate({
-        inputRange: [0, 0.5, 1],
-        outputRange: contentAnimationSteps.map((x) => x.opacity),
-        extrapolate: "clamp",
-      }),
-      transform: [
-        {
-          scale: this.animVal.interpolate({
-            inputRange: [0, 0.5, 1],
-            outputRange: contentAnimationSteps.map((x) => x.scale),
-            extrapolate: "clamp",
-          }),
-        },
-      ],
-    };
     return (
       <ReactNativeModal
         transparent
         animationType="none"
-        visible={visible}
         {...otherProps}
+        visible={visible}
       >
         <TouchableWithoutFeedback onPress={onBackdropPress}>
           <Animated.View
@@ -186,8 +209,15 @@ export class Modal extends Component {
         </TouchableWithoutFeedback>
         {visible && (
           <Animated.View
-            style={[styles.content, contentAnimatedStyle, contentStyle]}
+            style={[styles.content, contentAnimatedStyle]}
             pointerEvents="box-none"
+            // Setting "needsOffscreenAlphaCompositing" solves a janky elevation
+            // animation on android. We should set it only while animation
+            // to avoid using more memory than needed.
+            // See: https://github.com/facebook/react-native/issues/23090
+            needsOffscreenAlphaCompositing={["in", "out"].includes(
+              currentAnimation
+            )}
           >
             {children}
           </Animated.View>
@@ -198,14 +228,6 @@ export class Modal extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-  },
   backdrop: {
     position: "absolute",
     top: 0,

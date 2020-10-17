@@ -99,16 +99,7 @@ DialogContainer.defaultProps = {
 };
 
 const styles = StyleSheet.create({
-  modal: {
-    flex: 1,
-    marginLeft: 0,
-    marginRight: 0,
-    marginTop: 0,
-    marginBottom: 0,
-  },
   centeredView: {
-    justifyContent: "center",
-    alignItems: "center",
     marginTop: 22,
   },
   blur: {
