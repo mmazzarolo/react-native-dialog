@@ -100,47 +100,50 @@ Pressing the button sets `dialogVisible` to true, making the dialog visible.
 Inside the dialog there are two button that, when pressed, sets `dialogVisible` to false, hiding the dialog.
 
 ```javascript
-import React, { Component } from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import React, { useState } from "react";
+import { Button, StyleSheet, View } from "react-native";
 import Dialog from "react-native-dialog";
 
-export default class DialogTester extends Component {
-  state = {
-    dialogVisible: false,
+export default function App() {
+  const [visible, setVisible] = useState(false);
+
+  const showDialog = () => {
+    setVisible(true);
   };
 
-  showDialog = () => {
-    this.setState({ dialogVisible: true });
+  const handleCancel = () => {
+    setVisible(false);
   };
 
-  handleCancel = () => {
-    this.setState({ dialogVisible: false });
-  };
-
-  handleDelete = () => {
+  const handleDelete = () => {
     // The user has pressed the "Delete" button, so here you can do your own logic.
     // ...Your logic
-    this.setState({ dialogVisible: false });
+    setVisible(false);
   };
 
-  render() {
-    return (
-      <View>
-        <TouchableOpacity onPress={this.showDialog}>
-          <Text>Show Dialog</Text>
-        </TouchableOpacity>
-        <Dialog.Container visible={this.state.dialogVisible}>
-          <Dialog.Title>Account delete</Dialog.Title>
-          <Dialog.Description>
-            Do you want to delete this account? You cannot undo this action.
-          </Dialog.Description>
-          <Dialog.Button label="Cancel" onPress={this.handleCancel} />
-          <Dialog.Button label="Delete" onPress={this.handleDelete} />
-        </Dialog.Container>
-      </View>
-    );
-  }
+  return (
+    <View style={styles.container}>
+      <Button title="Show dialog" onPress={showDialog} />
+      <Dialog.Container visible={visible}>
+        <Dialog.Title>Account delete</Dialog.Title>
+        <Dialog.Description>
+          Do you want to delete this account? You cannot undo this action.
+        </Dialog.Description>
+        <Dialog.Button label="Cancel" onPress={handleCancel} />
+        <Dialog.Button label="Delete" onPress={handleDelete} />
+      </Dialog.Container>
+    </View>
+  );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
 ```
 
 ## Available props
@@ -208,30 +211,21 @@ The `blurComponentIOS` can be useful for example if you want to apply native blu
 Here is an example using `react-native-blur`:
 
 ```javascript
-render() {
-  const blurComponentIOS = (
-    <BlurView
-      style={StyleSheet.absoluteFill}
-      blurType="xlight"
-      blurAmount={50}
-    />
-  )
-  return (
-    <View style={styles.container}>
-      <Dialog.Container
-        visible={this.state.dialogVisible}
-        blurComponentIOS={blurComponentIOS}
-      >
-        <Dialog.Title>Account delete</Dialog.Title>
-        <Dialog.Description>
-          Do you want to delete this account? You cannot undo this action.
-        </Dialog.Description>
-        <Dialog.Button label="Cancel" onPress={this.handleCancel} />
-        <Dialog.Button label="Delete" onPress={this.handleConfirm} />
-      </Dialog.Container>
-    </View>
-  );
-}
+const blurComponentIOS = (
+  <BlurView style={StyleSheet.absoluteFill} blurType="xlight" blurAmount={50} />
+);
+return (
+  <View style={styles.container}>
+    <Dialog.Container visible={visible} blurComponentIOS={blurComponentIOS}>
+      <Dialog.Title>Account delete</Dialog.Title>
+      <Dialog.Description>
+        Do you want to delete this account? You cannot undo this action.
+      </Dialog.Description>
+      <Dialog.Button label="Cancel" onPress={handleCancel} />
+      <Dialog.Button label="Delete" onPress={handleConfirm} />
+    </Dialog.Container>
+  </View>
+);
 ```
 
 ### How can I add a 'tap outside dialog' callback?
@@ -242,24 +236,18 @@ The modal has an `onBackdropPress` property that can be used to register clicks 
 Below is an example on how you can close the dialog by tapping outside.
 
 ```javascript
-onCancel() {
-  this.setState({
-    visible: false,
-  })
-}
+const [visible, setVisible] = useState(true);
 
-render() {
-  const { onCancel, visible } = this.props;
-  const reactNativeModalProps = {
-    onBackdropPress: onCancel,
-  };
-  return (
-    <Dialog.Container visible={visible} {...reactNativeModalProps}>
-      <Dialog.Title>Title</Dialog.Title>
-      <Dialog.Button label="Cancel" onPress={onCancel} />
-    </Dialog.Container>
-  );
-}
+const handleCancel = () => {
+  setVisible(false);
+};
+
+return (
+  <Dialog.Container visible={visible} onBackdropPress={handleCancel}>
+    <Dialog.Title>Title</Dialog.Title>
+    <Dialog.Button label="Cancel" onPress={handleCancel} />
+  </Dialog.Container>
+);
 ```
 
 ## Acknowledgments
