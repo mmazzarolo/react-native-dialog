@@ -91,9 +91,9 @@ The `visible` prop is the only prop you'll really need to make the dialog work: 
 ## A complete example
 
 The following example consists in a component (`DialogTester`) with a button and a dialog.
-The dialog is controlled by the `dialogVisible` state variable and it is initially hidden, since its value is `false`.
+The dialog is controlled by the `dialogVisible` state variable and it is initially hidden since its value is `false`.
 Pressing the button sets `dialogVisible` to true, making the dialog visible.
-Inside the dialog there are two button that, when pressed, sets `dialogVisible` to false, hiding the dialog.
+Inside the dialog there are two buttons that, when pressed, set `dialogVisible` to false, hiding the dialog.
 
 ```javascript
 import React, { useState } from "react";
@@ -204,7 +204,7 @@ const styles = StyleSheet.create({
 ### How can I use a custom blur component as the dialog background on iOS?
 
 To achieve a look even closer to the native iOS dialog you can provide your own component in the `blurComponentIOS` prop of a `Dialog.Container` and it will be injected in the dialog to be used as a background.
-The `blurComponentIOS` can be useful for example if you want to apply native blur effect to the dialog.
+The `blurComponentIOS` can be useful for example if you want to apply a native blur effect to the dialog.
 Here is an example using `react-native-blur`:
 
 ```javascript
@@ -230,7 +230,7 @@ return (
 `react-native-dialog` uses [a thin abstraction on top of the React-Native's modal component](./src/Modal.js). Any properties you add to `Dialog.Container` are mapped through to the modal.
 The modal has an `onBackdropPress` property that can be used to register clicks on the backdrop.
 
-Below is an example on how you can close the dialog by tapping outside.
+Below is an example of how you can close the dialog by tapping outside.
 
 ```javascript
 const [visible, setVisible] = useState(true);

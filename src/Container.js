@@ -92,6 +92,7 @@ DialogContainer.propTypes = {
   headerStyle: PropTypes.object,
   blurStyle: PropTypes.object,
   visible: PropTypes.bool,
+  onBackdropPress: PropTypes.func,
 };
 
 DialogContainer.defaultProps = {
