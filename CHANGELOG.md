@@ -1,3 +1,10 @@
+## [6.1.1](https://github.com/mmazzarolo/react-native-dialog/compare/v6.1.0...v6.1.1) (2020-10-18)
+
+
+### Bug Fixes
+
+* Added onBackdropPress on proptypes & docs update ([8b273d4](https://github.com/mmazzarolo/react-native-dialog/commit/8b273d45e76502d9366db2f6888bfc911ab6b1a1))
+
 # [6.1.0](https://github.com/mmazzarolo/react-native-dialog/compare/v6.0.1...v6.1.0) (2020-10-17)
 
 
