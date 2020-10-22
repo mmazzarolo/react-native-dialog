@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import {
   Animated,
-  DeviceEventEmitter,
-  Dimensions,
   Easing,
   Modal as ReactNativeModal,
   Platform,
@@ -73,8 +71,6 @@ export class Modal extends Component {
   state = {
     visible: this.props.visible,
     currentAnimation: "none",
-    deviceWidth: Dimensions.get("window").width,
-    deviceHeight: Dimensions.get("window").height,
   };
 
   animVal = new Animated.Value(0);
@@ -85,17 +81,9 @@ export class Modal extends Component {
     if (this.state.visible) {
       this.show();
     }
-    DeviceEventEmitter.addListener(
-      "didUpdateDimensions",
-      this.handleDimensionsUpdate
-    );
   }
 
   componentWillUnmount() {
-    DeviceEventEmitter.removeListener(
-      "didUpdateDimensions",
-      this.handleDimensionsUpdate
-    );
     this._isMounted = false;
   }
 
@@ -106,17 +94,6 @@ export class Modal extends Component {
       this.hide();
     }
   }
-
-  handleDimensionsUpdate = (dimensionsUpdate) => {
-    const deviceWidth = dimensionsUpdate.window.width;
-    const deviceHeight = dimensionsUpdate.window.height;
-    if (
-      deviceWidth !== this.state.deviceWidth ||
-      deviceHeight !== this.state.deviceHeight
-    ) {
-      this.setState({ deviceWidth, deviceHeight });
-    }
-  };
 
   show = () => {
     this.setState({ visible: true, currentAnimation: "in" }, () => {
@@ -154,9 +131,10 @@ export class Modal extends Component {
       children,
       onBackdropPress,
       contentStyle,
+      style,
       ...otherProps
     } = this.props;
-    const { currentAnimation, deviceHeight, deviceWidth, visible } = this.state;
+    const { currentAnimation, visible } = this.state;
 
     const backdropAnimatedStyle = {
       opacity: this.animVal.interpolate({
@@ -195,17 +173,12 @@ export class Modal extends Component {
       <ReactNativeModal
         transparent
         animationType="none"
+        style={StyleSheet.compose(styles.modal, style)}
         {...otherProps}
         visible={visible}
       >
         <TouchableWithoutFeedback onPress={onBackdropPress}>
-          <Animated.View
-            style={[
-              styles.backdrop,
-              backdropAnimatedStyle,
-              { width: deviceWidth, height: deviceHeight },
-            ]}
-          />
+          <Animated.View style={[styles.backdrop, backdropAnimatedStyle]} />
         </TouchableWithoutFeedback>
         {visible && (
           <Animated.View
@@ -228,6 +201,9 @@ export class Modal extends Component {
 }
 
 const styles = StyleSheet.create({
+  modal: {
+    margin: 0,
+  },
   backdrop: {
     position: "absolute",
     top: 0,
@@ -236,6 +212,8 @@ const styles = StyleSheet.create({
     right: 0,
     backgroundColor: "black",
     opacity: 0,
+    width: "100%",
+    height: "100%",
   },
   content: {
     flex: 1,
