@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import {
   Animated,
-  DeviceEventEmitter,
-  Dimensions,
   Easing,
   Modal as ReactNativeModal,
   Platform,
@@ -73,8 +71,6 @@ export class Modal extends Component {
   state = {
     visible: this.props.visible,
     currentAnimation: "none",
-    deviceWidth: Dimensions.get("window").width,
-    deviceHeight: Dimensions.get("window").height,
   };
 
   animVal = new Animated.Value(0);
@@ -85,17 +81,9 @@ export class Modal extends Component {
     if (this.state.visible) {
       this.show();
     }
-    DeviceEventEmitter.addListener(
-      "didUpdateDimensions",
-      this.handleDimensionsUpdate
-    );
   }
 
   componentWillUnmount() {
-    DeviceEventEmitter.removeListener(
-      "didUpdateDimensions",
-      this.handleDimensionsUpdate
-    );
     this._isMounted = false;
   }
 
@@ -106,17 +94,6 @@ export class Modal extends Component {
       this.hide();
     }
   }
-
-  handleDimensionsUpdate = (dimensionsUpdate) => {
-    const deviceWidth = dimensionsUpdate.window.width;
-    const deviceHeight = dimensionsUpdate.window.height;
-    if (
-      deviceWidth !== this.state.deviceWidth ||
-      deviceHeight !== this.state.deviceHeight
-    ) {
-      this.setState({ deviceWidth, deviceHeight });
-    }
-  };
 
   show = () => {
     this.setState({ visible: true, currentAnimation: "in" }, () => {
@@ -156,7 +133,7 @@ export class Modal extends Component {
       contentStyle,
       ...otherProps
     } = this.props;
-    const { currentAnimation, deviceHeight, deviceWidth, visible } = this.state;
+    const { currentAnimation, visible } = this.state;
 
     const backdropAnimatedStyle = {
       opacity: this.animVal.interpolate({
@@ -199,13 +176,7 @@ export class Modal extends Component {
         visible={visible}
       >
         <TouchableWithoutFeedback onPress={onBackdropPress}>
-          <Animated.View
-            style={[
-              styles.backdrop,
-              backdropAnimatedStyle,
-              { width: deviceWidth, height: deviceHeight },
-            ]}
-          />
+          <Animated.View style={[styles.backdrop, backdropAnimatedStyle]} />
         </TouchableWithoutFeedback>
         {visible && (
           <Animated.View
