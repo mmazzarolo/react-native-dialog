@@ -207,8 +207,6 @@ const styles = StyleSheet.create({
     right: 0,
     backgroundColor: "black",
     opacity: 0,
-    width: "100%",
-    height: "100%",
   },
   content: {
     flex: 1,
