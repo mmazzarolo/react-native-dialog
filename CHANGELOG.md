@@ -1,3 +1,10 @@
+## [6.1.2](https://github.com/mmazzarolo/react-native-dialog/compare/v6.1.1...v6.1.2) (2020-10-24)
+
+
+### Bug Fixes
+
+* Always cover the whole screen (even with translucent status bar)  ([#85](https://github.com/mmazzarolo/react-native-dialog/issues/85)) ([09b2f35](https://github.com/mmazzarolo/react-native-dialog/commit/09b2f3584890be76fd56d3e2719ea928e8130ebf))
+
 ## [6.1.1](https://github.com/mmazzarolo/react-native-dialog/compare/v6.1.0...v6.1.1) (2020-10-18)
 
 
