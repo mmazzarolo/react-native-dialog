@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Dimensions, StatusBar, StyleSheet, View } from "react-native";
+import { Button, StyleSheet, View } from "react-native";
 import Dialog from "react-native-dialog";
 
 export default function App() {
@@ -19,12 +19,10 @@ export default function App() {
     setVisible(false);
   };
 
-  const RealDeviceHeight = Dimensions.get('window').height + (StatusBar.currentHeight ?? 0);
-
   return (
     <View style={styles.container}>
       <Button title="Show dialog" onPress={showDialog} />
-      <Dialog.Container visible={visible} statusBarTranslucent deviceHeight={RealDeviceHeight}>
+      <Dialog.Container visible={visible} statusBarTranslucent>
         <Dialog.Title>Account delete</Dialog.Title>
         <Dialog.Description>
           Do you want to delete this account? You cannot undo this action.

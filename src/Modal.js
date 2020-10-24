@@ -131,7 +131,6 @@ export class Modal extends Component {
       children,
       onBackdropPress,
       contentStyle,
-      style,
       ...otherProps
     } = this.props;
     const { currentAnimation, visible } = this.state;
@@ -173,7 +172,6 @@ export class Modal extends Component {
       <ReactNativeModal
         transparent
         animationType="none"
-        style={StyleSheet.compose(styles.modal, style)}
         {...otherProps}
         visible={visible}
       >
@@ -201,9 +199,6 @@ export class Modal extends Component {
 }
 
 const styles = StyleSheet.create({
-  modal: {
-    margin: 0,
-  },
   backdrop: {
     position: "absolute",
     top: 0,
