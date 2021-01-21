@@ -12,6 +12,7 @@ const DialogContainer = (props) => {
     footerStyle = {},
     headerStyle = {},
     blurStyle = {},
+    KeyboardAvoidingViewProps = null,
     visible,
     ...nodeProps
   } = props;
@@ -57,6 +58,7 @@ const DialogContainer = (props) => {
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : undefined}
         style={styles.centeredView}
+        {...KeyboardAvoidingViewProps}
       >
         <View style={[styles.content, contentStyle]}>
           {Platform.OS === "ios" && blurComponentIOS}
