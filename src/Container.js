@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
-import { KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native";
+import { TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native";
 import Modal from "./Modal";
 
 const DialogContainer = (props) => {
@@ -13,7 +13,9 @@ const DialogContainer = (props) => {
     headerStyle = {},
     blurStyle = {},
     KeyboardAvoidingViewProps = null,
+    dismissKeyboardOnTap = false,
     visible,
+    onBackdropPress,
     ...nodeProps
   } = props;
   const titleChildrens = [];
@@ -48,13 +50,24 @@ const DialogContainer = (props) => {
       otherChildrens.push(child);
     }
   });
+
+  
   return (
     <Modal
       renderToHardwareTextureAndroid={true}
       transparent={true}
       visible={visible}
+      onBackdropPress={() => {
+        if (dismissKeyboardOnTap) {
+          Keyboard.dismiss()
+        }
+        if (onBackdropPress && typeof onBackdropPress === "function") {
+          onBackdropPress()
+        }
+      }}
       {...nodeProps}
     >
+      <TouchableWithoutFeedback onPress={dismissKeyboardOnTap ? Keyboard.dismiss : null}>
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : undefined}
         style={styles.centeredView}
@@ -81,6 +94,7 @@ const DialogContainer = (props) => {
           )}
         </View>
       </KeyboardAvoidingView>
+      </TouchableWithoutFeedback>
     </Modal>
   );
 };
