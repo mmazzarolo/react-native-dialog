@@ -1,3 +1,10 @@
+# [6.2.0](https://github.com/mmazzarolo/react-native-dialog/compare/v6.1.2...v6.2.0) (2021-02-19)
+
+
+### Features
+
+* add keyboardVerticalOffset support for iOS ([#93](https://github.com/mmazzarolo/react-native-dialog/issues/93)) ([f44d21b](https://github.com/mmazzarolo/react-native-dialog/commit/f44d21bbe72183c129fba72b79440af26c348b1e))
+
 ## [6.1.2](https://github.com/mmazzarolo/react-native-dialog/compare/v6.1.1...v6.1.2) (2020-10-24)
 
 
