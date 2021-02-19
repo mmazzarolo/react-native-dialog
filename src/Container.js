@@ -3,6 +3,8 @@ import React from "react";
 import { KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native";
 import Modal from "./Modal";
 
+const iOS = Platform.OS === "ios";
+
 const DialogContainer = (props) => {
   const {
     blurComponentIOS,
@@ -13,6 +15,7 @@ const DialogContainer = (props) => {
     headerStyle = {},
     blurStyle = {},
     visible,
+    keyboardVerticalOffset = 40,
     ...nodeProps
   } = props;
   const titleChildrens = [];
@@ -55,7 +58,8 @@ const DialogContainer = (props) => {
       {...nodeProps}
     >
       <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : undefined}
+        behavior={iOS ? "padding" : undefined}
+        keyboardVerticalOffset={iOS ? keyboardVerticalOffset : undefined}
         style={styles.centeredView}
       >
         <View style={[styles.content, contentStyle]}>
