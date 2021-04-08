@@ -1,6 +1,6 @@
 {
   "name": "react-native-dialog",
-  "version": "6.2.0",
+  "version": "6.3.0",
   "description": "A flexible react-native dialog",
   "main": "src/index.js",
   "author": "Mazzarolo Matteo",
@@ -26,6 +26,9 @@
     "lint": "eslint src",
     "lint:fix": "npm run lint --fix",
     "test": "npm run lint"
+  },
+  "peerDependencies": {
+    "react-native": "^0.63.0"
   },
   "dependencies": {
     "prop-types": "^15.7.2"
