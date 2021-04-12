@@ -28,7 +28,7 @@
     "test": "npm run lint"
   },
   "peerDependencies": {
-    "react-native": "^0.63.0"
+    "react-native": ">=0.63.0"
   },
   "dependencies": {
     "prop-types": "^15.7.2"
