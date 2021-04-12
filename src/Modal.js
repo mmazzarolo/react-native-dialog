@@ -87,7 +87,7 @@ export class Modal extends Component {
     this._isMounted = false;
   }
 
-  componentDidUpdate(prevProps: ModalPropsType) {
+  componentDidUpdate(prevProps) {
     if (this.props.visible && !prevProps.visible) {
       this.show();
     } else if (!this.props.visible && prevProps.visible) {
