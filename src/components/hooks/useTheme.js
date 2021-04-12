@@ -7,7 +7,7 @@ const useTheme = (__styles) => {
 
   const styles = useMemo(() => {
     return __styles(isDark);
-  }, [colorScheme]);
+  }, [__styles, isDark]);
 
   return { theme: colorScheme, isDark, styles };
 };
