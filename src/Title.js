@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 import { Platform, StyleSheet, Text, PlatformColor } from "react-native";
-import { useTheme } from "./components/hooks";
+import useTheme from "./useTheme";
 
 const DialogTitle = (props) => {
   const { style, children, ...nodeProps } = props;

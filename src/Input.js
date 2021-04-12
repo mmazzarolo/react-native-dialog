@@ -8,7 +8,7 @@ import {
   View,
   PlatformColor,
 } from "react-native";
-import { useTheme } from "./components/hooks";
+import useTheme from "./useTheme";
 
 const DialogInput = (props) => {
   const {

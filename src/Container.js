@@ -8,7 +8,7 @@ import {
   PlatformColor,
 } from "react-native";
 import Modal from "./Modal";
-import { useTheme } from "./components/hooks";
+import useTheme from "./useTheme";
 
 const iOS = Platform.OS === "ios";
 

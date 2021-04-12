@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   PlatformColor,
 } from "react-native";
-import { useTheme } from "./components/hooks";
+import useTheme from "./useTheme";
 
 const COLOR = Platform.OS === "ios" ? "#007ff9" : "#169689";
 
