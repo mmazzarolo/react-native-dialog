@@ -12,7 +12,7 @@ import { useTheme } from "./components/hooks";
 
 const DialogSwitch = (props) => {
   const { label, ...nodeProps } = props;
-  const { styles } = useTheme(__styles);
+  const { styles } = useTheme(buildStyles);
   return (
     <View style={styles.switchWrapper}>
       <Text style={styles.label}>{label}</Text>
@@ -28,7 +28,7 @@ DialogSwitch.propTypes = {
 
 DialogSwitch.displayName = "DialogSwitch";
 
-const __styles = (isDark) =>
+const buildStyles = (isDark) =>
   StyleSheet.create({
     switchWrapper: Platform.select({
       ios: {

@@ -5,7 +5,7 @@ import { useTheme } from "./components/hooks";
 
 const DialogDescription = (props) => {
   const { style, children, ...nodeProps } = props;
-  const { styles } = useTheme(__styles);
+  const { styles } = useTheme(buildStyles);
 
   return (
     <Text style={[styles.text, style]} {...nodeProps}>
@@ -22,7 +22,7 @@ DialogDescription.propTypes = {
 
 DialogDescription.displayName = "DialogDescription";
 
-const __styles = (isDark) =>
+const buildStyles = (isDark) =>
   StyleSheet.create({
     text: Platform.select({
       ios: {

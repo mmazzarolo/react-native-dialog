@@ -22,7 +22,7 @@ const DialogInput = (props) => {
   } = props;
   const lines = (multiline && numberOfLines) || 1;
   const height = 18 + Platform.select({ ios: 14, android: 22 }) * lines;
-  const { styles, isDark } = useTheme(__styles);
+  const { styles, isDark } = useTheme(buildStyles);
   return (
     <View style={[styles.textInputWrapper, wrapperStyle]}>
       {label && <Text style={styles.label}>{label}</Text>}
@@ -63,7 +63,7 @@ DialogInput.propTypes = {
 
 DialogInput.displayName = "DialogInput";
 
-const __styles = (isDark) =>
+const buildStyles = (isDark) =>
   StyleSheet.create({
     textInputWrapper: Platform.select({
       ios: {

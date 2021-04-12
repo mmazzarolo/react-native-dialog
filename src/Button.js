@@ -14,7 +14,7 @@ const COLOR = Platform.OS === "ios" ? "#007ff9" : "#169689";
 const DialogButton = (props) => {
   const { label, color, disabled, bold, onPress, style, ...nodeProps } = props;
   const fontWeight = bold ? "600" : "normal";
-  const { styles } = useTheme(__styles);
+  const { styles } = useTheme(buildStyles);
 
   return (
     <TouchableOpacity
@@ -48,7 +48,7 @@ DialogButton.defaultProps = {
 
 DialogButton.displayName = "DialogButton";
 
-const __styles = (isDark) =>
+const buildStyles = (isDark) =>
   StyleSheet.create({
     button: Platform.select({
       ios: {

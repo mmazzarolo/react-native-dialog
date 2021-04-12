@@ -1,13 +1,13 @@
 import React, { useMemo } from "react";
 import { useColorScheme } from "react-native";
 
-const useTheme = (__styles) => {
+const useTheme = (buildStyles) => {
   const colorScheme = useColorScheme();
   const isDark = colorScheme === "dark";
 
   const styles = useMemo(() => {
-    return __styles(isDark);
-  }, [__styles, isDark]);
+    return buildStyles(isDark);
+  }, [buildStyles, isDark]);
 
   return { theme: colorScheme, isDark, styles };
 };

@@ -29,7 +29,7 @@ const DialogContainer = (props) => {
   const descriptionChildrens = [];
   const buttonChildrens = [];
   const otherChildrens = [];
-  const { styles } = useTheme(__styles);
+  const { styles } = useTheme(buildStyles);
   React.Children.forEach(children, (child) => {
     if (!child) {
       return;
@@ -111,7 +111,7 @@ DialogContainer.defaultProps = {
   visible: false,
 };
 
-const __styles = (isDark) =>
+const buildStyles = (isDark) =>
   StyleSheet.create({
     centeredView: {
       marginTop: 22,
