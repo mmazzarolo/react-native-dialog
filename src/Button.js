@@ -1,12 +1,21 @@
 import PropTypes from "prop-types";
 import React from "react";
-import { Platform, StyleSheet, Text, TouchableOpacity } from "react-native";
+import {
+  Platform,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  PlatformColor,
+} from "react-native";
+import useTheme from "./useTheme";
 
 const COLOR = Platform.OS === "ios" ? "#007ff9" : "#169689";
 
 const DialogButton = (props) => {
   const { label, color, disabled, bold, onPress, style, ...nodeProps } = props;
   const fontWeight = bold ? "600" : "normal";
+  const { styles } = useTheme(buildStyles);
+
   return (
     <TouchableOpacity
       style={styles.button}
@@ -39,41 +48,46 @@ DialogButton.defaultProps = {
 
 DialogButton.displayName = "DialogButton";
 
-const styles = StyleSheet.create({
-  button: Platform.select({
-    ios: {
-      flex: 1,
-      justifyContent: "center",
-      alignItems: "center",
-    },
-    android: {
-      justifyContent: "center",
-      alignItems: "center",
-    },
-    web: {
-      justifyContent: "center",
-      alignItems: "center",
-    },
-  }),
-  text: Platform.select({
-    ios: {
-      textAlign: "center",
-      fontSize: 17,
-      backgroundColor: "transparent",
-    },
-    android: {
-      textAlign: "center",
-      backgroundColor: "transparent",
-      padding: 8,
-      fontSize: 14,
-    },
-    web: {
-      textAlign: "center",
-      backgroundColor: "transparent",
-      padding: 8,
-      fontSize: 14,
-    },
-  }),
-});
+const buildStyles = (isDark) =>
+  StyleSheet.create({
+    button: Platform.select({
+      ios: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+      },
+      android: {
+        justifyContent: "center",
+        alignItems: "center",
+      },
+      web: {
+        justifyContent: "center",
+        alignItems: "center",
+      },
+    }),
+    text: Platform.select({
+      ios: {
+        color: PlatformColor("link"),
+        textAlign: "center",
+        fontSize: 17,
+        backgroundColor: "transparent",
+      },
+      android: {
+        color: PlatformColor(
+          `@android:color/${isDark ? "link_text_dark" : "link_text_dark_light"}`
+        ),
+        textAlign: "center",
+        backgroundColor: "transparent",
+        padding: 8,
+        fontSize: 14,
+      },
+      web: {
+        textAlign: "center",
+        backgroundColor: "transparent",
+        padding: 8,
+        fontSize: 14,
+      },
+    }),
+  });
 
 export default DialogButton;

@@ -1,7 +1,14 @@
 import PropTypes from "prop-types";
 import React from "react";
-import { KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native";
+import {
+  KeyboardAvoidingView,
+  Platform,
+  StyleSheet,
+  View,
+  PlatformColor,
+} from "react-native";
 import Modal from "./Modal";
+import useTheme from "./useTheme";
 
 const iOS = Platform.OS === "ios";
 
@@ -22,6 +29,7 @@ const DialogContainer = (props) => {
   const descriptionChildrens = [];
   const buttonChildrens = [];
   const otherChildrens = [];
+  const { styles } = useTheme(buildStyles);
   React.Children.forEach(children, (child) => {
     if (!child) {
       return;
@@ -103,83 +111,85 @@ DialogContainer.defaultProps = {
   visible: false,
 };
 
-const styles = StyleSheet.create({
-  centeredView: {
-    marginTop: 22,
-  },
-  blur: {
-    position: "absolute",
-    backgroundColor: "rgb(255,255,255)",
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
-  },
-  content: Platform.select({
-    ios: {
-      width: 270,
-      flexDirection: "column",
-      borderRadius: 13,
-      overflow: "hidden",
+const buildStyles = (isDark) =>
+  StyleSheet.create({
+    centeredView: {
+      marginTop: 22,
     },
-    android: {
-      flexDirection: "column",
-      borderRadius: 3,
-      padding: 16,
-      margin: 16,
-      backgroundColor: "white",
-      overflow: "hidden",
-      elevation: 4,
-      minWidth: 300,
+    blur: {
+      position: "absolute",
+      backgroundColor: PlatformColor("systemGray6"), // "rgb(255,255,255)",
+      top: 0,
+      left: 0,
+      bottom: 0,
+      right: 0,
     },
-    web: {
-      flexDirection: "column",
-      borderRadius: 3,
-      padding: 16,
-      margin: 16,
-      backgroundColor: "white",
-      overflow: "hidden",
-      elevation: 4,
-      minWidth: 300,
+    content: Platform.select({
+      ios: {
+        width: 270,
+        //backgroundColor: PlatformColor("systemGray6"),
+        flexDirection: "column",
+        borderRadius: 13,
+        overflow: "hidden",
+      },
+      android: {
+        backgroundColor: PlatformColor("?attr/colorBackgroundFloating"),
+        flexDirection: "column",
+        borderRadius: 3,
+        padding: 16,
+        margin: 16,
+        overflow: "hidden",
+        elevation: 4,
+        minWidth: 300,
+      },
+      web: {
+        flexDirection: "column",
+        borderRadius: 3,
+        padding: 16,
+        margin: 16,
+        backgroundColor: "white",
+        overflow: "hidden",
+        elevation: 4,
+        minWidth: 300,
+      },
+    }),
+    header: Platform.select({
+      ios: {
+        margin: 18,
+      },
+      android: {
+        margin: 12,
+      },
+      web: {
+        margin: 12,
+      },
+    }),
+    footer: Platform.select({
+      ios: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        borderTopColor: PlatformColor("separator"), //"#A9ADAE",
+        borderTopWidth: StyleSheet.hairlineWidth,
+        height: 46,
+      },
+      android: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "flex-end",
+        marginTop: 4,
+      },
+      web: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "flex-end",
+        marginTop: 4,
+      },
+    }),
+    buttonSeparator: {
+      height: "100%",
+      backgroundColor: PlatformColor("separator"), //"#A9ADAE",
+      width: StyleSheet.hairlineWidth,
     },
-  }),
-  header: Platform.select({
-    ios: {
-      margin: 18,
-    },
-    android: {
-      margin: 12,
-    },
-    web: {
-      margin: 12,
-    },
-  }),
-  footer: Platform.select({
-    ios: {
-      flexDirection: "row",
-      justifyContent: "space-between",
-      borderTopColor: "#A9ADAE",
-      borderTopWidth: StyleSheet.hairlineWidth,
-      height: 46,
-    },
-    android: {
-      flexDirection: "row",
-      alignItems: "center",
-      justifyContent: "flex-end",
-      marginTop: 4,
-    },
-    web: {
-      flexDirection: "row",
-      alignItems: "center",
-      justifyContent: "flex-end",
-      marginTop: 4,
-    },
-  }),
-  buttonSeparator: {
-    height: "100%",
-    backgroundColor: "#A9ADAE",
-    width: StyleSheet.hairlineWidth,
-  },
-});
+  });
 
 export default DialogContainer;

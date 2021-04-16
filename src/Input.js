@@ -1,6 +1,14 @@
 import PropTypes from "prop-types";
 import React from "react";
-import { Platform, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  Platform,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+  PlatformColor,
+} from "react-native";
+import useTheme from "./useTheme";
 
 const DialogInput = (props) => {
   const {
@@ -14,11 +22,26 @@ const DialogInput = (props) => {
   } = props;
   const lines = (multiline && numberOfLines) || 1;
   const height = 18 + Platform.select({ ios: 14, android: 22 }) * lines;
+  const { styles, isDark } = useTheme(buildStyles);
   return (
     <View style={[styles.textInputWrapper, wrapperStyle]}>
       {label && <Text style={styles.label}>{label}</Text>}
       <TextInput
         ref={textInputRef}
+        placeholderTextColor={
+          Platform.OS === "IOS"
+            ? PlatformColor("placeholderText")
+            : PlatformColor(
+                `@android:color/${
+                  isDark ? "hint_foreground_dark" : "hint_foreground_light"
+                }`
+              )
+        }
+        underlineColorAndroid={PlatformColor(
+          `@android:color/${
+            isDark ? "hint_foreground_dark" : "hint_foreground_light"
+          }`
+        )}
         style={[styles.textInput, style, { height }]}
         multiline={multiline}
         numberOfLines={numberOfLines}
@@ -40,36 +63,50 @@ DialogInput.propTypes = {
 
 DialogInput.displayName = "DialogInput";
 
-const styles = StyleSheet.create({
-  textInputWrapper: Platform.select({
-    ios: {
-      backgroundColor: "white",
-      borderWidth: StyleSheet.hairlineWidth,
-      borderRadius: 6,
-      borderColor: "#A9ADAE",
-      marginHorizontal: 20,
-      marginBottom: 20,
-      paddingHorizontal: 8,
-    },
-    android: {
-      marginHorizontal: 10,
-      marginBottom: 20,
-    },
-  }),
-  label: Platform.select({
-    ios: {},
-    android: {
-      color: "rgba(0, 0, 0, 0.5)",
-      fontSize: 14,
-    },
-  }),
-  textInput: Platform.select({
-    ios: {},
-    android: {
-      marginLeft: -4,
-      paddingLeft: 4,
-    },
-  }),
-});
+const buildStyles = (isDark) =>
+  StyleSheet.create({
+    textInputWrapper: Platform.select({
+      ios: {
+        backgroundColor: PlatformColor("systemGray5"),
+        borderWidth: StyleSheet.hairlineWidth,
+        borderRadius: 6,
+        borderColor: PlatformColor("separator"),
+        marginHorizontal: 20,
+        marginBottom: 20,
+        paddingHorizontal: 8,
+      },
+      android: {
+        marginHorizontal: 10,
+        marginBottom: 20,
+      },
+    }),
+    label: Platform.select({
+      ios: {
+        color: PlatformColor("label"),
+      },
+      android: {
+        color: PlatformColor(
+          `@android:color/${
+            isDark ? "primary_text_dark" : "primary_text_light"
+          }`
+        ),
+        fontSize: 14,
+      },
+    }),
+    textInput: Platform.select({
+      ios: {
+        color: PlatformColor("label"),
+      },
+      android: {
+        color: PlatformColor(
+          `@android:color/${
+            isDark ? "primary_text_dark" : "primary_text_light"
+          }`
+        ),
+        marginLeft: -4,
+        paddingLeft: 4,
+      },
+    }),
+  });
 
 export default DialogInput;
