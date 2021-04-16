@@ -1,3 +1,15 @@
+# [7.0.0](https://github.com/mmazzarolo/react-native-dialog/compare/v6.2.0...v7.0.0) (2021-04-16)
+
+
+### Features
+
+* Add support for dark mode ([#100](https://github.com/mmazzarolo/react-native-dialog/issues/100)) ([57b065e](https://github.com/mmazzarolo/react-native-dialog/commit/57b065e1524e64f28b7a07ebd8062d7b1982cc76))
+
+
+### BREAKING CHANGES
+
+* We are now using the native colors instead of the hardcoded ones — which means that if your react-native app is using a specific accent/primary color it will be now shown correctly in the dialog.
+
 # [6.2.0](https://github.com/mmazzarolo/react-native-dialog/compare/v6.1.2...v6.2.0) (2021-02-19)
 
 
