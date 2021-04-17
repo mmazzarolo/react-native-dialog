@@ -1,5 +1,4 @@
-import PropTypes from "prop-types";
-import React from "react";
+import React, { LegacyRef } from "react";
 import {
   Platform,
   StyleSheet,
@@ -7,10 +6,20 @@ import {
   TextInput,
   View,
   PlatformColor,
+  TextInputProps,
+  ViewStyle,
+  ViewPropTypes,
 } from "react-native";
-import useTheme from "./useTheme";
+import useTheme, { StyleBuilder } from "./useTheme";
+import PropTypes from "prop-types";
 
-const DialogInput = (props) => {
+interface DialogInputProps extends TextInputProps {
+  label?: string;
+  wrapperStyle?: ViewStyle;
+  textInputRef: LegacyRef<TextInput>;
+}
+
+const DialogInput: React.FC<DialogInputProps> = (props) => {
   const {
     label,
     style,
@@ -21,7 +30,8 @@ const DialogInput = (props) => {
     ...nodeProps
   } = props;
   const lines = (multiline && numberOfLines) || 1;
-  const height = 18 + Platform.select({ ios: 14, android: 22 }) * lines;
+  const height =
+    18 + Platform.select({ ios: 14, android: 22, default: 0 }) * lines;
   const { styles, isDark } = useTheme(buildStyles);
   return (
     <View style={[styles.textInputWrapper, wrapperStyle]}>
@@ -29,7 +39,7 @@ const DialogInput = (props) => {
       <TextInput
         ref={textInputRef}
         placeholderTextColor={
-          Platform.OS === "IOS"
+          Platform.OS === "ios"
             ? PlatformColor("placeholderText")
             : PlatformColor(
                 `@android:color/${
@@ -52,7 +62,7 @@ const DialogInput = (props) => {
 };
 
 DialogInput.propTypes = {
-  ...TextInput.propTypes,
+  ...ViewPropTypes,
   label: PropTypes.string,
   style: PropTypes.any,
   textInputRef: PropTypes.any,
@@ -63,7 +73,7 @@ DialogInput.propTypes = {
 
 DialogInput.displayName = "DialogInput";
 
-const buildStyles = (isDark) =>
+const buildStyles: StyleBuilder = (isDark) =>
   StyleSheet.create({
     textInputWrapper: Platform.select({
       ios: {
@@ -79,6 +89,7 @@ const buildStyles = (isDark) =>
         marginHorizontal: 10,
         marginBottom: 20,
       },
+      default: {},
     }),
     label: Platform.select({
       ios: {
@@ -92,6 +103,7 @@ const buildStyles = (isDark) =>
         ),
         fontSize: 14,
       },
+      default: {},
     }),
     textInput: Platform.select({
       ios: {
@@ -106,6 +118,7 @@ const buildStyles = (isDark) =>
         marginLeft: -4,
         paddingLeft: 4,
       },
+      default: {},
     }),
   });
 

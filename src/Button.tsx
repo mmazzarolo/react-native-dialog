@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import React from "react";
 import {
   Platform,
@@ -6,13 +5,32 @@ import {
   Text,
   TouchableOpacity,
   PlatformColor,
+  TextProps,
+  TextPropTypes,
 } from "react-native";
-import useTheme from "./useTheme";
+import useTheme, { StyleBuilder } from "./useTheme";
+import PropTypes from "prop-types";
 
 const COLOR = Platform.OS === "ios" ? "#007ff9" : "#169689";
 
-const DialogButton = (props) => {
-  const { label, color, disabled, bold, onPress, style, ...nodeProps } = props;
+interface DialogButtonProps extends TextProps {
+  label: string;
+  color?: string;
+  bold?: boolean;
+  disabled?: boolean;
+  onPress: () => void;
+}
+
+const DialogButton: React.FC<DialogButtonProps> = (props) => {
+  const {
+    label,
+    color = COLOR,
+    disabled = false,
+    bold,
+    onPress,
+    style,
+    ...nodeProps
+  } = props;
   const fontWeight = bold ? "600" : "normal";
   const { styles } = useTheme(buildStyles);
 
@@ -33,7 +51,7 @@ const DialogButton = (props) => {
 };
 
 DialogButton.propTypes = {
-  ...Text.propTypes,
+  ...TextPropTypes,
   label: PropTypes.string.isRequired,
   color: PropTypes.string,
   bold: PropTypes.bool,
@@ -41,14 +59,9 @@ DialogButton.propTypes = {
   onPress: PropTypes.func.isRequired,
 };
 
-DialogButton.defaultProps = {
-  color: COLOR,
-  disabled: false,
-};
-
 DialogButton.displayName = "DialogButton";
 
-const buildStyles = (isDark) =>
+const buildStyles: StyleBuilder = (isDark) =>
   StyleSheet.create({
     button: Platform.select({
       ios: {
@@ -64,6 +77,7 @@ const buildStyles = (isDark) =>
         justifyContent: "center",
         alignItems: "center",
       },
+      default: {},
     }),
     text: Platform.select({
       ios: {
@@ -87,6 +101,7 @@ const buildStyles = (isDark) =>
         padding: 8,
         fontSize: 14,
       },
+      default: {},
     }),
   });
 

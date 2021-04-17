@@ -1,9 +1,21 @@
 import PropTypes from "prop-types";
-import React from "react";
-import { Platform, StyleSheet, Text, PlatformColor } from "react-native";
-import useTheme from "./useTheme";
+import React, { ReactNode } from "react";
+import {
+  Platform,
+  StyleSheet,
+  Text,
+  PlatformColor,
+  ViewStyle,
+  TextPropTypes,
+} from "react-native";
+import useTheme, { StyleBuilder } from "./useTheme";
 
-const DialogDescription = (props) => {
+interface DialogDescriptionProps {
+  style?: ViewStyle;
+  children: ReactNode;
+}
+
+const DialogDescription: React.FC<DialogDescriptionProps> = (props) => {
   const { style, children, ...nodeProps } = props;
   const { styles } = useTheme(buildStyles);
 
@@ -15,14 +27,13 @@ const DialogDescription = (props) => {
 };
 
 DialogDescription.propTypes = {
-  ...Text.propTypes,
+  ...TextPropTypes,
   style: PropTypes.any,
-  children: PropTypes.string.isRequired,
 };
 
 DialogDescription.displayName = "DialogDescription";
 
-const buildStyles = (isDark) =>
+const buildStyles: StyleBuilder = (isDark) =>
   StyleSheet.create({
     text: Platform.select({
       ios: {
@@ -45,6 +56,7 @@ const buildStyles = (isDark) =>
         fontSize: 16,
         marginTop: 10,
       },
+      default: {},
     }),
   });
 

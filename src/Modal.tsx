@@ -4,9 +4,11 @@ import {
   Animated,
   Easing,
   Modal as ReactNativeModal,
+  ModalProps as ReactNativeModalProps,
   Platform,
   StyleSheet,
   TouchableWithoutFeedback,
+  ViewStyle,
 } from "react-native";
 
 const MODAL_ANIM_DURATION = 300;
@@ -54,7 +56,19 @@ const CONTENT_ANIMATION_OUT = Platform.select({
   },
 });
 
-export class Modal extends Component {
+interface ModalProps extends ReactNativeModalProps {
+  onBackdropPress?: () => void;
+  onHide?: () => void;
+  visible?: boolean;
+  contentStyle: ViewStyle;
+}
+
+interface ModalState {
+  visible: boolean;
+  currentAnimation: "none" | "in" | "out";
+}
+
+export class Modal extends Component<ModalProps, ModalState> {
   static propTypes = {
     onBackdropPress: PropTypes.func,
     onHide: PropTypes.func,
@@ -62,14 +76,14 @@ export class Modal extends Component {
     contentStyle: PropTypes.any,
   };
 
-  static defaultProps = {
+  static defaultProps: Partial<ModalProps> = {
     onBackdropPress: () => null,
     onHide: () => null,
     visible: false,
   };
 
-  state = {
-    visible: this.props.visible,
+  state: ModalState = {
+    visible: Boolean(this.props.visible),
     currentAnimation: "none",
   };
 
@@ -87,7 +101,7 @@ export class Modal extends Component {
     this._isMounted = false;
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: ModalProps) {
     if (this.props.visible && !prevProps.visible) {
       this.show();
     } else if (!this.props.visible && prevProps.visible) {
@@ -110,7 +124,7 @@ export class Modal extends Component {
   };
 
   hide = () => {
-    this.setState({ animationDirection: "out" }, () => {
+    this.setState({ currentAnimation: "out" }, () => {
       Animated.timing(this.animVal, {
         easing: Easing.inOut(Easing.quad),
         // Using native driver in the modal makes the content flash
