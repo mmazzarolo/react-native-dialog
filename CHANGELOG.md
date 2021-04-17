@@ -1,3 +1,15 @@
+# [8.0.0](https://github.com/mmazzarolo/react-native-dialog/compare/v7.0.0...v8.0.0) (2021-04-17)
+
+
+### Features
+
+* Use TypeScript in the codebase and expose TypeScript type-definitions ([#101](https://github.com/mmazzarolo/react-native-dialog/issues/101)) ([77d41f6](https://github.com/mmazzarolo/react-native-dialog/commit/77d41f6f5fae17650245684c10ab3de3df93e76b))
+
+
+### BREAKING CHANGES
+
+* Previous type definitions used in your app may not be compatible with this release anymore.
+
 # [7.0.0](https://github.com/mmazzarolo/react-native-dialog/compare/v6.2.0...v7.0.0) (2021-04-16)
 
 
