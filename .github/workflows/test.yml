@@ -1,4 +1,4 @@
-name: Lint & Test
+name: Build & Test
 
 on:
   push:
@@ -11,7 +11,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    name: Test & Lint
+    name: Build & Lint
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -31,6 +31,9 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Run build
+        run: npm run build
 
       - name: Run lint
         run: npm run lint

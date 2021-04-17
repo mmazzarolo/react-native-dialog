@@ -1,3 +1,31 @@
 {
-  "extends": ["plugin:react-app/recommended", "plugin:prettier/recommended"]
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2017,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "react-native"
+  ],
+  "extends": [
+    "plugin:react/recommended",
+    "prettier/@typescript-eslint",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "rules": {
+    "@typescript-eslint/explicit-module-boundary-types": 0,
+    "@typescript-eslint/no-explicit-any": 0
+  }
 }

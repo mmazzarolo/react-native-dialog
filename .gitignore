@@ -9,3 +9,5 @@ jsconfig.json
 dump.rdb
 .vscode
 .idea
+
+/lib

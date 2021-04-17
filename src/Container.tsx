@@ -1,18 +1,33 @@
-import PropTypes from "prop-types";
-import React from "react";
+import * as React from "react";
+import { NamedExoticComponent, ReactElement, ReactNode } from "react";
 import {
   KeyboardAvoidingView,
   Platform,
   StyleSheet,
   View,
   PlatformColor,
+  ViewStyle,
 } from "react-native";
 import Modal from "./Modal";
-import useTheme from "./useTheme";
+import useTheme, { StyleBuilder } from "./useTheme";
+import PropTypes from "prop-types";
 
 const iOS = Platform.OS === "ios";
 
-const DialogContainer = (props) => {
+export interface DialogContainerProps {
+  blurComponentIOS: ReactNode;
+  buttonSeparatorStyle?: ViewStyle;
+  contentStyle?: ViewStyle;
+  footerStyle?: ViewStyle;
+  headerStyle?: ViewStyle;
+  blurStyle?: ViewStyle;
+  visible?: boolean;
+  onBackdropPress?: () => void;
+  keyboardVerticalOffset?: number;
+  children: ReactElement<any, NamedExoticComponent>[];
+}
+
+const DialogContainer: React.FC<DialogContainerProps> = (props) => {
   const {
     blurComponentIOS,
     buttonSeparatorStyle = {},
@@ -21,14 +36,14 @@ const DialogContainer = (props) => {
     footerStyle = {},
     headerStyle = {},
     blurStyle = {},
-    visible,
+    visible = false,
     keyboardVerticalOffset = 40,
     ...nodeProps
   } = props;
-  const titleChildrens = [];
-  const descriptionChildrens = [];
-  const buttonChildrens = [];
-  const otherChildrens = [];
+  const titleChildrens: ReactElement<any, NamedExoticComponent>[] = [];
+  const descriptionChildrens: ReactElement<any, NamedExoticComponent>[] = [];
+  const buttonChildrens: ReactElement<any, NamedExoticComponent>[] = [];
+  const otherChildrens: ReactElement<any, NamedExoticComponent>[] = [];
   const { styles } = useTheme(buildStyles);
   React.Children.forEach(children, (child) => {
     if (!child) {
@@ -98,20 +113,18 @@ const DialogContainer = (props) => {
 DialogContainer.propTypes = {
   blurComponentIOS: PropTypes.node,
   buttonSeparatorStyle: PropTypes.object,
-  children: PropTypes.node.isRequired,
   contentStyle: PropTypes.object,
   footerStyle: PropTypes.object,
   headerStyle: PropTypes.object,
   blurStyle: PropTypes.object,
   visible: PropTypes.bool,
   onBackdropPress: PropTypes.func,
+  keyboardVerticalOffset: PropTypes.number,
+  // @ts-expect-error: PropType allows strings and the Typescript interface does not
+  children: PropTypes.node.isRequired,
 };
 
-DialogContainer.defaultProps = {
-  visible: false,
-};
-
-const buildStyles = (isDark) =>
+const buildStyles: StyleBuilder = () =>
   StyleSheet.create({
     centeredView: {
       marginTop: 22,
@@ -152,6 +165,7 @@ const buildStyles = (isDark) =>
         elevation: 4,
         minWidth: 300,
       },
+      default: {},
     }),
     header: Platform.select({
       ios: {
@@ -163,6 +177,7 @@ const buildStyles = (isDark) =>
       web: {
         margin: 12,
       },
+      default: {},
     }),
     footer: Platform.select({
       ios: {
@@ -184,6 +199,7 @@ const buildStyles = (isDark) =>
         justifyContent: "flex-end",
         marginTop: 4,
       },
+      default: {},
     }),
     buttonSeparator: {
       height: "100%",

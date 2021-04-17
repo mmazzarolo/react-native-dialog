@@ -1,5 +1,4 @@
-import PropTypes from "prop-types";
-import React from "react";
+import * as React from "react";
 import {
   Platform,
   StyleSheet,
@@ -7,10 +6,17 @@ import {
   Text,
   View,
   PlatformColor,
+  SwitchProps,
+  ViewPropTypes,
 } from "react-native";
-import useTheme from "./useTheme";
+import useTheme, { StyleBuilder } from "./useTheme";
+import PropTypes from "prop-types";
 
-const DialogSwitch = (props) => {
+export interface DialogSwitchProps extends SwitchProps {
+  label?: string;
+}
+
+const DialogSwitch: React.FC<DialogSwitchProps> = (props) => {
   const { label, ...nodeProps } = props;
   const { styles } = useTheme(buildStyles);
   return (
@@ -22,13 +28,13 @@ const DialogSwitch = (props) => {
 };
 
 DialogSwitch.propTypes = {
-  ...Switch.propTypes,
+  ...ViewPropTypes,
   label: PropTypes.string,
 };
 
 DialogSwitch.displayName = "DialogSwitch";
 
-const buildStyles = (isDark) =>
+const buildStyles: StyleBuilder = (isDark) =>
   StyleSheet.create({
     switchWrapper: Platform.select({
       ios: {
@@ -46,6 +52,7 @@ const buildStyles = (isDark) =>
         marginHorizontal: 10,
         marginBottom: 20,
       },
+      default: {},
     }),
     label: Platform.select({
       ios: {
@@ -64,6 +71,7 @@ const buildStyles = (isDark) =>
           }`
         ),
       },
+      default: {},
     }),
   });
 
