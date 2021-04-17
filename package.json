@@ -2,7 +2,8 @@
   "name": "react-native-dialog",
   "version": "7.0.0",
   "description": "A flexible react-native dialog",
-  "main": "src/index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "author": "Mazzarolo Matteo",
   "license": "MIT",
   "homepage": "https://github.com/mmazzarolo/react-native-dialog",
@@ -20,7 +21,7 @@
     "switch"
   ],
   "files": [
-    "src/"
+    "lib/"
   ],
   "scripts": {
     "lint": "eslint src",
