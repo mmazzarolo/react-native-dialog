@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import useTheme, { StyleBuilder } from "./useTheme";
 
-interface DialogTitleProps {
+export interface DialogTitleProps {
   style?: ViewStyle;
   children: ReactNode;
 }

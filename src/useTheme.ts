@@ -3,7 +3,7 @@ import { ColorSchemeName, StyleSheet, useColorScheme } from "react-native";
 
 export type StyleBuilder = (isDark: boolean) => StyleSheet.NamedStyles<any>;
 
-interface UseTheme {
+export interface UseTheme {
   theme: ColorSchemeName;
   isDark: boolean;
   styles: StyleSheet.NamedStyles<any>;

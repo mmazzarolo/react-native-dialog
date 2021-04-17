@@ -13,7 +13,7 @@ import PropTypes from "prop-types";
 
 const iOS = Platform.OS === "ios";
 
-interface DialogContainerProps {
+export interface DialogContainerProps {
   blurComponentIOS: ReactNode;
   buttonSeparatorStyle?: ViewStyle;
   contentStyle?: ViewStyle;

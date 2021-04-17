@@ -13,7 +13,7 @@ import {
 import useTheme, { StyleBuilder } from "./useTheme";
 import PropTypes from "prop-types";
 
-interface DialogInputProps extends TextInputProps {
+export interface DialogInputProps extends TextInputProps {
   label?: string;
   wrapperStyle?: ViewStyle;
   textInputRef: LegacyRef<TextInput>;

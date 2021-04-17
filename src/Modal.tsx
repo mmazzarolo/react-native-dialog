@@ -56,7 +56,7 @@ const CONTENT_ANIMATION_OUT = Platform.select({
   },
 });
 
-interface ModalProps extends ReactNativeModalProps {
+export interface ModalProps extends ReactNativeModalProps {
   onBackdropPress?: () => void;
   onHide?: () => void;
   visible?: boolean;

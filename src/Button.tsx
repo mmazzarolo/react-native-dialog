@@ -13,7 +13,7 @@ import PropTypes from "prop-types";
 
 const COLOR = Platform.OS === "ios" ? "#007ff9" : "#169689";
 
-interface DialogButtonProps extends TextProps {
+export interface DialogButtonProps extends TextProps {
   label: string;
   color?: string;
   bold?: boolean;

@@ -12,7 +12,7 @@ import {
 import useTheme, { StyleBuilder } from "./useTheme";
 import PropTypes from "prop-types";
 
-interface DialogSwitchProps extends SwitchProps {
+export interface DialogSwitchProps extends SwitchProps {
   label?: string;
 }
 
