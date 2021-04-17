@@ -119,11 +119,12 @@ DialogContainer.propTypes = {
   blurStyle: PropTypes.object,
   visible: PropTypes.bool,
   onBackdropPress: PropTypes.func,
-  // @ts-ignore
+  keyboardVerticalOffset: PropTypes.number,
+  // @ts-expect-error: PropType allows strings and the Typescript interface does not
   children: PropTypes.node.isRequired,
 };
 
-const buildStyles: StyleBuilder = (isDark) =>
+const buildStyles: StyleBuilder = () =>
   StyleSheet.create({
     centeredView: {
       marginTop: 22,

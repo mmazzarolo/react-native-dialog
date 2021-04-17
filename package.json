@@ -24,7 +24,7 @@
     "lib/"
   ],
   "scripts": {
-    "lint": "eslint src",
+    "lint": "eslint src --ext .ts,.tsx",
     "lint:fix": "npm run lint --fix",
     "test": "npm run lint",
     "prettier": "prettier --ignore-path .gitignore --no-config --write 'src/*.ts?(x)'",
@@ -33,22 +33,23 @@
   "peerDependencies": {
     "react-native": ">=0.63.0"
   },
-  "dependencies": {
-    "prop-types": "^15.7.2"
-  },
   "devDependencies": {
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/git": "^9.0.0",
     "@types/prop-types": "^15.7.3",
     "@types/react": "^17.0.3",
     "@types/react-native": "^0.64.2",
-    "eslint": "^7.6.0",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-prettier": "^3.1.4",
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.22.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react-app": "^6.2.2",
+    "eslint-plugin-react-native": "^3.10.0",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
     "prettier": "^2.0.5",
+    "prop-types": "^15.7.2",
     "semantic-release": "^17.1.2",
     "typescript": "^4.2.4"
   },

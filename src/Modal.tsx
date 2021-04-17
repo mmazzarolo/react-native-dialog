@@ -195,7 +195,7 @@ export class Modal extends Component<ModalProps, ModalState> {
         </TouchableWithoutFeedback>
         {visible && (
           <Animated.View
-            style={[styles.content, contentAnimatedStyle]}
+            style={[styles.content, contentAnimatedStyle, contentStyle]}
             pointerEvents="box-none"
             // Setting "needsOffscreenAlphaCompositing" solves a janky elevation
             // animation on android. We should set it only while animation
