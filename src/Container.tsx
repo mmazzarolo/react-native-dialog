@@ -1,4 +1,5 @@
-import React, { NamedExoticComponent, ReactElement, ReactNode } from "react";
+import * as React from "react";
+import { NamedExoticComponent, ReactElement, ReactNode } from "react";
 import {
   KeyboardAvoidingView,
   Platform,
