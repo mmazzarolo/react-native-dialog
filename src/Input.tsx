@@ -17,7 +17,7 @@ import PropTypes from "prop-types";
 export interface DialogInputProps extends TextInputProps {
   label?: string;
   wrapperStyle?: ViewStyle;
-  textInputRef: LegacyRef<TextInput>;
+  textInputRef?: LegacyRef<TextInput>;
 }
 
 const DialogInput: React.FC<DialogInputProps> = (props) => {
