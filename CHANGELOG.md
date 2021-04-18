@@ -1,3 +1,10 @@
+## [8.0.1](https://github.com/mmazzarolo/react-native-dialog/compare/v8.0.0...v8.0.1) (2021-04-18)
+
+
+### Bug Fixes
+
+* Mark "textInputRef" and "blurComponentIOS" as optional ([#103](https://github.com/mmazzarolo/react-native-dialog/issues/103)) ([c92fe5d](https://github.com/mmazzarolo/react-native-dialog/commit/c92fe5d1492bbe55d06c7af4dec2be653360640f))
+
 # [8.0.0](https://github.com/mmazzarolo/react-native-dialog/compare/v7.0.0...v8.0.0) (2021-04-17)
 
 
