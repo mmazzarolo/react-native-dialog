@@ -2,15 +2,16 @@
 
 [![npm version](https://badge.fury.io/js/react-native-dialog.svg)](https://badge.fury.io/js/react-native-dialog)
 
-A pure JavaScript React-Native dialog that follows closely the UI of its native counterpart while expanding its features.
+A flexible pure JavaScript React-Native dialog that follows closely the native UI guidelines. 
 
 ## Features
 
 - Support for iOS and Android (JavaScript API)
 - A flexible declarative API
-- Follows closely the UI of a native dialog/alert
+- Follows closely the UI of native dialogs/alerts
 - Can be used both as an alert and as an input prompt
 - Can be injected with any component
+- Supports light/dark mode
 
 ## Demo
 
@@ -228,7 +229,7 @@ return (
 
 ### How can I add a 'tap outside dialog' callback?
 
-`react-native-dialog` uses [a thin abstraction on top of the React-Native's modal component](./src/Modal.js). Any properties you add to `Dialog.Container` are mapped through to the modal.
+`react-native-dialog` uses [a thin abstraction on top of the React-Native's modal component](./src/Modal.tsx). Any properties you add to `Dialog.Container` are mapped through to the modal.
 The modal has an `onBackdropPress` property that can be used to register clicks on the backdrop.
 
 Below is an example of how you can close the dialog by tapping outside.
