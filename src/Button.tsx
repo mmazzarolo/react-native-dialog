@@ -4,7 +4,6 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  PlatformColor,
   TextProps,
   TextPropTypes,
 } from "react-native";
@@ -61,7 +60,7 @@ DialogButton.propTypes = {
 
 DialogButton.displayName = "DialogButton";
 
-const buildStyles: StyleBuilder = (isDark) =>
+const buildStyles: StyleBuilder = () =>
   StyleSheet.create({
     button: Platform.select({
       ios: {
@@ -81,15 +80,11 @@ const buildStyles: StyleBuilder = (isDark) =>
     }),
     text: Platform.select({
       ios: {
-        color: PlatformColor("link"),
         textAlign: "center",
         fontSize: 17,
         backgroundColor: "transparent",
       },
       android: {
-        color: PlatformColor(
-          `@android:color/${isDark ? "link_text_dark" : "link_text_dark_light"}`
-        ),
         textAlign: "center",
         backgroundColor: "transparent",
         padding: 8,

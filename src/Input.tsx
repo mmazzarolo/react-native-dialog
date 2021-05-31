@@ -43,14 +43,16 @@ const DialogInput: React.FC<DialogInputProps> = (props) => {
           Platform.OS === "ios"
             ? PlatformColor("placeholderText")
             : PlatformColor(
-                `@android:color/${
-                  isDark ? "hint_foreground_dark" : "hint_foreground_light"
+                `@color/${
+                  isDark
+                    ? "dialog_placeholder_dark"
+                    : "dialog_placeholder_light"
                 }`
               )
         }
         underlineColorAndroid={PlatformColor(
-          `@android:color/${
-            isDark ? "hint_foreground_dark" : "hint_foreground_light"
+          `@color/${
+            isDark ? "dialog_placeholder_dark" : "dialog_placeholder_light"
           }`
         )}
         style={[styles.textInput, style, { height }]}
@@ -98,9 +100,7 @@ const buildStyles: StyleBuilder = (isDark) =>
       },
       android: {
         color: PlatformColor(
-          `@android:color/${
-            isDark ? "primary_text_dark" : "primary_text_light"
-          }`
+          `@color/${isDark ? "dialog_primary_dark" : "dialog_primary_light"}`
         ),
         fontSize: 14,
       },
@@ -112,9 +112,7 @@ const buildStyles: StyleBuilder = (isDark) =>
       },
       android: {
         color: PlatformColor(
-          `@android:color/${
-            isDark ? "primary_text_dark" : "primary_text_light"
-          }`
+          `@color/${isDark ? "dialog_primary_dark" : "dialog_primary_light"}`
         ),
         marginLeft: -4,
         paddingLeft: 4,

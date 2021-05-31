@@ -1,13 +1,13 @@
-import * as React from "react";
 import PropTypes from "prop-types";
+import * as React from "react";
 import { ReactNode } from "react";
 import {
   Platform,
+  PlatformColor,
   StyleSheet,
   Text,
-  PlatformColor,
-  ViewStyle,
   TextPropTypes,
+  ViewStyle,
 } from "react-native";
 import useTheme, { StyleBuilder } from "./useTheme";
 
@@ -45,8 +45,8 @@ const buildStyles: StyleBuilder = (isDark) =>
       },
       android: {
         color: PlatformColor(
-          `@android:color/${
-            isDark ? "secondary_text_dark" : "secondary_text_light"
+          `@color/${
+            isDark ? "dialog_secondary_dark" : "dialog_secondary_light"
           }`
         ),
         fontSize: 16,

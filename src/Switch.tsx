@@ -66,9 +66,7 @@ const buildStyles: StyleBuilder = (isDark) =>
         paddingRight: 8,
         fontSize: 16,
         color: PlatformColor(
-          `@android:color/${
-            isDark ? "primary_text_dark" : "primary_text_light"
-          }`
+          `@color/${isDark ? "dialog_primary_dark" : "dialog_primary_light"}`
         ),
       },
       default: {},

@@ -124,7 +124,7 @@ DialogContainer.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-const buildStyles: StyleBuilder = () =>
+const buildStyles: StyleBuilder = (isDark) =>
   StyleSheet.create({
     centeredView: {
       marginTop: 22,
@@ -146,7 +146,9 @@ const buildStyles: StyleBuilder = () =>
         overflow: "hidden",
       },
       android: {
-        backgroundColor: PlatformColor("?attr/colorBackgroundFloating"),
+        backgroundColor: PlatformColor(
+          `@color/${isDark ? "dialog_surface_dark" : "dialog_surface_light"}`
+        ),
         flexDirection: "column",
         borderRadius: 3,
         padding: 16,
