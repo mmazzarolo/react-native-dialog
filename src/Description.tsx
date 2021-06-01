@@ -46,7 +46,9 @@ const buildStyles: StyleBuilder = (isDark) =>
       android: {
         color: PlatformColor(
           `@color/${
-            isDark ? "dialog_secondary_dark" : "dialog_secondary_light"
+            isDark
+              ? "dialog_secondary_text_dark"
+              : "dialog_secondary_text_light"
           }`
         ),
         fontSize: 16,

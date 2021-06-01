@@ -45,17 +45,16 @@ touch android/app/src/main/res/values/colors.xml
 ```
 
 ```xml
-<!-- colors.xml -->
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
    <color name="dialog_surface_light">#FFFFFF</color>
    <color name="dialog_surface_dark">#212121</color>
-   <color name="dialog_primary_light">#212121</color>
-   <color name="dialog_primary_dark">#FAFAFA</color>
-   <color name="dialog_secondary_light">#727272</color>
-   <color name="dialog_secondary_dark">#C7C7C7</color>
-   <color name="dialog_placeholder_light">#BF727272</color>
-   <color name="dialog_placeholder_dark">#BFC7C7C7</color>
+   <color name="dialog_primary_text_light">#212121</color>
+   <color name="dialog_primary_text_dark">#FAFAFA</color>
+   <color name="dialog_secondary_text_light">#727272</color>
+   <color name="dialog_secondary_text_dark">#C7C7C7</color>
+   <color name="dialog_hint_text_light">#BF727272</color>
+   <color name="dialog_hint_text_dark">#BFC7C7C7</color>
 </resources>
 ```
 

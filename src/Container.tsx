@@ -1,16 +1,16 @@
+import PropTypes from "prop-types";
 import * as React from "react";
 import { NamedExoticComponent, ReactElement, ReactNode } from "react";
 import {
   KeyboardAvoidingView,
   Platform,
+  PlatformColor,
   StyleSheet,
   View,
-  PlatformColor,
   ViewStyle,
 } from "react-native";
 import Modal from "./Modal";
 import useTheme, { StyleBuilder } from "./useTheme";
-import PropTypes from "prop-types";
 
 const iOS = Platform.OS === "ios";
 
@@ -146,9 +146,10 @@ const buildStyles: StyleBuilder = (isDark) =>
         overflow: "hidden",
       },
       android: {
-        backgroundColor: PlatformColor(
-          `@color/${isDark ? "dialog_surface_dark" : "dialog_surface_light"}`
-        ),
+        backgroundColor:
+          PlatformColor(
+            `@color/${isDark ? "dialog_surface_dark" : "dialog_surface_light"}`
+          ) || PlatformColor("?attr/colorBackgroundFloating"),
         flexDirection: "column",
         borderRadius: 3,
         padding: 16,

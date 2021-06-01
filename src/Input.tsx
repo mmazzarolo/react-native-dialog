@@ -1,18 +1,18 @@
+import PropTypes from "prop-types";
 import * as React from "react";
 import { LegacyRef } from "react";
 import {
   Platform,
+  PlatformColor,
   StyleSheet,
   Text,
   TextInput,
-  View,
-  PlatformColor,
   TextInputProps,
-  ViewStyle,
+  View,
   ViewPropTypes,
+  ViewStyle,
 } from "react-native";
 import useTheme, { StyleBuilder } from "./useTheme";
-import PropTypes from "prop-types";
 
 export interface DialogInputProps extends TextInputProps {
   label?: string;
@@ -44,15 +44,13 @@ const DialogInput: React.FC<DialogInputProps> = (props) => {
             ? PlatformColor("placeholderText")
             : PlatformColor(
                 `@color/${
-                  isDark
-                    ? "dialog_placeholder_dark"
-                    : "dialog_placeholder_light"
+                  isDark ? "dialog_hint_text_dark" : "dialog_hint_text_light"
                 }`
               )
         }
         underlineColorAndroid={PlatformColor(
           `@color/${
-            isDark ? "dialog_placeholder_dark" : "dialog_placeholder_light"
+            isDark ? "dialog_hint_text_dark" : "dialog_hint_text_light"
           }`
         )}
         style={[styles.textInput, style, { height }]}
@@ -100,7 +98,9 @@ const buildStyles: StyleBuilder = (isDark) =>
       },
       android: {
         color: PlatformColor(
-          `@color/${isDark ? "dialog_primary_dark" : "dialog_primary_light"}`
+          `@color/${
+            isDark ? "dialog_primary_text_dark" : "dialog_primary_text_light"
+          }`
         ),
         fontSize: 14,
       },
@@ -112,7 +112,9 @@ const buildStyles: StyleBuilder = (isDark) =>
       },
       android: {
         color: PlatformColor(
-          `@color/${isDark ? "dialog_primary_dark" : "dialog_primary_light"}`
+          `@color/${
+            isDark ? "dialog_primary_text_dark" : "dialog_primary_text_light"
+          }`
         ),
         marginLeft: -4,
         paddingLeft: 4,
