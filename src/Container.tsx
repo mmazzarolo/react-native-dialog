@@ -16,6 +16,7 @@ const iOS = Platform.OS === "ios";
 
 export interface DialogContainerProps {
   blurComponentIOS?: ReactNode;
+  buttonStyle?: ViewStyle;
   buttonSeparatorStyle?: ViewStyle;
   contentStyle?: ViewStyle;
   footerStyle?: ViewStyle;
@@ -30,6 +31,7 @@ export interface DialogContainerProps {
 const DialogContainer: React.FC<DialogContainerProps> = (props) => {
   const {
     blurComponentIOS,
+    buttonStyle = {},
     buttonSeparatorStyle = {},
     children,
     contentStyle = {},
@@ -100,6 +102,7 @@ const DialogContainer: React.FC<DialogContainerProps> = (props) => {
               {buttonChildrens.map((x, i) =>
                 React.cloneElement(x, {
                   key: `dialog-button-${i}`,
+                  buttonStyle,
                 })
               )}
             </View>
@@ -112,6 +115,7 @@ const DialogContainer: React.FC<DialogContainerProps> = (props) => {
 
 DialogContainer.propTypes = {
   blurComponentIOS: PropTypes.node,
+  buttonStyle: PropTypes.object,
   buttonSeparatorStyle: PropTypes.object,
   contentStyle: PropTypes.object,
   footerStyle: PropTypes.object,
@@ -185,7 +189,6 @@ const buildStyles: StyleBuilder = () =>
         justifyContent: "space-between",
         borderTopColor: PlatformColor("separator"), //"#A9ADAE",
         borderTopWidth: StyleSheet.hairlineWidth,
-        height: 46,
       },
       android: {
         flexDirection: "row",

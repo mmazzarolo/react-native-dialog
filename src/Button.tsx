@@ -7,6 +7,7 @@ import {
   PlatformColor,
   TextProps,
   TextPropTypes,
+  ViewStyle,
 } from "react-native";
 import useTheme, { StyleBuilder } from "./useTheme";
 import PropTypes from "prop-types";
@@ -21,7 +22,13 @@ export interface DialogButtonProps extends TextProps {
   onPress: () => void;
 }
 
-const DialogButton: React.FC<DialogButtonProps> = (props) => {
+export interface DialogButtonHiddenProps {
+  buttonStyle?: ViewStyle;
+}
+
+const DialogButton: React.FC<DialogButtonProps & DialogButtonHiddenProps> = (
+  props
+) => {
   const {
     label,
     color = COLOR,
@@ -29,6 +36,7 @@ const DialogButton: React.FC<DialogButtonProps> = (props) => {
     bold,
     onPress,
     style,
+    buttonStyle = {},
     ...nodeProps
   } = props;
   const fontWeight = bold ? "600" : "normal";
@@ -36,7 +44,7 @@ const DialogButton: React.FC<DialogButtonProps> = (props) => {
 
   return (
     <TouchableOpacity
-      style={styles.button}
+      style={[styles.button, buttonStyle]}
       onPress={onPress}
       disabled={disabled}
     >
@@ -68,6 +76,7 @@ const buildStyles: StyleBuilder = (isDark) =>
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
+        padding: 12.5,
       },
       android: {
         justifyContent: "center",
