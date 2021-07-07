@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useMemo } from "react";
 import { NamedExoticComponent, ReactElement, ReactNode } from "react";
 import {
   KeyboardAvoidingView,
@@ -23,6 +24,7 @@ export interface DialogContainerProps {
   headerStyle?: ViewStyle;
   blurStyle?: ViewStyle;
   visible?: boolean;
+  verticalButtons?: boolean;
   onBackdropPress?: () => void;
   keyboardVerticalOffset?: number;
   children: ReactElement<any, NamedExoticComponent>[];
@@ -40,13 +42,17 @@ const DialogContainer: React.FC<DialogContainerProps> = (props) => {
     blurStyle = {},
     visible = false,
     keyboardVerticalOffset = 40,
+    verticalButtons = false,
     ...nodeProps
   } = props;
   const titleChildrens: ReactElement<any, NamedExoticComponent>[] = [];
   const descriptionChildrens: ReactElement<any, NamedExoticComponent>[] = [];
   const buttonChildrens: ReactElement<any, NamedExoticComponent>[] = [];
   const otherChildrens: ReactElement<any, NamedExoticComponent>[] = [];
-  const { styles } = useTheme(buildStyles);
+  const buildStylesMemo = useMemo(() => {
+    return (isDark: boolean) => buildStyles(isDark, verticalButtons);
+  }, [verticalButtons]);
+  const { styles } = useTheme(buildStylesMemo);
   React.Children.forEach(children, (child) => {
     if (!child) {
       return;
@@ -65,7 +71,11 @@ const DialogContainer: React.FC<DialogContainerProps> = (props) => {
       child.type.name === "DialogButton" ||
       child.type.displayName === "DialogButton"
     ) {
-      if (Platform.OS === "ios" && buttonChildrens.length > 0) {
+      if (
+        !verticalButtons &&
+        Platform.OS === "ios" &&
+        buttonChildrens.length > 0
+      ) {
         buttonChildrens.push(
           <View style={[styles.buttonSeparator, buttonSeparatorStyle]} />
         );
@@ -103,6 +113,7 @@ const DialogContainer: React.FC<DialogContainerProps> = (props) => {
                 React.cloneElement(x, {
                   key: `dialog-button-${i}`,
                   buttonStyle,
+                  vertical: verticalButtons,
                 })
               )}
             </View>
@@ -122,13 +133,17 @@ DialogContainer.propTypes = {
   headerStyle: PropTypes.object,
   blurStyle: PropTypes.object,
   visible: PropTypes.bool,
+  verticalButtons: PropTypes.bool,
   onBackdropPress: PropTypes.func,
   keyboardVerticalOffset: PropTypes.number,
   // @ts-expect-error: PropType allows strings and the Typescript interface does not
   children: PropTypes.node.isRequired,
 };
 
-const buildStyles: StyleBuilder = () =>
+const buildStyles: StyleBuilder = (
+  isDark: boolean,
+  isVerticalButtons?: boolean
+) =>
   StyleSheet.create({
     centeredView: {
       marginTop: 22,
@@ -183,27 +198,25 @@ const buildStyles: StyleBuilder = () =>
       },
       default: {},
     }),
-    footer: Platform.select({
-      ios: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        borderTopColor: PlatformColor("separator"), //"#A9ADAE",
-        borderTopWidth: StyleSheet.hairlineWidth,
-      },
-      android: {
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "flex-end",
-        marginTop: 4,
-      },
-      web: {
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "flex-end",
-        marginTop: 4,
-      },
-      default: {},
-    }),
+    footer: {
+      flexDirection: isVerticalButtons ? "column" : "row",
+      ...Platform.select({
+        ios: {
+          justifyContent: "space-between",
+        },
+        android: {
+          alignItems: "center",
+          justifyContent: "flex-end",
+          marginTop: 4,
+        },
+        web: {
+          alignItems: "center",
+          justifyContent: "flex-end",
+          marginTop: 4,
+        },
+        default: {},
+      }),
+    },
     buttonSeparator: {
       height: "100%",
       backgroundColor: PlatformColor("separator"), //"#A9ADAE",

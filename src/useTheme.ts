@@ -1,7 +1,10 @@
 import { useMemo } from "react";
 import { ColorSchemeName, StyleSheet, useColorScheme } from "react-native";
 
-export type StyleBuilder = (isDark: boolean) => StyleSheet.NamedStyles<any>;
+export type StyleBuilder = (
+  isDark: boolean,
+  isVerticalButtons?: boolean
+) => StyleSheet.NamedStyles<any>;
 
 export interface UseTheme {
   theme: ColorSchemeName;

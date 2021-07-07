@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useMemo } from "react";
 import {
   Platform,
   StyleSheet,
@@ -23,6 +24,7 @@ export interface DialogButtonProps extends TextProps {
 }
 
 export interface DialogButtonHiddenProps {
+  vertical?: boolean;
   buttonStyle?: ViewStyle;
 }
 
@@ -37,10 +39,15 @@ const DialogButton: React.FC<DialogButtonProps & DialogButtonHiddenProps> = (
     onPress,
     style,
     buttonStyle = {},
+    vertical = false,
     ...nodeProps
   } = props;
   const fontWeight = bold ? "600" : "normal";
-  const { styles } = useTheme(buildStyles);
+  const buildStylesMemo = useMemo(
+    () => (isDark: boolean) => buildStyles(isDark, vertical),
+    [vertical]
+  );
+  const { styles } = useTheme(buildStylesMemo);
 
   return (
     <TouchableOpacity
@@ -69,14 +76,19 @@ DialogButton.propTypes = {
 
 DialogButton.displayName = "DialogButton";
 
-const buildStyles: StyleBuilder = (isDark) =>
+const buildStyles: StyleBuilder = (
+  isDark: boolean,
+  isVerticalButtons?: boolean
+) =>
   StyleSheet.create({
     button: Platform.select({
       ios: {
-        flex: 1,
+        flex: isVerticalButtons ? 0 : 1,
         justifyContent: "center",
         alignItems: "center",
         padding: 12.5,
+        borderTopColor: PlatformColor("separator"), //"#A9ADAE",
+        borderTopWidth: StyleSheet.hairlineWidth,
       },
       android: {
         justifyContent: "center",
