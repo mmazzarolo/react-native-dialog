@@ -2,7 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/react-native-dialog.svg)](https://badge.fury.io/js/react-native-dialog)
 
-A flexible pure JavaScript React-Native dialog that follows closely the native UI guidelines. 
+A flexible pure JavaScript React-Native dialog that follows closely the native UI guidelines.
 
 ## Features
 
@@ -34,6 +34,28 @@ Install the library using npm or yarn:
 $ npm install react-native-dialog
 # Using yarn:
 $ yarn add react-native-dialog
+```
+
+### Android
+
+Create `colors.xml` in `android/app/src/main/res/values`:
+
+```bash
+touch android/app/src/main/res/values/colors.xml
+```
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   <color name="dialog_surface_light">#FFFFFF</color>
+   <color name="dialog_surface_dark">#212121</color>
+   <color name="dialog_primary_text_light">#212121</color>
+   <color name="dialog_primary_text_dark">#FAFAFA</color>
+   <color name="dialog_secondary_text_light">#727272</color>
+   <color name="dialog_secondary_text_dark">#C7C7C7</color>
+   <color name="dialog_hint_text_light">#BF727272</color>
+   <color name="dialog_hint_text_dark">#BFC7C7C7</color>
+</resources>
 ```
 
 ## Usage

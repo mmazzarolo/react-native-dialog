@@ -1,16 +1,16 @@
+import PropTypes from "prop-types";
 import * as React from "react";
 import {
   Platform,
+  PlatformColor,
   StyleSheet,
   Switch,
+  SwitchProps,
   Text,
   View,
-  PlatformColor,
-  SwitchProps,
   ViewPropTypes,
 } from "react-native";
 import useTheme, { StyleBuilder } from "./useTheme";
-import PropTypes from "prop-types";
 
 export interface DialogSwitchProps extends SwitchProps {
   label?: string;
@@ -66,8 +66,8 @@ const buildStyles: StyleBuilder = (isDark) =>
         paddingRight: 8,
         fontSize: 16,
         color: PlatformColor(
-          `@android:color/${
-            isDark ? "primary_text_dark" : "primary_text_light"
+          `@color/${
+            isDark ? "dialog_primary_text_dark" : "dialog_primary_text_light"
           }`
         ),
       },
