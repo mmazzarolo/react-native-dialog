@@ -22,6 +22,7 @@ export interface DialogContainerProps {
   headerStyle?: ViewStyle;
   blurStyle?: ViewStyle;
   visible?: boolean;
+  verticalButtons?: boolean;
   onBackdropPress?: () => void;
   keyboardVerticalOffset?: number;
   children: ReactElement<any, NamedExoticComponent>[];
@@ -37,6 +38,7 @@ const DialogContainer: React.FC<DialogContainerProps> = (props) => {
     headerStyle = {},
     blurStyle = {},
     visible = false,
+    verticalButtons = false,
     keyboardVerticalOffset = 40,
     ...nodeProps
   } = props;
@@ -63,7 +65,11 @@ const DialogContainer: React.FC<DialogContainerProps> = (props) => {
       child.type.name === "DialogButton" ||
       child.type.displayName === "DialogButton"
     ) {
-      if (Platform.OS === "ios" && buttonChildrens.length > 0) {
+      if (
+        !verticalButtons &&
+        Platform.OS === "ios" &&
+        buttonChildrens.length > 0
+      ) {
         buttonChildrens.push(
           <View style={[styles.buttonSeparator, buttonSeparatorStyle]} />
         );
@@ -96,10 +102,17 @@ const DialogContainer: React.FC<DialogContainerProps> = (props) => {
           </View>
           {otherChildrens}
           {Boolean(buttonChildrens.length) && (
-            <View style={[styles.footer, footerStyle]}>
+            <View
+              style={[
+                styles.footer,
+                verticalButtons ? styles.footerVertical : null,
+                footerStyle,
+              ]}
+            >
               {buttonChildrens.map((x, i) =>
                 React.cloneElement(x, {
                   key: `dialog-button-${i}`,
+                  vertical: verticalButtons,
                 })
               )}
             </View>
@@ -118,6 +131,7 @@ DialogContainer.propTypes = {
   headerStyle: PropTypes.object,
   blurStyle: PropTypes.object,
   visible: PropTypes.bool,
+  verticalButtons: PropTypes.bool,
   onBackdropPress: PropTypes.func,
   keyboardVerticalOffset: PropTypes.number,
   // @ts-expect-error: PropType allows strings and the Typescript interface does not
@@ -179,28 +193,28 @@ const buildStyles: StyleBuilder = () =>
       },
       default: {},
     }),
-    footer: Platform.select({
-      ios: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        borderTopColor: PlatformColor("separator"), //"#A9ADAE",
-        borderTopWidth: StyleSheet.hairlineWidth,
-        height: 46,
-      },
-      android: {
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "flex-end",
-        marginTop: 4,
-      },
-      web: {
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "flex-end",
-        marginTop: 4,
-      },
-      default: {},
-    }),
+    footer: {
+      flexDirection: "row",
+      ...Platform.select({
+        ios: {
+          justifyContent: "space-between",
+        },
+        android: {
+          alignItems: "center",
+          justifyContent: "flex-end",
+          marginTop: 4,
+        },
+        web: {
+          alignItems: "center",
+          justifyContent: "flex-end",
+          marginTop: 4,
+        },
+        default: {},
+      }),
+    },
+    footerVertical: {
+      flexDirection: "column",
+    },
     buttonSeparator: {
       height: "100%",
       backgroundColor: PlatformColor("separator"), //"#A9ADAE",

@@ -21,7 +21,13 @@ export interface DialogButtonProps extends TextProps {
   onPress: () => void;
 }
 
-const DialogButton: React.FC<DialogButtonProps> = (props) => {
+export interface DialogButtonHiddenProps {
+  vertical?: boolean;
+}
+
+const DialogButton: React.FC<DialogButtonProps & DialogButtonHiddenProps> = (
+  props
+) => {
   const {
     label,
     color = COLOR,
@@ -29,6 +35,7 @@ const DialogButton: React.FC<DialogButtonProps> = (props) => {
     bold,
     onPress,
     style,
+    vertical = false,
     ...nodeProps
   } = props;
   const fontWeight = bold ? "600" : "normal";
@@ -36,7 +43,7 @@ const DialogButton: React.FC<DialogButtonProps> = (props) => {
 
   return (
     <TouchableOpacity
-      style={styles.button}
+      style={[styles.button, vertical ? styles.buttonVertical : null]}
       onPress={onPress}
       disabled={disabled}
     >
@@ -68,6 +75,9 @@ const buildStyles: StyleBuilder = (isDark) =>
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
+        padding: 12.5,
+        borderTopColor: PlatformColor("separator"), //"#A9ADAE",
+        borderTopWidth: StyleSheet.hairlineWidth,
       },
       android: {
         justifyContent: "center",
@@ -76,6 +86,12 @@ const buildStyles: StyleBuilder = (isDark) =>
       web: {
         justifyContent: "center",
         alignItems: "center",
+      },
+      default: {},
+    }),
+    buttonVertical: Platform.select({
+      ios: {
+        flex: 0,
       },
       default: {},
     }),
