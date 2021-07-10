@@ -21,13 +21,7 @@ export interface DialogButtonProps extends TextProps {
   onPress: () => void;
 }
 
-export interface DialogButtonHiddenProps {
-  vertical?: boolean;
-}
-
-const DialogButton: React.FC<DialogButtonProps & DialogButtonHiddenProps> = (
-  props
-) => {
+const DialogButton: React.FC<DialogButtonProps> = (props) => {
   const {
     label,
     color = COLOR,
@@ -35,7 +29,6 @@ const DialogButton: React.FC<DialogButtonProps & DialogButtonHiddenProps> = (
     bold,
     onPress,
     style,
-    vertical = false,
     ...nodeProps
   } = props;
   const fontWeight = bold ? "600" : "normal";
@@ -43,7 +36,7 @@ const DialogButton: React.FC<DialogButtonProps & DialogButtonHiddenProps> = (
 
   return (
     <TouchableOpacity
-      style={[styles.button, vertical ? styles.buttonVertical : null]}
+      style={[styles.button]}
       onPress={onPress}
       disabled={disabled}
     >
@@ -72,12 +65,11 @@ const buildStyles: StyleBuilder = (isDark) =>
   StyleSheet.create({
     button: Platform.select({
       ios: {
-        flex: 1,
+        flexGrow: 1,
+        flexShrink: 1,
+        height: 46,
         justifyContent: "center",
         alignItems: "center",
-        padding: 12.5,
-        borderTopColor: PlatformColor("separator"), //"#A9ADAE",
-        borderTopWidth: StyleSheet.hairlineWidth,
       },
       android: {
         justifyContent: "center",
@@ -86,12 +78,6 @@ const buildStyles: StyleBuilder = (isDark) =>
       web: {
         justifyContent: "center",
         alignItems: "center",
-      },
-      default: {},
-    }),
-    buttonVertical: Platform.select({
-      ios: {
-        flex: 0,
       },
       default: {},
     }),

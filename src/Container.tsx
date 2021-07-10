@@ -65,13 +65,16 @@ const DialogContainer: React.FC<DialogContainerProps> = (props) => {
       child.type.name === "DialogButton" ||
       child.type.displayName === "DialogButton"
     ) {
-      if (
-        !verticalButtons &&
-        Platform.OS === "ios" &&
-        buttonChildrens.length > 0
-      ) {
+      if (Platform.OS === "ios" && buttonChildrens.length > 0) {
         buttonChildrens.push(
-          <View style={[styles.buttonSeparator, buttonSeparatorStyle]} />
+          <View
+            style={[
+              verticalButtons
+                ? styles.buttonSeparatorVertical
+                : styles.buttonSeparatorHorizontal,
+              buttonSeparatorStyle,
+            ]}
+          />
         );
       }
       buttonChildrens.push(child);
@@ -102,20 +105,24 @@ const DialogContainer: React.FC<DialogContainerProps> = (props) => {
           </View>
           {otherChildrens}
           {Boolean(buttonChildrens.length) && (
-            <View
-              style={[
-                styles.footer,
-                verticalButtons ? styles.footerVertical : null,
-                footerStyle,
-              ]}
-            >
-              {buttonChildrens.map((x, i) =>
-                React.cloneElement(x, {
-                  key: `dialog-button-${i}`,
-                  vertical: verticalButtons,
-                })
+            <>
+              {Platform.OS === "ios" && (
+                <View style={styles.buttonSeparatorVertical} />
               )}
-            </View>
+              <View
+                style={[
+                  styles.footer,
+                  verticalButtons ? styles.footerVertical : null,
+                  footerStyle,
+                ]}
+              >
+                {buttonChildrens.map((x, i) =>
+                  React.cloneElement(x, {
+                    key: `dialog-button-${i}`,
+                  })
+                )}
+              </View>
+            </>
           )}
         </View>
       </KeyboardAvoidingView>
@@ -215,10 +222,15 @@ const buildStyles: StyleBuilder = () =>
     footerVertical: {
       flexDirection: "column",
     },
-    buttonSeparator: {
+    buttonSeparatorHorizontal: {
       height: "100%",
       backgroundColor: PlatformColor("separator"), //"#A9ADAE",
       width: StyleSheet.hairlineWidth,
+    },
+    buttonSeparatorVertical: {
+      width: "100%",
+      backgroundColor: PlatformColor("separator"), //"#A9ADAE",
+      height: StyleSheet.hairlineWidth,
     },
   });
 
