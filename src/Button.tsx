@@ -36,7 +36,7 @@ const DialogButton: React.FC<DialogButtonProps> = (props) => {
 
   return (
     <TouchableOpacity
-      style={styles.button}
+      style={[styles.button]}
       onPress={onPress}
       disabled={disabled}
     >
@@ -65,7 +65,9 @@ const buildStyles: StyleBuilder = (isDark) =>
   StyleSheet.create({
     button: Platform.select({
       ios: {
-        flex: 1,
+        flexGrow: 1,
+        flexShrink: 1,
+        height: 46,
         justifyContent: "center",
         alignItems: "center",
       },

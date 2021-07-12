@@ -2,7 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/react-native-dialog.svg)](https://badge.fury.io/js/react-native-dialog)
 
-A flexible pure JavaScript React-Native dialog that follows closely the native UI guidelines. 
+A flexible pure JavaScript React-Native dialog that follows closely the native UI guidelines.
 
 ## Features
 
@@ -174,6 +174,7 @@ const styles = StyleSheet.create({
 | buttonSeparatorStyle   | any    | undefined              | Extra style applied to the dialog button separator |
 | onBackdropPress        | func   | undefined              | Callback invoked when the backdrop is pressed      |
 | keyboardVerticalOffset | number | undefined              | keyboardVerticalOffset for iOS                     |
+| verticalButtons        | bool   | false                  | Renders button vertically                          |
 
 ### Dialog.Input props
 
