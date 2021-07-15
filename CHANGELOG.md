@@ -1,3 +1,10 @@
+## [8.1.1](https://github.com/mmazzarolo/react-native-dialog/compare/v8.1.0...v8.1.1) (2021-07-15)
+
+
+### Bug Fixes
+
+* **title:** children prop allows node instead of string ([#112](https://github.com/mmazzarolo/react-native-dialog/issues/112)) ([8290768](https://github.com/mmazzarolo/react-native-dialog/commit/8290768e73cf22e85404c6ebec9a328a3f0bf022))
+
 # [8.1.0](https://github.com/mmazzarolo/react-native-dialog/compare/v8.0.1...v8.1.0) (2021-07-12)
 
 
