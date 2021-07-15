@@ -30,7 +30,7 @@ const DialogTitle: React.FC<DialogTitleProps> = (props) => {
 DialogTitle.propTypes = {
   ...TextPropTypes,
   style: PropTypes.any,
-  children: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 DialogTitle.displayName = "DialogTitle";
