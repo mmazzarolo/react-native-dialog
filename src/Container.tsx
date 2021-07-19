@@ -24,6 +24,7 @@ export interface DialogContainerProps {
   visible?: boolean;
   verticalButtons?: boolean;
   onBackdropPress?: () => void;
+  onRequestClose?: () => void;
   keyboardVerticalOffset?: number;
   children: ReactElement<any, NamedExoticComponent>[];
 }

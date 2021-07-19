@@ -163,18 +163,19 @@ const styles = StyleSheet.create({
 
 ### Dialog.Container props
 
-| Name                   | Type   | Default                | Description                                        |
-| ---------------------- | ------ | ---------------------- | -------------------------------------------------- |
-| blurComponentIOS       | node   | A low-opacity <View /> | The blur component used in iOS                     |
-| visible                | bool   | **REQUIRED**           | Show the dialog?                                   |
-| children               | node   | **REQUIRED**           | The dialog content                                 |
-| contentStyle           | any    | undefined              | Extra style applied to the dialog content          |
-| headerStyle            | any    | undefined              | Extra style applied to the dialog header           |
-| footerStyle            | any    | undefined              | Extra style applied to the dialog footer           |
-| buttonSeparatorStyle   | any    | undefined              | Extra style applied to the dialog button separator |
-| onBackdropPress        | func   | undefined              | Callback invoked when the backdrop is pressed      |
-| keyboardVerticalOffset | number | undefined              | keyboardVerticalOffset for iOS                     |
-| verticalButtons        | bool   | false                  | Renders button vertically                          |
+| Name                   | Type   | Default       | Description                                                                                         |
+| ---------------------- | ------ | ------------- | --------------------------------------------------------------------------------------------------- |
+| blurComponentIOS       | node   | A low-opacity | The blur component used in iOS                                                                      |
+| visible                | bool   | **REQUIRED**  | Show the dialog?                                                                                    |
+| children               | node   | **REQUIRED**  | The dialog content                                                                                  |
+| contentStyle           | any    | undefined     | Extra style applied to the dialog content                                                           |
+| headerStyle            | any    | undefined     | Extra style applied to the dialog header                                                            |
+| footerStyle            | any    | undefined     | Extra style applied to the dialog footer                                                            |
+| buttonSeparatorStyle   | any    | undefined     | Extra style applied to the dialog button separator                                                  |
+| onBackdropPress        | func   | undefined     | Callback invoked when the backdrop is pressed                                                       |
+| onRequestClose         | func   | undefined     | Callback invoked when the hardware back button on Android or the menu button on Apple TV is pressed |
+| keyboardVerticalOffset | number | undefined     | keyboardVerticalOffset for iOS                                                                      |
+| verticalButtons        | bool   | false         | Renders button vertically                                                                           |
 
 ### Dialog.Input props
 
