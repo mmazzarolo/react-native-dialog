@@ -1,3 +1,10 @@
+# [8.2.0](https://github.com/mmazzarolo/react-native-dialog/compare/v8.1.1...v8.2.0) (2021-07-19)
+
+
+### Features
+
+* Handle hardware back button on Android ([#114](https://github.com/mmazzarolo/react-native-dialog/issues/114)) ([e9b6cf5](https://github.com/mmazzarolo/react-native-dialog/commit/e9b6cf583cb5070cbb4c542ec9569e29fae3877a))
+
 ## [8.1.1](https://github.com/mmazzarolo/react-native-dialog/compare/v8.1.0...v8.1.1) (2021-07-15)
 
 
