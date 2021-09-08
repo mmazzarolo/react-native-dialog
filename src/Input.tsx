@@ -1,5 +1,5 @@
 import * as React from "react";
-import { LegacyRef } from "react";
+import { LegacyRef, ReactNode } from "react";
 import {
   Platform,
   StyleSheet,
@@ -10,13 +10,14 @@ import {
   TextInputProps,
   ViewStyle,
   ViewPropTypes,
+  StyleProp,
 } from "react-native";
 import useTheme, { StyleBuilder } from "./useTheme";
 import PropTypes from "prop-types";
 
 export interface DialogInputProps extends TextInputProps {
-  label?: string;
-  wrapperStyle?: ViewStyle;
+  label?: ReactNode;
+  wrapperStyle?: StyleProp<ViewStyle>;
   textInputRef?: LegacyRef<TextInput>;
 }
 
@@ -65,9 +66,8 @@ const DialogInput: React.FC<DialogInputProps> = (props) => {
 DialogInput.propTypes = {
   ...ViewPropTypes,
   label: PropTypes.string,
-  style: PropTypes.any,
   textInputRef: PropTypes.any,
-  wrapperStyle: PropTypes.any,
+  wrapperStyle: ViewPropTypes.style,
   numberOfLines: PropTypes.number,
   multiline: PropTypes.bool,
 };

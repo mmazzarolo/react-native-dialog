@@ -1,20 +1,15 @@
-import PropTypes from "prop-types";
 import * as React from "react";
-import { ReactNode } from "react";
 import {
   Platform,
   StyleSheet,
   Text,
   PlatformColor,
-  ViewStyle,
   TextPropTypes,
+  TextProps,
 } from "react-native";
 import useTheme, { StyleBuilder } from "./useTheme";
 
-export interface DialogTitleProps {
-  style?: ViewStyle;
-  children: ReactNode;
-}
+export type DialogTitleProps = TextProps;
 
 const DialogTitle: React.FC<DialogTitleProps> = (props) => {
   const { style, children, ...nodeProps } = props;
@@ -27,11 +22,7 @@ const DialogTitle: React.FC<DialogTitleProps> = (props) => {
   );
 };
 
-DialogTitle.propTypes = {
-  ...TextPropTypes,
-  style: PropTypes.any,
-  children: PropTypes.node.isRequired,
-};
+DialogTitle.propTypes = TextPropTypes;
 
 DialogTitle.displayName = "DialogTitle";
 

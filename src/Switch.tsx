@@ -1,4 +1,5 @@
 import * as React from "react";
+import { ReactNode } from "react";
 import {
   Platform,
   StyleSheet,
@@ -13,7 +14,7 @@ import useTheme, { StyleBuilder } from "./useTheme";
 import PropTypes from "prop-types";
 
 export interface DialogSwitchProps extends SwitchProps {
-  label?: string;
+  label?: ReactNode;
 }
 
 const DialogSwitch: React.FC<DialogSwitchProps> = (props) => {
@@ -29,7 +30,7 @@ const DialogSwitch: React.FC<DialogSwitchProps> = (props) => {
 
 DialogSwitch.propTypes = {
   ...ViewPropTypes,
-  label: PropTypes.string,
+  label: PropTypes.node,
 };
 
 DialogSwitch.displayName = "DialogSwitch";
