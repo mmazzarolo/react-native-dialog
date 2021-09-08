@@ -38,6 +38,7 @@ export type DialogContainerProps = PropsWithChildren<{
   onBackdropPress?: () => void;
   onRequestClose?: () => void;
   keyboardVerticalOffset?: number;
+  useNativeDriver?: boolean;
 }>;
 
 const DialogContainer: React.FC<DialogContainerProps> = (props) => {
@@ -146,6 +147,7 @@ DialogContainer.propTypes = {
   verticalButtons: PropTypes.bool,
   onBackdropPress: PropTypes.func,
   keyboardVerticalOffset: PropTypes.number,
+  useNativeDriver: PropTypes.bool,
   children: PropTypes.node.isRequired,
 };
 

@@ -176,6 +176,7 @@ const styles = StyleSheet.create({
 | onRequestClose         | func   | undefined     | Callback invoked when the hardware back button on Android or the menu button on Apple TV is pressed |
 | keyboardVerticalOffset | number | undefined     | keyboardVerticalOffset for iOS                                                                      |
 | verticalButtons        | bool   | false         | Renders button vertically                                                                           |
+| useNativeDriver        | bool   | false         | Defines if animations should use native driver                                                      |
 
 ### Dialog.Input props
 

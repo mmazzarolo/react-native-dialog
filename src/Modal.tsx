@@ -64,6 +64,7 @@ export interface ModalProps extends ReactNativeModalProps {
   onHide?: () => void;
   visible?: boolean;
   contentStyle?: StyleProp<ViewStyle>;
+  useNativeDriver?: boolean;
 }
 
 interface ModalState {
@@ -77,12 +78,14 @@ export class Modal extends Component<ModalProps, ModalState> {
     onHide: PropTypes.func,
     visible: PropTypes.bool,
     contentStyle: ViewPropTypes.style,
+    useNativeDriver: PropTypes.bool,
   };
 
   static defaultProps: Partial<ModalProps> = {
     onBackdropPress: () => null,
     onHide: () => null,
     visible: false,
+    useNativeDriver: false,
   };
 
   state: ModalState = {
@@ -116,8 +119,7 @@ export class Modal extends Component<ModalProps, ModalState> {
     this.setState({ visible: true, currentAnimation: "in" }, () => {
       Animated.timing(this.animVal, {
         easing: Easing.inOut(Easing.quad),
-        // Using native driver in the modal makes the content flash
-        useNativeDriver: false,
+        useNativeDriver: Boolean(this.props.useNativeDriver),
         duration: MODAL_ANIM_DURATION,
         toValue: 1,
       }).start(() => {
@@ -130,8 +132,7 @@ export class Modal extends Component<ModalProps, ModalState> {
     this.setState({ currentAnimation: "out" }, () => {
       Animated.timing(this.animVal, {
         easing: Easing.inOut(Easing.quad),
-        // Using native driver in the modal makes the content flash
-        useNativeDriver: false,
+        useNativeDriver: Boolean(this.props.useNativeDriver),
         duration: MODAL_ANIM_DURATION,
         toValue: 0,
       }).start(() => {
