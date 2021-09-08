@@ -1,3 +1,10 @@
+# [9.1.0](https://github.com/mmazzarolo/react-native-dialog/compare/v9.0.0...v9.1.0) (2021-09-08)
+
+
+### Features
+
+* Expose `useNativeDriver` as `Container` prop ([#122](https://github.com/mmazzarolo/react-native-dialog/issues/122)) ([dd6d979](https://github.com/mmazzarolo/react-native-dialog/commit/dd6d979279b22ad869d95ba530a1e9cd1fc1601b))
+
 # [9.0.0](https://github.com/mmazzarolo/react-native-dialog/compare/v8.2.0...v9.0.0) (2021-09-08)
 
 
