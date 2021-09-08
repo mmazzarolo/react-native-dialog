@@ -26,6 +26,7 @@ export interface DialogContainerProps {
   onBackdropPress?: () => void;
   onRequestClose?: () => void;
   keyboardVerticalOffset?: number;
+  useNativeDriver?: boolean;
   children: ReactElement<any, NamedExoticComponent>[];
 }
 
@@ -142,6 +143,7 @@ DialogContainer.propTypes = {
   verticalButtons: PropTypes.bool,
   onBackdropPress: PropTypes.func,
   keyboardVerticalOffset: PropTypes.number,
+  useNativeDriver: PropTypes.bool,
   // @ts-expect-error: PropType allows strings and the Typescript interface does not
   children: PropTypes.node.isRequired,
 };
