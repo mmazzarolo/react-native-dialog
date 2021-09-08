@@ -1,5 +1,5 @@
 import * as React from "react";
-import { LegacyRef } from "react";
+import { LegacyRef, ReactNode } from "react";
 import {
   Platform,
   StyleSheet,
@@ -16,7 +16,7 @@ import useTheme, { StyleBuilder } from "./useTheme";
 import PropTypes from "prop-types";
 
 export interface DialogInputProps extends TextInputProps {
-  label?: string;
+  label?: ReactNode;
   wrapperStyle?: StyleProp<ViewStyle>;
   textInputRef?: LegacyRef<TextInput>;
 }

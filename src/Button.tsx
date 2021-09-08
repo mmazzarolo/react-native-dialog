@@ -1,4 +1,5 @@
 import * as React from "react";
+import { ReactNode } from "react";
 import {
   Platform,
   StyleSheet,
@@ -14,7 +15,7 @@ import PropTypes from "prop-types";
 const COLOR = Platform.OS === "ios" ? "#007ff9" : "#169689";
 
 export interface DialogButtonProps extends TextProps {
-  label: string;
+  label?: ReactNode;
   color?: string;
   bold?: boolean;
   disabled?: boolean;
@@ -44,7 +45,7 @@ const DialogButton: React.FC<DialogButtonProps> = (props) => {
         style={[styles.text, { color: color, fontWeight: fontWeight }, style]}
         {...nodeProps}
       >
-        {Platform.OS === "ios" ? label : label.toUpperCase()}
+        {label}
       </Text>
     </TouchableOpacity>
   );
@@ -96,12 +97,14 @@ const buildStyles: StyleBuilder = (isDark) =>
         backgroundColor: "transparent",
         padding: 8,
         fontSize: 14,
+        textTransform: "uppercase",
       },
       web: {
         textAlign: "center",
         backgroundColor: "transparent",
         padding: 8,
         fontSize: 14,
+        textTransform: "uppercase",
       },
       default: {},
     }),
