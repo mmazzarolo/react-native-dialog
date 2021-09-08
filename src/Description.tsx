@@ -1,5 +1,4 @@
 import * as React from "react";
-import PropTypes from "prop-types";
 import { ReactNode } from "react";
 import {
   Platform,
@@ -28,10 +27,7 @@ const DialogDescription: React.FC<DialogDescriptionProps> = (props) => {
   );
 };
 
-DialogDescription.propTypes = {
-  ...TextPropTypes,
-  style: PropTypes.any,
-};
+DialogDescription.propTypes = TextPropTypes;
 
 DialogDescription.displayName = "DialogDescription";
 

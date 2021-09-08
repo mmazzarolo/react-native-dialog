@@ -66,9 +66,8 @@ const DialogInput: React.FC<DialogInputProps> = (props) => {
 DialogInput.propTypes = {
   ...ViewPropTypes,
   label: PropTypes.string,
-  style: PropTypes.any,
   textInputRef: PropTypes.any,
-  wrapperStyle: PropTypes.any,
+  wrapperStyle: ViewPropTypes.style,
   numberOfLines: PropTypes.number,
   multiline: PropTypes.bool,
 };

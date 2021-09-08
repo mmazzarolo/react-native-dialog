@@ -10,6 +10,7 @@ import {
   StyleProp,
   StyleSheet,
   TouchableWithoutFeedback,
+  ViewPropTypes,
   ViewStyle,
 } from "react-native";
 
@@ -75,7 +76,7 @@ export class Modal extends Component<ModalProps, ModalState> {
     onBackdropPress: PropTypes.func,
     onHide: PropTypes.func,
     visible: PropTypes.bool,
-    contentStyle: PropTypes.any,
+    contentStyle: ViewPropTypes.style,
   };
 
   static defaultProps: Partial<ModalProps> = {

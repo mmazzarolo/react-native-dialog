@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import * as React from "react";
 import { ReactNode } from "react";
 import {
@@ -28,11 +27,7 @@ const DialogTitle: React.FC<DialogTitleProps> = (props) => {
   );
 };
 
-DialogTitle.propTypes = {
-  ...TextPropTypes,
-  style: PropTypes.any,
-  children: PropTypes.node.isRequired,
-};
+DialogTitle.propTypes = TextPropTypes;
 
 DialogTitle.displayName = "DialogTitle";
 

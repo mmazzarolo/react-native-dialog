@@ -8,6 +8,7 @@ import {
   PlatformColor,
   ViewStyle,
   StyleProp,
+  ViewPropTypes,
 } from "react-native";
 import Modal from "./Modal";
 import useTheme, { StyleBuilder } from "./useTheme";
@@ -134,11 +135,11 @@ const DialogContainer: React.FC<DialogContainerProps> = (props) => {
 
 DialogContainer.propTypes = {
   blurComponentIOS: PropTypes.node,
-  buttonSeparatorStyle: PropTypes.object,
-  contentStyle: PropTypes.object,
-  footerStyle: PropTypes.object,
-  headerStyle: PropTypes.object,
-  blurStyle: PropTypes.object,
+  buttonSeparatorStyle: ViewPropTypes.style,
+  contentStyle: ViewPropTypes.style,
+  footerStyle: ViewPropTypes.style,
+  headerStyle: ViewPropTypes.style,
+  blurStyle: ViewPropTypes.style,
   visible: PropTypes.bool,
   verticalButtons: PropTypes.bool,
   onBackdropPress: PropTypes.func,
