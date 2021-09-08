@@ -1,5 +1,5 @@
 import * as React from "react";
-import { NamedExoticComponent, ReactElement, ReactNode } from "react";
+import { PropsWithChildren, ReactElement, ReactNode } from "react";
 import {
   KeyboardAvoidingView,
   Platform,
@@ -13,10 +13,20 @@ import {
 import Modal from "./Modal";
 import useTheme, { StyleBuilder } from "./useTheme";
 import PropTypes from "prop-types";
+import DialogTitle, { DialogTitleProps } from "./Title";
+import DialogDescription, { DialogDescriptionProps } from "./Description";
+import DialogButton, { DialogButtonProps } from "./Button";
+
+type TitleElement = ReactElement<DialogTitleProps, typeof DialogTitle>;
+type DescriptionElement = ReactElement<
+  DialogDescriptionProps,
+  typeof DialogDescription
+>;
+type ButtonElement = ReactElement<DialogButtonProps, typeof DialogButton>;
 
 const iOS = Platform.OS === "ios";
 
-export interface DialogContainerProps {
+export type DialogContainerProps = PropsWithChildren<{
   blurComponentIOS?: ReactNode;
   buttonSeparatorStyle?: StyleProp<ViewStyle>;
   contentStyle?: StyleProp<ViewStyle>;
@@ -28,8 +38,7 @@ export interface DialogContainerProps {
   onBackdropPress?: () => void;
   onRequestClose?: () => void;
   keyboardVerticalOffset?: number;
-  children: ReactElement<any, NamedExoticComponent>[];
-}
+}>;
 
 const DialogContainer: React.FC<DialogContainerProps> = (props) => {
   const {
@@ -45,45 +54,38 @@ const DialogContainer: React.FC<DialogContainerProps> = (props) => {
     keyboardVerticalOffset = 40,
     ...nodeProps
   } = props;
-  const titleChildrens: ReactElement<any, NamedExoticComponent>[] = [];
-  const descriptionChildrens: ReactElement<any, NamedExoticComponent>[] = [];
-  const buttonChildrens: ReactElement<any, NamedExoticComponent>[] = [];
-  const otherChildrens: ReactElement<any, NamedExoticComponent>[] = [];
+  const titleChildrens: TitleElement[] = [];
+  const descriptionChildrens: DescriptionElement[] = [];
+  const buttonChildrens: (ButtonElement | JSX.Element)[] = [];
+  const otherChildrens: ReactNode[] = [];
   const { styles } = useTheme(buildStyles);
   React.Children.forEach(children, (child) => {
-    if (!child) {
-      return;
-    }
-    if (
-      child.type.name === "DialogTitle" ||
-      child.type.displayName === "DialogTitle"
-    ) {
-      titleChildrens.push(child);
-    } else if (
-      child.type.name === "DialogDescription" ||
-      child.type.displayName === "DialogDescription"
-    ) {
-      descriptionChildrens.push(child);
-    } else if (
-      child.type.name === "DialogButton" ||
-      child.type.displayName === "DialogButton"
-    ) {
-      if (Platform.OS === "ios" && buttonChildrens.length > 0) {
-        buttonChildrens.push(
-          <View
-            style={[
-              verticalButtons
-                ? styles.buttonSeparatorVertical
-                : styles.buttonSeparatorHorizontal,
-              buttonSeparatorStyle,
-            ]}
-          />
-        );
+    if (typeof child === "object" && child !== null && "type" in child) {
+      switch (child.type) {
+        case DialogTitle:
+          titleChildrens.push(child as TitleElement);
+          return;
+        case DialogDescription:
+          descriptionChildrens.push(child as DescriptionElement);
+          return;
+        case DialogButton:
+          if (Platform.OS === "ios" && buttonChildrens.length > 0) {
+            buttonChildrens.push(
+              <View
+                style={[
+                  verticalButtons
+                    ? styles.buttonSeparatorVertical
+                    : styles.buttonSeparatorHorizontal,
+                  buttonSeparatorStyle,
+                ]}
+              />
+            );
+          }
+          buttonChildrens.push(child as ButtonElement);
+          return;
       }
-      buttonChildrens.push(child);
-    } else {
-      otherChildrens.push(child);
     }
+    otherChildrens.push(child);
   });
   return (
     <Modal
@@ -144,7 +146,6 @@ DialogContainer.propTypes = {
   verticalButtons: PropTypes.bool,
   onBackdropPress: PropTypes.func,
   keyboardVerticalOffset: PropTypes.number,
-  // @ts-expect-error: PropType allows strings and the Typescript interface does not
   children: PropTypes.node.isRequired,
 };
 

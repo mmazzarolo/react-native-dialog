@@ -1,20 +1,15 @@
 import * as React from "react";
-import { ReactNode } from "react";
 import {
   Platform,
   StyleSheet,
   Text,
   PlatformColor,
   TextPropTypes,
-  StyleProp,
-  TextStyle,
+  TextProps,
 } from "react-native";
 import useTheme, { StyleBuilder } from "./useTheme";
 
-export interface DialogDescriptionProps {
-  style?: StyleProp<TextStyle>;
-  children: ReactNode;
-}
+export type DialogDescriptionProps = TextProps;
 
 const DialogDescription: React.FC<DialogDescriptionProps> = (props) => {
   const { style, children, ...nodeProps } = props;
