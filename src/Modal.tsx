@@ -7,6 +7,7 @@ import {
   Modal as ReactNativeModal,
   ModalProps as ReactNativeModalProps,
   Platform,
+  StyleProp,
   StyleSheet,
   TouchableWithoutFeedback,
   ViewStyle,
@@ -61,7 +62,7 @@ export interface ModalProps extends ReactNativeModalProps {
   onBackdropPress?: () => void;
   onHide?: () => void;
   visible?: boolean;
-  contentStyle: ViewStyle;
+  contentStyle?: StyleProp<ViewStyle>;
 }
 
 interface ModalState {

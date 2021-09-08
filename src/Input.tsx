@@ -10,13 +10,14 @@ import {
   TextInputProps,
   ViewStyle,
   ViewPropTypes,
+  StyleProp,
 } from "react-native";
 import useTheme, { StyleBuilder } from "./useTheme";
 import PropTypes from "prop-types";
 
 export interface DialogInputProps extends TextInputProps {
   label?: string;
-  wrapperStyle?: ViewStyle;
+  wrapperStyle?: StyleProp<ViewStyle>;
   textInputRef?: LegacyRef<TextInput>;
 }
 

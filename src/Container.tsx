@@ -7,6 +7,7 @@ import {
   View,
   PlatformColor,
   ViewStyle,
+  StyleProp,
 } from "react-native";
 import Modal from "./Modal";
 import useTheme, { StyleBuilder } from "./useTheme";
@@ -16,11 +17,11 @@ const iOS = Platform.OS === "ios";
 
 export interface DialogContainerProps {
   blurComponentIOS?: ReactNode;
-  buttonSeparatorStyle?: ViewStyle;
-  contentStyle?: ViewStyle;
-  footerStyle?: ViewStyle;
-  headerStyle?: ViewStyle;
-  blurStyle?: ViewStyle;
+  buttonSeparatorStyle?: StyleProp<ViewStyle>;
+  contentStyle?: StyleProp<ViewStyle>;
+  footerStyle?: StyleProp<ViewStyle>;
+  headerStyle?: StyleProp<ViewStyle>;
+  blurStyle?: StyleProp<ViewStyle>;
   visible?: boolean;
   verticalButtons?: boolean;
   onBackdropPress?: () => void;
@@ -32,12 +33,12 @@ export interface DialogContainerProps {
 const DialogContainer: React.FC<DialogContainerProps> = (props) => {
   const {
     blurComponentIOS,
-    buttonSeparatorStyle = {},
+    buttonSeparatorStyle,
     children,
-    contentStyle = {},
-    footerStyle = {},
-    headerStyle = {},
-    blurStyle = {},
+    contentStyle,
+    footerStyle,
+    headerStyle,
+    blurStyle,
     visible = false,
     verticalButtons = false,
     keyboardVerticalOffset = 40,

@@ -6,13 +6,14 @@ import {
   StyleSheet,
   Text,
   PlatformColor,
-  ViewStyle,
   TextPropTypes,
+  StyleProp,
+  TextStyle,
 } from "react-native";
 import useTheme, { StyleBuilder } from "./useTheme";
 
 export interface DialogTitleProps {
-  style?: ViewStyle;
+  style?: StyleProp<TextStyle>;
   children: ReactNode;
 }
 
