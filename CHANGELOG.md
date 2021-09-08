@@ -1,3 +1,15 @@
+# [9.0.0](https://github.com/mmazzarolo/react-native-dialog/compare/v8.2.0...v9.0.0) (2021-09-08)
+
+
+### Bug Fixes
+
+* Typescript updates ([#121](https://github.com/mmazzarolo/react-native-dialog/issues/121)) ([1ba6f16](https://github.com/mmazzarolo/react-native-dialog/commit/1ba6f16fb2127f8da7e41c79444709b56cb0d4f6))
+
+
+### BREAKING CHANGES
+
+* Updated TypeScript type definitions. Types _should_ just be more relaxed now — but since we updated the entire codebase we'll release this a major bump to be safe.
+
 # [8.2.0](https://github.com/mmazzarolo/react-native-dialog/compare/v8.1.1...v8.2.0) (2021-07-19)
 
 
