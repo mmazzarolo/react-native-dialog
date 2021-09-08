@@ -7,8 +7,10 @@ import {
   Modal as ReactNativeModal,
   ModalProps as ReactNativeModalProps,
   Platform,
+  StyleProp,
   StyleSheet,
   TouchableWithoutFeedback,
+  ViewPropTypes,
   ViewStyle,
 } from "react-native";
 
@@ -61,7 +63,7 @@ export interface ModalProps extends ReactNativeModalProps {
   onBackdropPress?: () => void;
   onHide?: () => void;
   visible?: boolean;
-  contentStyle: ViewStyle;
+  contentStyle?: StyleProp<ViewStyle>;
   useNativeDriver?: boolean;
 }
 
@@ -75,7 +77,7 @@ export class Modal extends Component<ModalProps, ModalState> {
     onBackdropPress: PropTypes.func,
     onHide: PropTypes.func,
     visible: PropTypes.bool,
-    contentStyle: PropTypes.any,
+    contentStyle: ViewPropTypes.style,
     useNativeDriver: PropTypes.bool,
   };
 
