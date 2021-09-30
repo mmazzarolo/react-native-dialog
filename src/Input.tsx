@@ -70,7 +70,7 @@ DialogInput.propTypes = {
   wrapperStyle: ViewPropTypes.style,
   numberOfLines: PropTypes.number,
   multiline: PropTypes.bool,
-  style: (Text as any).propTypes.style
+  style: (Text as any).propTypes.style,
 };
 
 DialogInput.displayName = "DialogInput";
