@@ -1,3 +1,10 @@
+## [9.1.1](https://github.com/mmazzarolo/react-native-dialog/compare/v9.1.0...v9.1.1) (2021-09-30)
+
+
+### Bug Fixes
+
+* Make Button label prop type required ([#123](https://github.com/mmazzarolo/react-native-dialog/issues/123)) ([e096d6b](https://github.com/mmazzarolo/react-native-dialog/commit/e096d6bf6814a114bb635585caa0babe72c3bd1c))
+
 # [9.1.0](https://github.com/mmazzarolo/react-native-dialog/compare/v9.0.0...v9.1.0) (2021-09-08)
 
 
