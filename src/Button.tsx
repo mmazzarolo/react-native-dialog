@@ -16,7 +16,7 @@ import PropTypes from "prop-types";
 const COLOR = Platform.OS === "ios" ? "#007ff9" : "#169689";
 
 export interface DialogButtonProps extends TextProps {
-  label?: ReactNode;
+  label: ReactNode;
   color?: ColorValue;
   bold?: boolean;
   disabled?: boolean;
