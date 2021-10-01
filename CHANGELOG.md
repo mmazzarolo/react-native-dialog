@@ -1,3 +1,10 @@
+## [9.1.2](https://github.com/mmazzarolo/react-native-dialog/compare/v9.1.1...v9.1.2) (2021-10-01)
+
+
+### Bug Fixes
+
+* Change style propType of Input from View to Text ([#124](https://github.com/mmazzarolo/react-native-dialog/issues/124)) ([d71d204](https://github.com/mmazzarolo/react-native-dialog/commit/d71d20489c5d4e7038ebbb8dc183fc352d87b409))
+
 ## [9.1.1](https://github.com/mmazzarolo/react-native-dialog/compare/v9.1.0...v9.1.1) (2021-09-30)
 
 
