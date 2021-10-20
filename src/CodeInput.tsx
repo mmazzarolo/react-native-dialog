@@ -49,7 +49,10 @@ const DialogCodeInput: React.FC<DialogCodeInputProps> = (props) => {
   const onCodeChangePress = (t:string) => {
       setCode(t);
       typeof onCodeChange === 'function' && onCodeChange(t);
-      if(t.length === codeLength) codeRef?.current?.blur();
+      if(t.length === codeLength) {
+        setContainerIsFocused(false);
+        codeRef?.current?.blur();
+      }
   };
   const handleOnBlur = () => setContainerIsFocused(false);
   const toDigitInput = (_value: number, idx: number) => {
