@@ -134,17 +134,28 @@ const buildStyles = (isDark: boolean) =>
       paddingBottom: 5,
       marginHorizontal: 5,
       alignItems: "center",
+      ...Platform.select({
+        ios: {
+          borderColor: PlatformColor("separator"),
+        },
+        android: {
+          //borderColor: PlatformColor(`@android:color/${isDark ? "secondary_text_dark" : "secondary_text_light"}`),
+          borderColor: isDark ? "#efefef" : "#8d8d8d",
+        },
+        default: {},
+      }),
     },
     inputContainerFocused: Platform.select({
       ios: {
         borderColor: PlatformColor("label"),
       },
       android: {
-        borderColor: PlatformColor(
+        /* borderColor: PlatformColor(
           `@android:color/${
             isDark ? "primary_text_dark" : "primary_text_light"
           }`
-        ),
+        ),*/
+        borderColor: isDark ? "#58c7b9" : "#169689",
       },
       default: {},
     }),
