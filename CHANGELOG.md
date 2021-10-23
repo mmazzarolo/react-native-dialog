@@ -1,3 +1,10 @@
+# [9.2.0](https://github.com/mmazzarolo/react-native-dialog/compare/v9.1.2...v9.2.0) (2021-10-23)
+
+
+### Features
+
+* Add `CodeInput` component ([#128](https://github.com/mmazzarolo/react-native-dialog/issues/128)) ([961f9a0](https://github.com/mmazzarolo/react-native-dialog/commit/961f9a0e9c1803fcc1bfcd8ded1e697054899bb9))
+
 ## [9.1.2](https://github.com/mmazzarolo/react-native-dialog/compare/v9.1.1...v9.1.2) (2021-10-01)
 
 
