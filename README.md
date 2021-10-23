@@ -45,6 +45,7 @@ React-native-dialog exposes a set of components that can be used to build the UI
 - **Dialog.Description**: A `Text` component styled as a native dialog description.
 - **Dialog.Button**: A component styled as a native dialog button.
 - **Dialog.Input**: A `TextInput` component styled as a native dialog input.
+- **Dialog.CodeInput**: A `TextInput` component styled as one time code input.
 - **Dialog.Switch**: A native `Switch` component with an optional label.
 
 1. Import react-native-dialog:
@@ -187,6 +188,19 @@ const styles = StyleSheet.create({
 | textInputRef | ref    | undefined | Ref to the input                            |
 
 `Dialog.Input` also accepts all the React-Native's `TextInput` component props.
+
+### Dialog.CodeInput props
+
+| Name                        | Type   | Default   | Description                                                  |
+| --------------------------- | ------ | --------- | ------------------------------------------------------------ |
+| wrapperStyle                | any    | undefined | The style applied to the input wrapper View                  |
+| digitContainerStyle         | any    | undefined | The style applied to the digit container View                |
+| digitContainerFocusedStyle  | any    | undefined | The style applied to the digit container View when in focus  |
+| digitStyle                  | any    | undefined | The style applied to the digit text                          |
+| codeLength                  | number | 4         | The total number of digits                                   |
+| onCodeChange                | func   | undefined | Called when the input changed                                |
+
+`Dialog.CodeInput` also accepts all the React-Native's `TextInput` component props.
 
 ### Dialog.Title props
 
