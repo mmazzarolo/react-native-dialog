@@ -31,7 +31,7 @@ const buildStyles: StyleBuilder = (isDark) =>
     text: Platform.select({
       ios: {
         textAlign: "center",
-        color: PlatformColor("secondaryLabel"),
+        color: PlatformColor("label"),
         fontSize: 13,
         marginTop: 4,
       },
