@@ -1,6 +1,6 @@
 {
   "name": "react-native-dialog",
-  "version": "9.2.0",
+  "version": "9.2.1",
   "description": "A flexible react-native dialog",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

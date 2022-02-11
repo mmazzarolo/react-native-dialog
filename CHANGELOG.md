@@ -1,3 +1,10 @@
+## [9.2.1](https://github.com/mmazzarolo/react-native-dialog/compare/v9.2.0...v9.2.1) (2022-02-11)
+
+
+### Bug Fixes
+
+* ios description platform color ([#133](https://github.com/mmazzarolo/react-native-dialog/issues/133)) ([2952f47](https://github.com/mmazzarolo/react-native-dialog/commit/2952f470130ce119e5d5dcd4844d3bcae3513e3d))
+
 # [9.2.0](https://github.com/mmazzarolo/react-native-dialog/compare/v9.1.2...v9.2.0) (2021-10-23)
 
 
