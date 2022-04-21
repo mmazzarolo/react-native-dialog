@@ -9,12 +9,10 @@ import {
   PlatformColor,
   TextInputProps,
   ViewStyle,
-  ViewPropTypes,
   StyleProp,
   TextStyle,
 } from "react-native";
 import useTheme from "./useTheme";
-import PropTypes from "prop-types";
 
 export interface DialogCodeInputProps extends TextInputProps {
   wrapperStyle?: StyleProp<ViewStyle>;
@@ -25,7 +23,7 @@ export interface DialogCodeInputProps extends TextInputProps {
   onCodeChange?: (code: string) => void;
 }
 
-const DialogCodeInput: React.FC<DialogCodeInputProps> = (props) => {
+const DialogCodeInput = (props: DialogCodeInputProps) => {
   const {
     style,
     wrapperStyle,
@@ -104,18 +102,6 @@ const DialogCodeInput: React.FC<DialogCodeInputProps> = (props) => {
     </View>
   );
 };
-
-DialogCodeInput.propTypes = {
-  ...ViewPropTypes,
-  wrapperStyle: ViewPropTypes.style,
-  digitContainerStyle: ViewPropTypes.style,
-  digitContainerFocusedStyle: ViewPropTypes.style,
-  digitStyle: ViewPropTypes.style,
-  codeLength: PropTypes.number,
-  onCodeChange: PropTypes.func,
-  style: (Text as any).propTypes.style,
-};
-
 DialogCodeInput.displayName = "DialogCodeInput";
 
 const buildStyles = (isDark: boolean) =>

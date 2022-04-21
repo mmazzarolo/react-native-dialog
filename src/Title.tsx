@@ -1,17 +1,17 @@
 import * as React from "react";
+import { PropsWithChildren } from "react";
 import {
   Platform,
   StyleSheet,
   Text,
   PlatformColor,
-  TextPropTypes,
   TextProps,
 } from "react-native";
 import useTheme, { StyleBuilder } from "./useTheme";
 
-export type DialogTitleProps = TextProps;
+export type DialogTitleProps = PropsWithChildren<TextProps>;
 
-const DialogTitle: React.FC<DialogTitleProps> = (props) => {
+const DialogTitle = (props: DialogTitleProps) => {
   const { style, children, ...nodeProps } = props;
   const { styles } = useTheme(buildStyles);
 
@@ -21,8 +21,6 @@ const DialogTitle: React.FC<DialogTitleProps> = (props) => {
     </Text>
   );
 };
-
-DialogTitle.propTypes = TextPropTypes;
 
 DialogTitle.displayName = "DialogTitle";
 

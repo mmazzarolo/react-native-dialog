@@ -8,16 +8,14 @@ import {
   View,
   PlatformColor,
   SwitchProps,
-  ViewPropTypes,
 } from "react-native";
 import useTheme, { StyleBuilder } from "./useTheme";
-import PropTypes from "prop-types";
 
 export interface DialogSwitchProps extends SwitchProps {
   label?: ReactNode;
 }
 
-const DialogSwitch: React.FC<DialogSwitchProps> = (props) => {
+const DialogSwitch = (props: DialogSwitchProps) => {
   const { label, ...nodeProps } = props;
   const { styles } = useTheme(buildStyles);
   return (
@@ -26,11 +24,6 @@ const DialogSwitch: React.FC<DialogSwitchProps> = (props) => {
       <Switch {...nodeProps} />
     </View>
   );
-};
-
-DialogSwitch.propTypes = {
-  ...ViewPropTypes,
-  label: PropTypes.node,
 };
 
 DialogSwitch.displayName = "DialogSwitch";
