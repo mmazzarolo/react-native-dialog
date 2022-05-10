@@ -184,6 +184,7 @@ const styles = StyleSheet.create({
 | Name         | Type   | Default   | Description                                 |
 | ------------ | ------ | --------- | ------------------------------------------- |
 | label        | string | undefined | The input floating label                    |
+| labelStyle   | any    | undefined | The style applied to the input label Text |
 | wrapperStyle | any    | undefined | The style applied to the input wrapper View |
 | textInputRef | ref    | undefined | Ref to the input                            |
 
