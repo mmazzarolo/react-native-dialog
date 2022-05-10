@@ -17,6 +17,7 @@ import PropTypes from "prop-types";
 
 export interface DialogInputProps extends TextInputProps {
   label?: ReactNode;
+  labelStyle?: StyleProp;
   wrapperStyle?: StyleProp<ViewStyle>;
   textInputRef?: LegacyRef<TextInput>;
 }
@@ -37,7 +38,7 @@ const DialogInput: React.FC<DialogInputProps> = (props) => {
   const { styles, isDark } = useTheme(buildStyles);
   return (
     <View style={[styles.textInputWrapper, wrapperStyle]}>
-      {label && <Text style={styles.label}>{label}</Text>}
+      {label && <Text style={[styles.label, labelStyle]}>{label}</Text>}
       <TextInput
         ref={textInputRef}
         placeholderTextColor={
