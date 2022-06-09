@@ -7,11 +7,9 @@ import {
   TouchableOpacity,
   PlatformColor,
   TextProps,
-  TextPropTypes,
   ColorValue,
 } from "react-native";
 import useTheme, { StyleBuilder } from "./useTheme";
-import PropTypes from "prop-types";
 
 const COLOR = Platform.OS === "ios" ? "#007ff9" : "#169689";
 
@@ -50,15 +48,6 @@ const DialogButton: React.FC<DialogButtonProps> = (props) => {
       </Text>
     </TouchableOpacity>
   );
-};
-
-DialogButton.propTypes = {
-  ...TextPropTypes,
-  label: PropTypes.string.isRequired,
-  color: PropTypes.string,
-  bold: PropTypes.bool,
-  disabled: PropTypes.bool,
-  onPress: PropTypes.func.isRequired,
 };
 
 DialogButton.displayName = "DialogButton";

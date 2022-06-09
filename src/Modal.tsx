@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Component } from "react";
-import PropTypes from "prop-types";
 import {
   Animated,
   Easing,
@@ -10,7 +9,6 @@ import {
   StyleProp,
   StyleSheet,
   TouchableWithoutFeedback,
-  ViewPropTypes,
   ViewStyle,
 } from "react-native";
 
@@ -73,14 +71,6 @@ interface ModalState {
 }
 
 export class Modal extends Component<ModalProps, ModalState> {
-  static propTypes = {
-    onBackdropPress: PropTypes.func,
-    onHide: PropTypes.func,
-    visible: PropTypes.bool,
-    contentStyle: ViewPropTypes.style,
-    useNativeDriver: PropTypes.bool,
-  };
-
   static defaultProps: Partial<ModalProps> = {
     onBackdropPress: () => null,
     onHide: () => null,

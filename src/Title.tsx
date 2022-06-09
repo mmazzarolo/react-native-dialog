@@ -4,7 +4,6 @@ import {
   StyleSheet,
   Text,
   PlatformColor,
-  TextPropTypes,
   TextProps,
 } from "react-native";
 import useTheme, { StyleBuilder } from "./useTheme";
@@ -21,8 +20,6 @@ const DialogTitle: React.FC<DialogTitleProps> = (props) => {
     </Text>
   );
 };
-
-DialogTitle.propTypes = TextPropTypes;
 
 DialogTitle.displayName = "DialogTitle";
 
