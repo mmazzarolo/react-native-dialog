@@ -21,7 +21,7 @@ export interface DialogButtonProps extends TextProps {
   onPress: () => void;
 }
 
-const DialogButton = (props: DialogButtonProps) => {
+const DialogButton: React.FC<DialogButtonProps> = (props) => {
   const {
     label,
     color = COLOR,

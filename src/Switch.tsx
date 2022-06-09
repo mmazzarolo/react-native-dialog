@@ -15,7 +15,7 @@ export interface DialogSwitchProps extends SwitchProps {
   label?: ReactNode;
 }
 
-const DialogSwitch = (props: DialogSwitchProps) => {
+const DialogSwitch: React.FC<DialogSwitchProps> = (props) => {
   const { label, ...nodeProps } = props;
   const { styles } = useTheme(buildStyles);
   return (

@@ -39,7 +39,7 @@ export type DialogContainerProps = PropsWithChildren<{
   useNativeDriver?: boolean;
 }>;
 
-const DialogContainer = (props: DialogContainerProps) => {
+const DialogContainer: React.FC<DialogContainerProps> = (props) => {
   const {
     blurComponentIOS,
     buttonSeparatorStyle,

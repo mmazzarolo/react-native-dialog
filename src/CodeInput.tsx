@@ -23,7 +23,7 @@ export interface DialogCodeInputProps extends TextInputProps {
   onCodeChange?: (code: string) => void;
 }
 
-const DialogCodeInput = (props: DialogCodeInputProps) => {
+const DialogCodeInput: React.FC<DialogCodeInputProps> = (props) => {
   const {
     style,
     wrapperStyle,

@@ -19,7 +19,7 @@ export interface DialogInputProps extends TextInputProps {
   textInputRef?: LegacyRef<TextInput>;
 }
 
-const DialogInput = (props: DialogInputProps) => {
+const DialogInput: React.FC<DialogInputProps> = (props) => {
   const {
     label,
     style,
