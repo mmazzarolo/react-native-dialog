@@ -7,20 +7,23 @@ import {
   Text,
   View,
   PlatformColor,
+  StyleProp,
+  TextStyle,
   SwitchProps,
 } from "react-native";
 import useTheme, { StyleBuilder } from "./useTheme";
 
 export interface DialogSwitchProps extends SwitchProps {
   label?: ReactNode;
+  unstableLabelStyle?: StyleProp<TextStyle>;
 }
 
 const DialogSwitch: React.FC<DialogSwitchProps> = (props) => {
-  const { label, ...nodeProps } = props;
+  const { label, unstableLabelStyle, ...nodeProps } = props;
   const { styles } = useTheme(buildStyles);
   return (
     <View style={styles.switchWrapper}>
-      <Text style={styles.label}>{label}</Text>
+      <Text style={[styles.label, unstableLabelStyle]}>{label}</Text>
       <Switch {...nodeProps} />
     </View>
   );
