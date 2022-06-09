@@ -1,3 +1,10 @@
+## [9.2.2](https://github.com/mmazzarolo/react-native-dialog/compare/v9.2.1...v9.2.2) (2022-06-09)
+
+
+### Bug Fixes
+
+* remove usage of PropTypes ([#139](https://github.com/mmazzarolo/react-native-dialog/issues/139)) ([538ff00](https://github.com/mmazzarolo/react-native-dialog/commit/538ff007942145d1d9aa85a34d65afa25015db16))
+
 ## [9.2.1](https://github.com/mmazzarolo/react-native-dialog/compare/v9.2.0...v9.2.1) (2022-02-11)
 
 
