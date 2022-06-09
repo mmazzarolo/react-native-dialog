@@ -8,6 +8,7 @@ import {
   View,
   PlatformColor,
   TextInputProps,
+  TextStyle,
   ViewStyle,
   ViewPropTypes,
   StyleProp,
@@ -19,6 +20,7 @@ export interface DialogInputProps extends TextInputProps {
   label?: ReactNode;
   wrapperStyle?: StyleProp<ViewStyle>;
   textInputRef?: LegacyRef<TextInput>;
+  unstableLabelStyle?: StyleProp<TextStyle>;
 }
 
 const DialogInput: React.FC<DialogInputProps> = (props) => {
@@ -29,6 +31,7 @@ const DialogInput: React.FC<DialogInputProps> = (props) => {
     textInputRef,
     multiline,
     numberOfLines,
+    unstableLabelStyle,
     ...nodeProps
   } = props;
   const lines = (multiline && numberOfLines) || 1;
@@ -37,7 +40,7 @@ const DialogInput: React.FC<DialogInputProps> = (props) => {
   const { styles, isDark } = useTheme(buildStyles);
   return (
     <View style={[styles.textInputWrapper, wrapperStyle]}>
-      {label && <Text style={styles.label}>{label}</Text>}
+      {label && <Text style={[styles.label, unstableLabelStyle]}>{label}</Text>}
       <TextInput
         ref={textInputRef}
         placeholderTextColor={
