@@ -178,6 +178,7 @@ const styles = StyleSheet.create({
 | keyboardVerticalOffset | number | undefined     | keyboardVerticalOffset for iOS                                                                      |
 | verticalButtons        | bool   | false         | Renders button vertically                                                                           |
 | useNativeDriver        | bool   | false         | Defines if animations should use native driver                                                      |
+| coverScreen            | bool   | true          | Whether an RN modal will be used to cover the entire screen                                         |
 
 ### Dialog.Input props
 
@@ -191,14 +192,14 @@ const styles = StyleSheet.create({
 
 ### Dialog.CodeInput props
 
-| Name                        | Type   | Default   | Description                                                  |
-| --------------------------- | ------ | --------- | ------------------------------------------------------------ |
-| wrapperStyle                | any    | undefined | The style applied to the input wrapper View                  |
-| digitContainerStyle         | any    | undefined | The style applied to the digit container View                |
-| digitContainerFocusedStyle  | any    | undefined | The style applied to the digit container View when in focus  |
-| digitStyle                  | any    | undefined | The style applied to the digit text                          |
-| codeLength                  | number | 4         | The total number of digits                                   |
-| onCodeChange                | func   | undefined | Called when the input changed                                |
+| Name                       | Type   | Default   | Description                                                 |
+| -------------------------- | ------ | --------- | ----------------------------------------------------------- |
+| wrapperStyle               | any    | undefined | The style applied to the input wrapper View                 |
+| digitContainerStyle        | any    | undefined | The style applied to the digit container View               |
+| digitContainerFocusedStyle | any    | undefined | The style applied to the digit container View when in focus |
+| digitStyle                 | any    | undefined | The style applied to the digit text                         |
+| codeLength                 | number | 4         | The total number of digits                                  |
+| onCodeChange               | func   | undefined | Called when the input changed                               |
 
 `Dialog.CodeInput` also accepts all the React-Native's `TextInput` component props.
 

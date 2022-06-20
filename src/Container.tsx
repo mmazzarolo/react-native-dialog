@@ -37,6 +37,7 @@ export type DialogContainerProps = PropsWithChildren<{
   onRequestClose?: () => void;
   keyboardVerticalOffset?: number;
   useNativeDriver?: boolean;
+  coverScreen?: boolean;
 }>;
 
 const DialogContainer: React.FC<DialogContainerProps> = (props) => {
