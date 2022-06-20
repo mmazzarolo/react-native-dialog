@@ -9,6 +9,7 @@ import {
   StyleProp,
   StyleSheet,
   TouchableWithoutFeedback,
+  View,
   ViewStyle,
 } from "react-native";
 
@@ -63,6 +64,7 @@ export interface ModalProps extends ReactNativeModalProps {
   visible?: boolean;
   contentStyle?: StyleProp<ViewStyle>;
   useNativeDriver?: boolean;
+  coverScreen?: boolean;
 }
 
 interface ModalState {
@@ -76,6 +78,7 @@ export class Modal extends Component<ModalProps, ModalState> {
     onHide: () => null,
     visible: false,
     useNativeDriver: false,
+    coverScreen: true,
   };
 
   state: ModalState = {
@@ -139,6 +142,7 @@ export class Modal extends Component<ModalProps, ModalState> {
       children,
       onBackdropPress,
       contentStyle,
+      coverScreen,
       ...otherProps
     } = this.props;
     const { currentAnimation, visible } = this.state;
@@ -176,13 +180,8 @@ export class Modal extends Component<ModalProps, ModalState> {
             }),
           };
 
-    return (
-      <ReactNativeModal
-        transparent
-        animationType="none"
-        {...otherProps}
-        visible={visible}
-      >
+    const content = (
+      <>
         <TouchableWithoutFeedback onPress={onBackdropPress}>
           <Animated.View style={[styles.backdrop, backdropAnimatedStyle]} />
         </TouchableWithoutFeedback>
@@ -201,6 +200,25 @@ export class Modal extends Component<ModalProps, ModalState> {
             {children}
           </Animated.View>
         )}
+      </>
+    );
+
+    if (!coverScreen && visible) {
+      return (
+        <View pointerEvents="box-none" style={StyleSheet.absoluteFill}>
+          {content}
+        </View>
+      );
+    }
+
+    return (
+      <ReactNativeModal
+        transparent
+        animationType="none"
+        {...otherProps}
+        visible={visible}
+      >
+        {content}
       </ReactNativeModal>
     );
   }
@@ -208,11 +226,7 @@ export class Modal extends Component<ModalProps, ModalState> {
 
 const styles = StyleSheet.create({
   backdrop: {
-    position: "absolute",
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
+    ...StyleSheet.absoluteFillObject,
     backgroundColor: "black",
     opacity: 0,
   },
