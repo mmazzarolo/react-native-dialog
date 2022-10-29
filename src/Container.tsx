@@ -8,11 +8,9 @@ import {
   PlatformColor,
   ViewStyle,
   StyleProp,
-  ViewPropTypes,
 } from "react-native";
 import Modal from "./Modal";
 import useTheme, { StyleBuilder } from "./useTheme";
-import PropTypes from "prop-types";
 import DialogTitle, { DialogTitleProps } from "./Title";
 import DialogDescription, { DialogDescriptionProps } from "./Description";
 import DialogButton, { DialogButtonProps } from "./Button";
@@ -134,21 +132,6 @@ const DialogContainer: React.FC<DialogContainerProps> = (props) => {
       </KeyboardAvoidingView>
     </Modal>
   );
-};
-
-DialogContainer.propTypes = {
-  blurComponentIOS: PropTypes.node,
-  buttonSeparatorStyle: ViewPropTypes.style,
-  contentStyle: ViewPropTypes.style,
-  footerStyle: ViewPropTypes.style,
-  headerStyle: ViewPropTypes.style,
-  blurStyle: ViewPropTypes.style,
-  visible: PropTypes.bool,
-  verticalButtons: PropTypes.bool,
-  onBackdropPress: PropTypes.func,
-  keyboardVerticalOffset: PropTypes.number,
-  useNativeDriver: PropTypes.bool,
-  children: PropTypes.node.isRequired,
 };
 
 const buildStyles: StyleBuilder = () =>

@@ -9,11 +9,9 @@ import {
   PlatformColor,
   TextInputProps,
   ViewStyle,
-  ViewPropTypes,
   StyleProp,
 } from "react-native";
 import useTheme, { StyleBuilder } from "./useTheme";
-import PropTypes from "prop-types";
 
 export interface DialogInputProps extends TextInputProps {
   label?: ReactNode;
@@ -62,16 +60,6 @@ const DialogInput: React.FC<DialogInputProps> = (props) => {
       />
     </View>
   );
-};
-
-DialogInput.propTypes = {
-  ...ViewPropTypes,
-  label: PropTypes.string,
-  textInputRef: PropTypes.any,
-  wrapperStyle: ViewPropTypes.style,
-  numberOfLines: PropTypes.number,
-  multiline: PropTypes.bool,
-  style: (Text as any).propTypes.style,
 };
 
 DialogInput.displayName = "DialogInput";
