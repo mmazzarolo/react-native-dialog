@@ -8,8 +8,8 @@ import {
   PlatformColor,
   ViewStyle,
   StyleProp,
-  ViewPropTypes,
 } from "react-native";
+import { ViewPropTypes } from "deprecated-react-native-prop-types";
 import Modal from "./Modal";
 import useTheme, { StyleBuilder } from "./useTheme";
 import PropTypes from "prop-types";
@@ -27,6 +27,7 @@ type ButtonElement = ReactElement<DialogButtonProps, typeof DialogButton>;
 const iOS = Platform.OS === "ios";
 
 export type DialogContainerProps = PropsWithChildren<{
+  children: JSX.Element | JSX.Element[];
   blurComponentIOS?: ReactNode;
   buttonSeparatorStyle?: StyleProp<ViewStyle>;
   contentStyle?: StyleProp<ViewStyle>;
@@ -62,8 +63,8 @@ const DialogContainer: React.FC<DialogContainerProps> = (props) => {
   const { styles } = useTheme(buildStyles);
   React.Children.forEach(children, (child) => {
     if (typeof child === "object" && child !== null && "type" in child) {
-      // @ts-expect-error: "Property 'displayName' does not exist on type 'string"
-      switch (child.type.displayName) {
+      const displayName = child.type?.displayName || child.type?.name;
+      switch (displayName) {
         case DialogTitle.displayName:
           titleChildrens.push(child as TitleElement);
           return;
@@ -149,7 +150,10 @@ DialogContainer.propTypes = {
   onBackdropPress: PropTypes.func,
   keyboardVerticalOffset: PropTypes.number,
   useNativeDriver: PropTypes.bool,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.arrayOf(PropTypes.element),
+  ]).isRequired,
 };
 
 const buildStyles: StyleBuilder = () =>

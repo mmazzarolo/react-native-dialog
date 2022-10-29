@@ -10,9 +10,9 @@ import {
   StyleProp,
   StyleSheet,
   TouchableWithoutFeedback,
-  ViewPropTypes,
   ViewStyle,
 } from "react-native";
+import { ViewPropTypes } from "deprecated-react-native-prop-types";
 
 const MODAL_ANIM_DURATION = 300;
 const MODAL_BACKDROP_OPACITY = 0.3;
@@ -145,8 +145,12 @@ export class Modal extends Component<ModalProps, ModalState> {
   };
 
   render() {
-    const { children, onBackdropPress, contentStyle, ...otherProps } =
-      this.props;
+    const {
+      children,
+      onBackdropPress,
+      contentStyle,
+      ...otherProps
+    } = this.props;
     const { currentAnimation, visible } = this.state;
 
     const backdropAnimatedStyle = {

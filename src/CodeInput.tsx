@@ -7,12 +7,14 @@ import {
   View,
   Pressable,
   PlatformColor,
-  TextInputProps,
   ViewStyle,
-  ViewPropTypes,
   StyleProp,
   TextStyle,
 } from "react-native";
+import {
+  TextInputProps,
+  ViewPropTypes,
+} from "deprecated-react-native-prop-types";
 import useTheme from "./useTheme";
 import PropTypes from "prop-types";
 
