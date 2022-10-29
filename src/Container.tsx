@@ -61,7 +61,8 @@ const DialogContainer: React.FC<DialogContainerProps> = (props) => {
   React.Children.forEach(children, (child) => {
     if (typeof child === "object" && child !== null && "type" in child) {
       // @ts-expect-error: "Property 'displayName' does not exist on type 'string"
-      switch (child.type.displayName) {
+      const displayName = child.type?.displayName || child.type?.name;
+      switch (displayName) {
         case DialogTitle.displayName:
           titleChildrens.push(child as TitleElement);
           return;

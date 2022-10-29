@@ -15,6 +15,8 @@ import {
 import useTheme from "./useTheme";
 
 export interface DialogCodeInputProps extends TextInputProps {
+  autoFocus?: boolean; // TODO: Why do we need to add this to fix TS2339? It should already be included in TextInputProps.
+  style?: StyleProp<ViewStyle>;
   wrapperStyle?: StyleProp<ViewStyle>;
   digitContainerStyle?: StyleProp<ViewStyle>;
   digitContainerFocusedStyle?: StyleProp<ViewStyle>;
@@ -25,6 +27,7 @@ export interface DialogCodeInputProps extends TextInputProps {
 
 const DialogCodeInput: React.FC<DialogCodeInputProps> = (props) => {
   const {
+    autoFocus = false,
     style,
     wrapperStyle,
     digitContainerStyle,
@@ -36,9 +39,7 @@ const DialogCodeInput: React.FC<DialogCodeInputProps> = (props) => {
   } = props;
   const { styles } = useTheme(buildStyles);
   const codeRef = React.useRef<TextInput>(null);
-  const [containerIsFocused, setContainerIsFocused] = React.useState(
-    props.autoFocus || false
-  );
+  const [containerIsFocused, setContainerIsFocused] = React.useState(autoFocus);
   const [code, setCode] = React.useState("");
   const codeDigitsArray = new Array(codeLength).fill(0);
   const emptyInputChar = " ";
