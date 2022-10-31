@@ -135,8 +135,12 @@ export class Modal extends Component<ModalProps, ModalState> {
   };
 
   render() {
-    const { children, onBackdropPress, contentStyle, ...otherProps } =
-      this.props;
+    const {
+      children,
+      onBackdropPress,
+      contentStyle,
+      ...otherProps
+    } = this.props;
     const { currentAnimation, visible } = this.state;
 
     const backdropAnimatedStyle = {
