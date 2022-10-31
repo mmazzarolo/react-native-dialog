@@ -60,14 +60,16 @@ const DialogContainer: React.FC<DialogContainerProps> = (props) => {
   const { styles } = useTheme(buildStyles);
   React.Children.forEach(children, (child) => {
     if (typeof child === "object" && child !== null && "type" in child) {
-      switch (child.type) {
-        case DialogTitle:
+      // @ts-expect-error: "Property 'displayName' does not exist on type 'string"
+      const displayName = child.type?.displayName || child.type?.name;
+      switch (displayName) {
+        case DialogTitle.displayName:
           titleChildrens.push(child as TitleElement);
           return;
-        case DialogDescription:
+        case DialogDescription.displayName:
           descriptionChildrens.push(child as DescriptionElement);
           return;
-        case DialogButton:
+        case DialogButton.displayName:
           if (Platform.OS === "ios" && buttonChildrens.length > 0) {
             buttonChildrens.push(
               <View

@@ -181,24 +181,25 @@ const styles = StyleSheet.create({
 
 ### Dialog.Input props
 
-| Name         | Type   | Default   | Description                                 |
-| ------------ | ------ | --------- | ------------------------------------------- |
-| label        | string | undefined | The input floating label                    |
-| wrapperStyle | any    | undefined | The style applied to the input wrapper View |
-| textInputRef | ref    | undefined | Ref to the input                            |
+| Name               | Type   | Default   | Description                                                             |
+| ------------------ | ------ | --------- | ----------------------------------------------------------------------- |
+| label              | string | undefined | The input floating label                                                |
+| wrapperStyle       | any    | undefined | The style applied to the input wrapper View                             |
+| textInputRef       | ref    | undefined | Ref to the input                                                        |
+| unstableLabelStyle | any    | undefined | Likely to be removed in a future version. See issue #141 for discussion |
 
 `Dialog.Input` also accepts all the React-Native's `TextInput` component props.
 
 ### Dialog.CodeInput props
 
-| Name                        | Type   | Default   | Description                                                  |
-| --------------------------- | ------ | --------- | ------------------------------------------------------------ |
-| wrapperStyle                | any    | undefined | The style applied to the input wrapper View                  |
-| digitContainerStyle         | any    | undefined | The style applied to the digit container View                |
-| digitContainerFocusedStyle  | any    | undefined | The style applied to the digit container View when in focus  |
-| digitStyle                  | any    | undefined | The style applied to the digit text                          |
-| codeLength                  | number | 4         | The total number of digits                                   |
-| onCodeChange                | func   | undefined | Called when the input changed                                |
+| Name                       | Type   | Default   | Description                                                 |
+| -------------------------- | ------ | --------- | ----------------------------------------------------------- |
+| wrapperStyle               | any    | undefined | The style applied to the input wrapper View                 |
+| digitContainerStyle        | any    | undefined | The style applied to the digit container View               |
+| digitContainerFocusedStyle | any    | undefined | The style applied to the digit container View when in focus |
+| digitStyle                 | any    | undefined | The style applied to the digit text                         |
+| codeLength                 | number | 4         | The total number of digits                                  |
+| onCodeChange               | func   | undefined | Called when the input changed                               |
 
 `Dialog.CodeInput` also accepts all the React-Native's `TextInput` component props.
 
@@ -212,9 +213,10 @@ const styles = StyleSheet.create({
 
 ### Dialog.Switch props
 
-| Name  | Type   | Default   | Description                 |
-| ----- | ------ | --------- | --------------------------- |
-| label | string | undefined | The switch description text |
+| Name               | Type   | Default   | Description                                                             |
+| ------------------ | ------ | --------- | ----------------------------------------------------------------------- |
+| label              | string | undefined | The switch description text                                             |
+| unstableLabelStyle | any    | undefined | Likely to be removed in a future version. See issue #141 for discussion |
 
 `Dialog.Switch` also accepts all the React-Native's `Switch` component props.
 
