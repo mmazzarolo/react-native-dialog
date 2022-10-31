@@ -1,3 +1,10 @@
+# [9.3.0](https://github.com/mmazzarolo/react-native-dialog/compare/v9.2.2...v9.3.0) (2022-10-31)
+
+
+### Features
+
+* Add unstableLabelStyle & fix switch statement comparison method ([#150](https://github.com/mmazzarolo/react-native-dialog/issues/150)) ([839915b](https://github.com/mmazzarolo/react-native-dialog/commit/839915bc546707526f3853d454fbe87b24d2cac3))
+
 ## [9.2.2](https://github.com/mmazzarolo/react-native-dialog/compare/v9.2.1...v9.2.2) (2022-06-09)
 
 
