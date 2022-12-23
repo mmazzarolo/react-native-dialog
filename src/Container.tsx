@@ -166,6 +166,7 @@ const buildStyles: StyleBuilder = () =>
         overflow: "hidden",
         elevation: 4,
         minWidth: 300,
+        width: 300,
       },
       web: {
         flexDirection: "column",
@@ -176,6 +177,7 @@ const buildStyles: StyleBuilder = () =>
         overflow: "hidden",
         elevation: 4,
         minWidth: 300,
+        width: 300,
       },
       default: {},
     }),
