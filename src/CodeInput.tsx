@@ -23,6 +23,7 @@ export interface DialogCodeInputProps extends TextInputProps {
   digitStyle?: StyleProp<TextStyle>;
   codeLength?: number;
   onCodeChange?: (code: string) => void;
+  value?: string;
 }
 
 const DialogCodeInput: React.FC<DialogCodeInputProps> = (props) => {
@@ -35,12 +36,16 @@ const DialogCodeInput: React.FC<DialogCodeInputProps> = (props) => {
     digitStyle,
     codeLength = 4,
     onCodeChange,
+    value = "",
     ...nodeProps
   } = props;
   const { styles } = useTheme(buildStyles);
   const codeRef = React.useRef<TextInput>(null);
   const [containerIsFocused, setContainerIsFocused] = React.useState(autoFocus);
-  const [code, setCode] = React.useState("");
+  const [code, setCode] = React.useState(value);
+  React.useEffect(() => {
+    setCode(value);
+  }, [value]);
   const codeDigitsArray = new Array(codeLength).fill(0);
   const emptyInputChar = " ";
   const handleContainerPress = () => {
@@ -98,6 +103,7 @@ const DialogCodeInput: React.FC<DialogCodeInputProps> = (props) => {
         onSubmitEditing={handleOnBlur}
         maxLength={codeLength}
         onChangeText={onCodeChangePress}
+        value={value}
         {...nodeProps}
       />
     </View>
